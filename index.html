@@ -75,7 +75,7 @@
       left: 0;
       right: 0;
       height: 64px;
-      background: rgba(248, 245, 238, 0.92);
+      background: rgba(248, 245, 238, 0.95);
       backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--border-soft);
       display: flex;
@@ -89,9 +89,10 @@
     .nav-brand-group {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
       text-decoration: none;
       color: var(--agri-burgundy);
+      flex-shrink: 0;
     }
 
     .nav-logo-box {
@@ -100,21 +101,25 @@
       font-size: 13px;
       background: var(--agri-burgundy);
       color: var(--gold-light);
-      padding: 4px 10px;
+      padding: 5px 10px;
       border-radius: 4px;
       letter-spacing: 1px;
+      white-space: nowrap;
     }
 
     .nav-brand-text {
       font-size: 13.5px;
       font-weight: 700;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.3px;
+      white-space: nowrap;
     }
 
     .nav-menu {
       display: flex;
       gap: 18px;
       list-style: none;
+      margin: 0;
+      padding: 0;
     }
 
     .nav-menu a {
@@ -123,6 +128,7 @@
       font-size: 13px;
       font-weight: 600;
       transition: color 0.25s;
+      white-space: nowrap;
     }
 
     .nav-menu a:hover, .nav-menu a.active {
@@ -132,7 +138,8 @@
     .nav-actions {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
+      flex-shrink: 0;
     }
 
     .btn-quiet {
@@ -148,11 +155,96 @@
       align-items: center;
       gap: 6px;
       transition: all 0.25s;
+      white-space: nowrap;
     }
 
     .btn-quiet:hover {
       background: var(--agri-burgundy);
       color: #fff;
+    }
+
+    .btn-hamburger {
+      display: none;
+      background: #FFFFFF;
+      border: 1px solid var(--border-soft);
+      color: var(--agri-burgundy);
+      width: 38px;
+      height: 38px;
+      border-radius: 8px;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      padding: 0;
+      transition: all 0.2s;
+    }
+
+    .btn-hamburger:hover {
+      background: var(--agri-burgundy);
+      color: #FFFFFF;
+    }
+
+    /* MOBILE DRAWER MENU */
+    .mobile-drawer {
+      position: fixed;
+      top: 56px;
+      left: 0;
+      right: 0;
+      background: rgba(248, 245, 238, 0.98);
+      backdrop-filter: blur(16px);
+      border-bottom: 2px solid var(--agri-burgundy);
+      box-shadow: 0 16px 36px rgba(0,0,0,0.18);
+      z-index: 998;
+      display: none;
+      padding: 16px 18px;
+      animation: menuSlideDown 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .mobile-drawer.open {
+      display: block;
+    }
+
+    @keyframes menuSlideDown {
+      from { opacity: 0; transform: translateY(-12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .mobile-drawer-inner {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .mobile-nav-link {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      border-radius: 8px;
+      text-decoration: none;
+      color: var(--text-main);
+      font-size: 14.5px;
+      font-weight: 600;
+      background: #FFFFFF;
+      border: 1px solid var(--border-soft);
+      transition: all 0.2s ease;
+    }
+
+    .mobile-nav-link i {
+      width: 18px;
+      height: 18px;
+      color: var(--agri-burgundy);
+    }
+
+    .mobile-nav-link:hover, .mobile-nav-link.active {
+      background: var(--agri-burgundy);
+      color: #FFFFFF;
+      border-color: var(--agri-burgundy);
+    }
+
+    .mobile-nav-link.active i {
+      color: var(--gold-light);
     }
 
     /* SECTION BASICS */
@@ -622,6 +714,147 @@
     .modal-article-body p {
       margin-bottom: 16px;
     }
+
+    /* ==============================================
+       RESPONSIVE MOBILE STYLES (< 992px)
+       ============================================== */
+    @media (max-width: 991px) {
+      .site-nav {
+        padding: 0 14px;
+        height: 56px;
+      }
+      .nav-menu {
+        display: none !important; /* Hide squeezed desktop items on mobile */
+      }
+      .btn-hamburger {
+        display: flex !important;
+      }
+      .nav-brand-text {
+        font-size: 13px;
+        max-width: 140px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .btn-label-desktop {
+        display: none !important; /* Icon only on mobile to save space */
+      }
+      .btn-quiet {
+        padding: 6px 10px;
+      }
+      .nav-actions {
+        gap: 6px;
+      }
+      .story-section {
+        padding: 85px 16px 50px;
+        background-attachment: scroll !important; /* Smooth scroll on iOS/Android */
+      }
+      .hero-box {
+        padding: 0 4px;
+      }
+      .hero-badge-gold {
+        font-size: 11px;
+        padding: 6px 12px;
+        line-height: 1.4;
+        max-width: 100%;
+        text-align: center;
+        letter-spacing: 0.5px;
+        border-radius: 24px;
+      }
+      .hero-heading {
+        font-size: clamp(34px, 12vw, 56px);
+        margin-bottom: 10px;
+      }
+      .hero-subheading {
+        font-size: clamp(16px, 4.8vw, 24px);
+        line-height: 1.4;
+        margin-bottom: 20px;
+        text-wrap: balance;
+      }
+      .hero-quote {
+        font-size: 14px;
+        line-height: 1.7;
+        margin-bottom: 28px;
+        text-align: justify;
+        text-justify: inter-word;
+      }
+      .letters-row {
+        grid-template-columns: 1fr;
+        gap: 18px;
+        margin-top: 24px;
+      }
+      .paper-card {
+        padding: 22px 16px;
+      }
+      .paper-card-title {
+        font-size: 17px;
+      }
+      .paper-card-snippet {
+        font-size: 14px;
+        line-height: 1.7;
+        margin-bottom: 18px;
+      }
+      .section-title {
+        font-size: clamp(24px, 6.5vw, 36px);
+        text-wrap: balance;
+        margin-bottom: 12px;
+      }
+      .section-subtitle {
+        font-size: 14px;
+        line-height: 1.6;
+        margin-bottom: 28px;
+      }
+      .tradition-grid, .future-steps-list, .emotions-grid, .honor-quad {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+      .article-box, .step-card, .honor-quad-card {
+        padding: 20px 16px;
+      }
+      .article-heading {
+        font-size: 18px;
+        line-height: 1.35;
+      }
+      .special-highlight-card {
+        padding: 26px 16px;
+        border-radius: 12px;
+        margin: 24px 0 36px;
+      }
+      .special-highlight-card h3 {
+        font-size: 21px;
+      }
+      .special-highlight-card p {
+        font-size: 14px;
+        line-height: 1.7;
+      }
+      .poetry-container {
+        padding: 24px 16px;
+      }
+      .poetry-lines {
+        font-size: 15px;
+        line-height: 1.95;
+      }
+      .modal-content-box {
+        padding: 28px 18px 22px;
+        width: 94%;
+        max-height: 85vh;
+      }
+      .modal-article-title {
+        font-size: 21px;
+        line-height: 1.35;
+      }
+      .modal-article-body {
+        font-size: 14.5px;
+        line-height: 1.75;
+      }
+      .closing-title {
+        font-size: clamp(26px, 7vw, 38px);
+      }
+      .closing-sub {
+        font-size: 14.5px;
+        line-height: 1.7;
+      }
+    }
   </style>
 </head>
 <body>
@@ -633,7 +866,7 @@
   <header class="site-nav">
     <a href="#sec-hero" class="nav-brand-group">
       <div class="nav-logo-box">AGRIBANK</div>
-      <div class="nav-brand-text">Viện Nghiên Cứu và Đào Tạo</div>
+      <div class="nav-brand-text">Viện NC & ĐT</div>
     </a>
 
     <ul class="nav-menu">
@@ -646,15 +879,31 @@
     </ul>
 
     <div class="nav-actions">
-      <button class="btn-quiet" id="audioToggle">
+      <button class="btn-quiet" id="audioToggle" title="Bật/Tắt Nhạc Nền">
         <i data-lucide="volume-2" id="audioIcon"></i>
-        <span id="audioText">Nhạc Nền</span>
+        <span id="audioText" class="btn-label-desktop">Nhạc Nền</span>
       </button>
-      <button class="btn-quiet" onclick="triggerCelebration()">
-        <i data-lucide="sparkles"></i> 25 Năm
+      <button class="btn-quiet" onclick="triggerCelebration()" title="Chúc Mừng 25 Năm">
+        <i data-lucide="sparkles"></i>
+        <span class="btn-label-desktop">25 Năm</span>
+      </button>
+      <button class="btn-hamburger" id="hamburgerBtn" onclick="toggleMobileMenu()" aria-label="Mở Menu">
+        <i data-lucide="menu" id="hamburgerIcon"></i>
       </button>
     </div>
   </header>
+
+  <!-- Mobile Menu Drawer -->
+  <div class="mobile-drawer" id="mobileDrawer">
+    <div class="mobile-drawer-inner">
+      <a href="#sec-hero" class="mobile-nav-link active" onclick="closeMobileMenu()"><i data-lucide="home"></i> Lời Ngỏ & Bìa Kỷ Yếu</a>
+      <a href="#sec-tradition" class="mobile-nav-link" onclick="closeMobileMenu()"><i data-lucide="history"></i> Tự Hào Truyền Thống 25 Năm</a>
+      <a href="#sec-future" class="mobile-nav-link" onclick="closeMobileMenu()"><i data-lucide="sparkles"></i> Kiến Tạo Tương Lai (Viện NC&ĐT)</a>
+      <a href="#sec-honor" class="mobile-nav-link" onclick="closeMobileMenu()"><i data-lucide="award"></i> Vững Bước Đồng Hành & Tri Ân</a>
+      <a href="#sec-emotions" class="mobile-nav-link" onclick="closeMobileMenu()"><i data-lucide="heart"></i> Những Mảnh Ghép Cảm Xúc & Thơ</a>
+      <a href="#sec-closing" class="mobile-nav-link" onclick="closeMobileMenu()"><i data-lucide="flag"></i> Khép Lại & Mở Ra Tương Lai</a>
+    </div>
+  </div>
 
   <!-- ==============================================
        PHẦN 1: LỜI NGỎ - NHỊP CẦU NỐI QUÁ KHỨ & TƯƠNG LAI
@@ -1185,6 +1434,55 @@
       if (audioCtx) audioCtx.close();
       audioCtx = null;
     }
+
+    // Mobile Drawer Navigation Functions
+    function toggleMobileMenu() {
+      const drawer = document.getElementById('mobileDrawer');
+      const icon = document.getElementById('hamburgerIcon');
+      drawer.classList.toggle('open');
+      if (drawer.classList.contains('open')) {
+        icon.setAttribute('data-lucide', 'x');
+      } else {
+        icon.setAttribute('data-lucide', 'menu');
+      }
+      lucide.createIcons();
+    }
+
+    function closeMobileMenu() {
+      const drawer = document.getElementById('mobileDrawer');
+      const icon = document.getElementById('hamburgerIcon');
+      if (drawer) drawer.classList.remove('open');
+      if (icon) icon.setAttribute('data-lucide', 'menu');
+      lucide.createIcons();
+    }
+
+    // Auto-update Active Link in Nav and Mobile Drawer on Scroll
+    window.addEventListener('scroll', () => {
+      const sections = [
+        { id: 'sec-hero', href: '#sec-hero' },
+        { id: 'sec-tradition', href: '#sec-tradition' },
+        { id: 'sec-future', href: '#sec-future' },
+        { id: 'sec-honor', href: '#sec-honor' },
+        { id: 'sec-emotions', href: '#sec-emotions' },
+        { id: 'sec-closing', href: '#sec-closing' }
+      ];
+      
+      const scrollPos = window.scrollY + 140;
+      sections.forEach(sec => {
+        const el = document.getElementById(sec.id);
+        if (el) {
+          const top = el.offsetTop;
+          const height = el.offsetHeight;
+          if (scrollPos >= top && scrollPos < top + height) {
+            document.querySelectorAll('.nav-menu a, .mobile-nav-link').forEach(a => a.classList.remove('active'));
+            const activeDesktop = document.querySelector(`.nav-menu a[href="${sec.href}"]`);
+            const activeMobile = document.querySelector(`.mobile-nav-link[href="${sec.href}"]`);
+            if (activeDesktop) activeDesktop.classList.add('active');
+            if (activeMobile) activeMobile.classList.add('active');
+          }
+        }
+      });
+    });
   </script>
 </body>
 </html>
