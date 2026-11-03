@@ -14,8 +14,11 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
   
-  <!-- Lucide Icons -->
-  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Preload Critical Hero Background (WebP High Performance) -->
+  <link rel="preload" href="backgrounds/bg_01_cover_solemn.webp" as="image" type="image/webp">
+
+  <!-- Lucide Icons (Pinned stable version v0.469.0) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.469.0/umd/lucide.min.js"></script>
   
   <!-- GSAP 3.12 & ScrollTrigger & Confetti -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
@@ -387,7 +390,7 @@
       justify-content: center;
       align-items: center;
       background: radial-gradient(circle at 50% 30%, rgba(138, 18, 26, 0.72) 0%, rgba(74, 8, 12, 0.88) 55%, rgba(35, 4, 7, 0.96) 100%),
-                  url('backgrounds/bg_01_cover_solemn.jpg') center/cover fixed no-repeat;
+                  url('backgrounds/bg_01_cover_solemn.webp') center/cover fixed no-repeat;
       color: #fff;
       text-align: center;
       overflow: hidden;
@@ -709,7 +712,7 @@
        ==================================================== */
     #sec-tradition {
       background: linear-gradient(180deg, rgba(248, 245, 238, 0.86) 0%, rgba(243, 238, 227, 0.90) 100%),
-                  url('backgrounds/agribank_heritage_library.jpg') center/cover fixed no-repeat;
+                  url('backgrounds/agribank_heritage_library.webp') center/cover fixed no-repeat;
     }
 
     /* Sticky Storytelling Container 2 Cột (Giai đoạn 5A) */
@@ -1094,7 +1097,7 @@
     /* THẮP SÁNG BẢN LÀNG - NỀN LẮNG ĐỌNG TÌNH NGƯỜI */
     .special-highlight-card {
       background: linear-gradient(rgba(45, 10, 15, 0.88), rgba(28, 5, 8, 0.94)),
-                  url('backgrounds/01_hero_campus.jpg') center/cover no-repeat;
+                  url('backgrounds/01_hero_campus.webp') center/cover no-repeat;
       color: #fff;
       border-radius: 16px;
       padding: 50px 44px;
@@ -1124,7 +1127,7 @@
        ==================================================== */
     #sec-future {
       background: linear-gradient(180deg, rgba(248, 250, 252, 0.85) 0%, rgba(238, 243, 250, 0.90) 100%),
-                  url('backgrounds/agribank_future_institute_digital.jpg') center/cover fixed no-repeat;
+                  url('backgrounds/agribank_future_institute_digital.webp') center/cover fixed no-repeat;
     }
 
     /* Tech Stats Bar */
@@ -1197,7 +1200,7 @@
        ==================================================== */
     #sec-honor {
       background: linear-gradient(180deg, rgba(248, 244, 236, 0.85) 0%, rgba(240, 235, 224, 0.90) 100%),
-                  url('backgrounds/03_lecture_auditorium.jpg') center/cover fixed no-repeat;
+                  url('backgrounds/03_lecture_auditorium.webp') center/cover fixed no-repeat;
     }
 
     .hof-grid {
@@ -1344,7 +1347,7 @@
        ==================================================== */
     #sec-emotions {
       background: linear-gradient(180deg, rgba(250, 246, 240, 0.85) 0%, rgba(244, 238, 228, 0.90) 100%),
-                  url('backgrounds/02_history_timeline.jpg') center/cover fixed no-repeat;
+                  url('backgrounds/02_history_timeline.webp') center/cover fixed no-repeat;
     }
 
     /* Poetry Spread - Trang Thơ Tri Ân */
@@ -1734,7 +1737,7 @@
     #sec-closing {
       position: relative;
       background: radial-gradient(circle at 50% 35%, rgba(88, 12, 18, 0.74) 0%, rgba(42, 6, 9, 0.88) 55%, rgba(18, 3, 5, 0.96) 100%),
-                  url('backgrounds/04_future_aspiration.jpg') center/cover fixed no-repeat;
+                  url('backgrounds/04_future_aspiration.webp') center/cover fixed no-repeat;
       color: #fff;
       text-align: center;
       padding: 150px 24px 100px;
@@ -1887,6 +1890,86 @@
       margin-bottom: 18px;
     }
 
+    /* CURATION NOTICE BOX & AUDIT CHECKLIST (GIAI ĐOẠN 8) */
+    .curation-notice-box {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      background: rgba(255, 213, 107, 0.12);
+      border: 1px solid rgba(229, 192, 123, 0.55);
+      border-radius: 10px;
+      padding: 14px 16px;
+      margin-bottom: 20px;
+      font-size: 13.5px;
+      color: #3C3633;
+      line-height: 1.65;
+    }
+
+    .curation-notice-box i, .curation-notice-box svg {
+      width: 20px;
+      height: 20px;
+      color: var(--agri-burgundy);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .checklist-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0 24px;
+      font-size: 13px;
+    }
+
+    .checklist-table th, .checklist-table td {
+      border: 1px solid var(--border-soft);
+      padding: 10px 12px;
+      text-align: left;
+    }
+
+    .checklist-table th {
+      background: rgba(130, 19, 25, 0.06);
+      color: var(--agri-burgundy);
+      font-weight: 700;
+    }
+
+    .badge-status-pending {
+      display: inline-block;
+      padding: 3px 8px;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: 700;
+      background: rgba(255, 168, 38, 0.15);
+      color: #B25E00;
+      border: 1px solid rgba(255, 168, 38, 0.4);
+    }
+
+    .badge-status-verified {
+      display: inline-block;
+      padding: 3px 8px;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: 700;
+      background: rgba(38, 166, 91, 0.12);
+      color: #1E7E34;
+      border: 1px solid rgba(38, 166, 91, 0.35);
+    }
+
+    /* REDUCED MOTION SUPPORT (GIAI ĐOẠN 7) */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      .masonry-item-img {
+        clip-path: inset(0 0 0 0) !important;
+      }
+      .hero-drum-bg, .hero-wave-bg, .hero-box, .closing-huge-25 {
+        transform: none !important;
+      }
+    }
+
     /* ====================================================
        RESPONSIVE MOBILE STYLES (< 992px)
        ==================================================== */
@@ -1982,8 +2065,8 @@
 </head>
 <body>
 
-  <!-- Background Music Audio Tag (DEFAULT ON & CONTINUOUS LOOP) -->
-  <audio id="bgMusic" src="audio/nhac_nen_ky_yeu.mp3?v=2" preload="auto" loop playsinline webkit-playsinline></audio>
+  <!-- Background Music Audio Tag (CHỈ PHÁT KHI BẬT - PRELOAD NONE TIẾT KIỆM BĂNG THÔNG) -->
+  <audio id="bgMusic" src="audio/nhac_nen_ky_yeu.mp3?v=3" preload="none" loop playsinline webkit-playsinline></audio>
 
   <!-- Top Reading Progress Indicator -->
   <div class="top-progress" id="topProgress"></div>
@@ -1996,12 +2079,12 @@
       </a>
 
       <div class="nav-actions">
-        <!-- Nút Nhạc Nền: Mặc định MỞ kèm sóng âm thanh động -->
-        <button class="btn-quiet playing" id="audioToggle" title="Bật/Tắt Nhạc Nền">
+        <!-- Nút Nhạc Nền: Mặc định TẮT, chỉ phát khi người dùng bấm -->
+        <button class="btn-quiet" id="audioToggle" title="Bật Nhạc Nền" aria-label="Bật Nhạc Nền">
           <span class="equalizer-bars">
             <span></span><span></span><span></span>
           </span>
-          <span id="audioText" class="btn-label-desktop">Nhạc Nền</span>
+          <span id="audioText" class="btn-label-desktop">Bật Nhạc</span>
         </button>
       </div>
     </div>
@@ -2113,7 +2196,7 @@
         <!-- Visual Storytelling Pane (Sticky Left) -->
         <div class="sticky-story-visual-pane">
           <!-- Slide 1999 -->
-          <div class="sticky-era-slide active-era" style="background-image: url('backgrounds/agribank_heritage_library.jpg');" data-era-slide="0">
+          <div class="sticky-era-slide active-era" style="background-image: url('backgrounds/agribank_heritage_library.webp');" data-era-slide="0">
             <div class="sticky-era-overlay"></div>
             <div class="sticky-era-content">
               <span class="sticky-era-tag"><i data-lucide="clock"></i> Giai Đoạn Khởi Nguồn • 1999</span>
@@ -2124,7 +2207,7 @@
           </div>
 
           <!-- Slide 2008 -->
-          <div class="sticky-era-slide" style="background-image: url('backgrounds/01_hero_campus.jpg');" data-era-slide="1">
+          <div class="sticky-era-slide" style="background-image: url('backgrounds/01_hero_campus.webp');" data-era-slide="1">
             <div class="sticky-era-overlay"></div>
             <div class="sticky-era-content">
               <span class="sticky-era-tag"><i data-lucide="graduation-cap"></i> Mở Rộng & Chuẩn Hóa • 2008</span>
@@ -2135,7 +2218,7 @@
           </div>
 
           <!-- Slide 2019 -->
-          <div class="sticky-era-slide" style="background-image: url('backgrounds/03_lecture_auditorium.jpg');" data-era-slide="2">
+          <div class="sticky-era-slide" style="background-image: url('backgrounds/03_lecture_auditorium.webp');" data-era-slide="2">
             <div class="sticky-era-overlay"></div>
             <div class="sticky-era-content">
               <span class="sticky-era-tag"><i data-lucide="award"></i> Vươn Tầm Quốc Tế • 2019</span>
@@ -2146,7 +2229,7 @@
           </div>
 
           <!-- Slide 2024 - Nay -->
-          <div class="sticky-era-slide" style="background-image: url('backgrounds/agribank_future_institute_digital.jpg');" data-era-slide="3">
+          <div class="sticky-era-slide" style="background-image: url('backgrounds/agribank_future_institute_digital.webp');" data-era-slide="3">
             <div class="sticky-era-overlay"></div>
             <div class="sticky-era-content">
               <span class="sticky-era-tag"><i data-lucide="sparkles"></i> Kỷ Nguyên Mới • 2024 — NAY</span>
@@ -2200,7 +2283,7 @@
           <div class="photo-placeholder" data-archive-slot="historic-leaders">
             <div class="photo-placeholder-watermark"><i data-lucide="landmark"></i></div>
             <div class="photo-placeholder-badge">
-              <i data-lucide="history"></i> Tư Liệu Lịch Sử 1999 – 2026
+              <i data-lucide="history"></i> Tư Liệu Lịch Sử 25 Năm (1999 – 2024)
             </div>
             <div class="photo-placeholder-caption">Chân Dung Lãnh Đạo & Các Thế Hệ Thầy Cô</div>
             <div class="photo-placeholder-tag">Hồ sơ tư liệu 25 năm • Lưu trữ kỷ yếu truyền thống</div>
@@ -2245,7 +2328,7 @@
             <div class="photo-placeholder-caption">Khoảnh Khắc Giảng Đường & Khóa Học Đầu Tiên</div>
             <div class="photo-placeholder-tag">Hình ảnh trắng đen & sepia thời kỳ 1999 – 2008</div>
           </div>
-          <span class="article-author-tag">Hành Trình Tri Thức • 1999 — 2026</span>
+          <span class="article-author-tag">Hành Trình Tri Thức 25 Năm (1999 — 2024)</span>
           <h3 class="article-heading">Ký Ức Thời Gian & Ảnh Tư Liệu</h3>
           <p class="article-lead">
             Bản đồ cột mốc lịch sử và những khoảnh khắc vàng trắng đen/sepia của các thế hệ cán bộ, giảng viên, học viên thời kỳ đầu.
@@ -2289,11 +2372,11 @@
       <div class="future-stats-row">
         <div class="stat-card">
           <div class="stat-num">2.200+</div>
-          <div class="stat-label">Điểm giao dịch kết nối E-Learning</div>
+          <div class="stat-label">Điểm giao dịch toàn hệ thống kết nối</div>
         </div>
         <div class="stat-card">
-          <div class="stat-num">100%</div>
-          <div class="stat-label">Số hóa ngân hàng đề thi trực tuyến</div>
+          <div class="stat-num">Chuẩn Hóa</div>
+          <div class="stat-label">Ngân hàng đề thi & sát hạch trực tuyến</div>
         </div>
         <div class="stat-card">
           <div class="stat-num">25 Năm</div>
@@ -2394,12 +2477,12 @@
         <!-- Nhóm 1: Bảng Vàng Giảng Viên -->
         <div class="hof-card">
           <div class="hof-frame">
-            <img class="hof-frame-img" src="backgrounds/03_lecture_auditorium.jpg" alt="Bảng Vàng Giảng Viên Agribank">
+            <img class="hof-frame-img" src="backgrounds/03_lecture_auditorium.webp" alt="Bảng Vàng Giảng Viên Agribank" loading="lazy" decoding="async">
             <div class="hof-frame-overlay"></div>
             <span class="hof-badge-pill"><i data-lucide="award"></i> Giảng Dạy Tiêu Biểu</span>
           </div>
           <div class="hof-body">
-            <span class="hof-role">Bục Giảng Thắp Lửa • 1999 – 2026</span>
+            <span class="hof-role">Bục Giảng Thắp Lửa • 25 Năm Đồng Hành (1999 – 2024)</span>
             <h4 class="hof-title">Bảng Vàng Giảng Viên</h4>
             <p class="hof-desc">Tôn vinh Ban Lãnh đạo Agribank trực tiếp đứng lớp và đội ngũ Giảng viên kiêm chức xuất sắc giai đoạn 2022-2026 tận tâm truyền lửa nghề.</p>
             <button class="hof-btn" onclick="openArticle('hof-lecturers')">
@@ -2411,7 +2494,7 @@
         <!-- Nhóm 2: Tập Thể Đồng Hành -->
         <div class="hof-card">
           <div class="hof-frame">
-            <img class="hof-frame-img" src="backgrounds/01_hero_campus.jpg" alt="Tập Thể Đồng Hành Agribank">
+            <img class="hof-frame-img" src="backgrounds/01_hero_campus.webp" alt="Tập Thể Đồng Hành Agribank" loading="lazy" decoding="async">
             <div class="hof-frame-overlay"></div>
             <span class="hof-badge-pill"><i data-lucide="users"></i> Mạng Lưới Học Tập</span>
           </div>
@@ -2428,7 +2511,7 @@
         <!-- Nhóm 3: Đối Tác Chiến Lược -->
         <div class="hof-card">
           <div class="hof-frame">
-            <img class="hof-frame-img" src="backgrounds/agribank_heritage_library.jpg" alt="Đối Tác Chiến Lược Agribank">
+            <img class="hof-frame-img" src="backgrounds/agribank_heritage_library.webp" alt="Đối Tác Chiến Lược Agribank" loading="lazy" decoding="async">
             <div class="hof-frame-overlay"></div>
             <span class="hof-badge-pill"><i data-lucide="landmark"></i> Học Thuật & Chiến Lược</span>
           </div>
@@ -2445,7 +2528,7 @@
         <!-- Nhóm 4: Gương Mặt Thầm Lặng -->
         <div class="hof-card">
           <div class="hof-frame">
-            <img class="hof-frame-img" src="backgrounds/agribank_future_institute_digital.jpg" alt="Gương Mặt Thầm Lặng Agribank">
+            <img class="hof-frame-img" src="backgrounds/agribank_future_institute_digital.webp" alt="Gương Mặt Thầm Lặng Agribank" loading="lazy" decoding="async">
             <div class="hof-frame-overlay"></div>
             <span class="hof-badge-pill"><i data-lucide="heart"></i> Hậu Phương Vững Chắc</span>
           </div>
@@ -2526,23 +2609,23 @@
           </button>
         </div>
 
-        <!-- Bài 3: Chia sẻ của Sếp Lưu -->
+        <!-- Bài 3: Tâm Huyết Của Lãnh Đạo Viện -->
         <div class="article-box">
           <div class="photo-placeholder" style="height: 165px;" data-archive-slot="leadership-perspective">
             <div class="photo-placeholder-watermark"><i data-lucide="user-check"></i></div>
             <div class="photo-placeholder-badge">
               <i data-lucide="user-check"></i> Ban Giám Đốc Gửi Gắm
             </div>
-            <div class="photo-placeholder-caption">Chân Dung & Thông Điệp Của Sếp Lưu</div>
+            <div class="photo-placeholder-caption">Chân Dung & Tâm Huyết Của Lãnh Đạo Viện</div>
             <div class="photo-placeholder-tag">Hồi ức kỷ niệm & lời dặn dò tâm huyết thế hệ trẻ</div>
           </div>
-          <span class="article-author-tag">Tâm Huyết & Gửi Gắm • Ban Giám Đốc</span>
-          <h3 class="article-heading">Góc Nhìn & Chia Sẻ Của Sếp Lưu</h3>
+          <span class="article-author-tag">Tâm Huyết & Gửi Gắm • Lãnh Đạo Viện Qua Các Thời Kỳ</span>
+          <h3 class="article-heading">Góc Nhìn & Tâm Huyết Của Lãnh Đạo Viện</h3>
           <p class="article-lead">
-            Hồi ức kỷ niệm quý giá và những lời dặn dò, gửi gắm ân cần dành cho thế hệ trẻ của Viện Nghiên cứu và Đào tạo tiếp tục giữ vững tâm sáng và tinh thần học hỏi.
+            Hồi ức kỷ niệm quý giá và những tâm huyết gắn bó trọn vẹn dành cho thế hệ cán bộ trẻ của Viện Nghiên cứu và Đào tạo tiếp tục giữ vững tâm sáng và tinh thần học hỏi.
           </p>
           <button class="btn-read-article" onclick="openArticle('article-sep-luu')">
-            <i data-lucide="book-open"></i> Đọc Bài Chia Sẻ
+            <i data-lucide="book-open"></i> Đọc Bài Viết
           </button>
         </div>
       </div>
@@ -2562,7 +2645,7 @@
         <!-- Ảnh 1: Lớn span-2 -->
         <div class="masonry-item span-2" onclick="openLightbox(0)">
           <div class="masonry-item-inner">
-            <img class="masonry-item-img" src="backgrounds/agribank_heritage_library.jpg" alt="Khởi Nguồn Tri Thức 1999" loading="lazy">
+            <img class="masonry-item-img" src="backgrounds/agribank_heritage_library.webp" alt="Khởi Nguồn Tri Thức 1999" loading="lazy" decoding="async">
             <div class="masonry-overlay">
               <span class="masonry-tag">Dấu Ấn 1999 • Khởi Đầu</span>
               <h4 class="masonry-caption">Bục Giảng Xưa & Những Trang Sách Khởi Nguồn Tri Thức</h4>
@@ -2575,7 +2658,7 @@
         <!-- Ảnh 2: Thường -->
         <div class="masonry-item" onclick="openLightbox(1)">
           <div class="masonry-item-inner">
-            <img class="masonry-item-img" src="backgrounds/01_hero_campus.jpg" alt="Cơ Sở Đào Tạo 2008" loading="lazy">
+            <img class="masonry-item-img" src="backgrounds/01_hero_campus.webp" alt="Cơ Sở Đào Tạo 2008" loading="lazy" decoding="async">
             <div class="masonry-overlay">
               <span class="masonry-tag">Dấu Ấn 2008 • Mở Rộng</span>
               <h4 class="masonry-caption">Cơ Sở Đào Tạo & Những Mùa Tựu Trường</h4>
@@ -2588,7 +2671,7 @@
         <!-- Ảnh 3: Thường -->
         <div class="masonry-item" onclick="openLightbox(2)">
           <div class="masonry-item-inner">
-            <img class="masonry-item-img" src="backgrounds/03_lecture_auditorium.jpg" alt="Hội Trường Lớn 2019" loading="lazy">
+            <img class="masonry-item-img" src="backgrounds/03_lecture_auditorium.webp" alt="Hội Trường Lớn 2019" loading="lazy" decoding="async">
             <div class="masonry-overlay">
               <span class="masonry-tag">Dấu Ấn 2019 • Vươn Tầm</span>
               <h4 class="masonry-caption">Hội Trường Lớn & Dấu Ấn SEI Award</h4>
@@ -2601,11 +2684,11 @@
         <!-- Ảnh 4: Lớn span-2 -->
         <div class="masonry-item span-2" onclick="openLightbox(3)">
           <div class="masonry-item-inner">
-            <img class="masonry-item-img" src="backgrounds/agribank_future_institute_digital.jpg" alt="Studio E-Learning" loading="lazy">
+            <img class="masonry-item-img" src="backgrounds/agribank_future_institute_digital.webp" alt="Studio E-Learning" loading="lazy" decoding="async">
             <div class="masonry-overlay">
               <span class="masonry-tag">Kỷ Nguyên Số • E-Learning</span>
               <h4 class="masonry-caption">Studio Sản Xuất Bài Giảng Điện Tử Hiện Đại</h4>
-              <p class="masonry-sub">Hệ thống số hóa kết nối trực tuyến tới hơn 2.200 chi nhánh toàn quốc</p>
+              <p class="masonry-sub">Hệ thống số hóa kết nối đào tạo trực tuyến toàn hệ thống Agribank</p>
             </div>
             <div class="masonry-zoom-btn"><i data-lucide="maximize-2"></i></div>
           </div>
@@ -2614,7 +2697,7 @@
         <!-- Ảnh 5: Thường -->
         <div class="masonry-item" onclick="openLightbox(4)">
           <div class="masonry-item-inner">
-            <img class="masonry-item-img" src="backgrounds/04_future_aspiration.jpg" alt="Nghiên Cứu Chiến Lược" loading="lazy">
+            <img class="masonry-item-img" src="backgrounds/04_future_aspiration.webp" alt="Nghiên Cứu Chiến Lược" loading="lazy" decoding="async">
             <div class="masonry-overlay">
               <span class="masonry-tag">2024+ • Đổi Mới</span>
               <h4 class="masonry-caption">Hội Thảo Khoa Học & Nghiên Cứu Chiến Lược</h4>
@@ -2627,7 +2710,7 @@
         <!-- Ảnh 6: Thường -->
         <div class="masonry-item" onclick="openLightbox(5)">
           <div class="masonry-item-inner">
-            <img class="masonry-item-img" src="backgrounds/agribank_building_sunset.jpg" alt="Mái Nhà Chung 25 Năm" loading="lazy">
+            <img class="masonry-item-img" src="backgrounds/agribank_building_sunset.webp" alt="Mái Nhà Chung 25 Năm" loading="lazy" decoding="async">
             <div class="masonry-overlay">
               <span class="masonry-tag">25 Năm Tự Hào</span>
               <h4 class="masonry-caption">Mái Nhà Chung Viện NC&ĐT Agribank</h4>
@@ -2667,13 +2750,16 @@
         <button class="btn-quiet btn-celebrate" style="padding: 12px 28px; font-size: 14px;" onclick="triggerCelebration()">
           <i data-lucide="sparkles"></i> Chúc Mừng 25 Năm Agribank & 20/11
         </button>
+        <button class="btn-quiet" style="padding: 12px 24px; font-size: 14px; border-color: rgba(229, 192, 123, 0.4);" onclick="openArticle('audit-checklist')">
+          <i data-lucide="shield-check"></i> Danh Mục Thẩm Định Dữ Liệu
+        </button>
         <a href="#sec-hero" class="btn-quiet" style="padding: 12px 24px; font-size: 14px;">
           <i data-lucide="arrow-up"></i> Về Đầu Trang
         </a>
       </div>
 
-      <div style="margin-top: 60px; font-size: 13px; color: rgba(255,255,255,0.6);">
-        © 2026 Viện Nghiên cứu và Đào tạo Agribank • Kỷ Yếu Scrollytelling Điện Tử Cao Cấp
+      <div style="margin-top: 60px; font-size: 13px; color: rgba(255,255,255,0.65);">
+        © 2024 — 2026 Viện Nghiên cứu và Đào tạo Agribank • Kỷ Yếu Scrollytelling Điện Tử Cao Cấp
       </div>
     </div>
   </section>
@@ -2708,43 +2794,66 @@
   </div>
 
   <script>
-    // Initialize Lucide Icons
-    lucide.createIcons();
+    // Initialize Lucide Icons with safety check (không để lỗi CDN làm dừng script)
+    if (window.lucide && typeof window.lucide.createIcons === 'function') {
+      try {
+        lucide.createIcons();
+      } catch (e) {
+        console.warn('Lucide icon load error:', e);
+      }
+    }
 
-    // Register GSAP ScrollTrigger
-    gsap.registerPlugin(ScrollTrigger);
+    // Register GSAP ScrollTrigger with safety check
+    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+      try {
+        gsap.registerPlugin(ScrollTrigger);
+      } catch (e) {
+        console.warn('ScrollTrigger register error:', e);
+      }
+    }
 
     // Reading Progress Bar Tracker
     window.addEventListener('scroll', () => {
       const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
       const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
       const pct = (winScroll / height) * 100;
-      document.getElementById('topProgress').style.width = pct + '%';
-    });
+      const progressBar = document.getElementById('topProgress');
+      if (progressBar) progressBar.style.width = pct + '%';
+    }, { passive: true });
 
     // ====================================================
-    // FULL ARTICLES DATABASE (CHUẨN HÓA KHÔNG GHI CHÚ THÔ)
+    // FULL ARTICLES DATABASE (CHUẨN HÓA VÀ RÀ SOÁT - GIAI ĐOẠN 8 P0)
     // ====================================================
     const articles = {
       'letter-chairman': {
-        tag: 'Thông Điệp Lãnh Đạo • Thư Chúc Mừng',
-        title: 'Thư Chúc Mừng Ngày Nhà Giáo Việt Nam 20/11',
-        subtitle: 'Chủ tịch Hội đồng thành viên Agribank',
+        tag: 'Văn Kiện Đang Tiếp Nhận • Thư Chúc Mừng',
+        title: 'Thư Chúc Mừng Ngày Nhà Giáo Việt Nam 20/11 & Kỷ Niệm 25 Năm Ngày Truyền Thống',
+        subtitle: 'Chủ tịch Hội đồng Thành viên Agribank',
         content: `
-          <p><strong>Thân gửi các thế hệ Thầy giáo, Cô giáo và Cán bộ Viện Nghiên cứu và Đào tạo Agribank!</strong></p>
-          <p>Nhân dịp kỷ niệm 44 năm ngày Nhà giáo Việt Nam 20/11 và dấu mốc 25 năm ngày truyền thống vẻ vang, thay mặt Ban Lãnh đạo Agribank, tôi xin gửi tới toàn thể các đồng chí lời chúc mừng nồng nhiệt và tình cảm trân trọng nhất.</p>
-          <p>Nhìn lại chặng đường một phần tư thế kỷ, từ những ngày đầu thành lập còn nhiều khó khăn, các thế hệ lãnh đạo và thầy cô giáo Trường Đào tạo cán bộ đã tận tâm cống hiến, đào tạo nên lớp lớp cán bộ vững nghiệp vụ, sáng đạo đức cho Agribank.</p>
-          <p>Việc chuyển đổi thành <strong>Viện Nghiên cứu và Đào tạo Agribank</strong> mở ra tầm vóc mới. Tôi tin tưởng sâu sắc rằng các đồng chí sẽ tiếp tục phát huy truyền thống, đẩy mạnh nghiên cứu chiến lược và ứng dụng công nghệ số để kiến tạo tương lai vững bền cho Agribank.</p>
+          <div class="curation-notice-box">
+            <i data-lucide="info"></i>
+            <div>
+              <strong>Hồ sơ văn kiện lưu hành nội bộ:</strong> Toàn văn Thư Chúc Mừng chính thức của Đồng chí Chủ tịch Hội đồng Thành viên Agribank gửi các thế hệ Thầy giáo, Cô giáo và Cán bộ Viện NC&ĐT Agribank đang được Văn phòng HĐTV tiếp nhận và cập nhật bản ký duyệt chính thức.
+            </div>
+          </div>
+          <p>Thư chúc mừng của Lãnh đạo cấp cao Agribank ghi nhận, biểu dương chặng đường một phần tư thế kỷ (1999 – 2024) kiên trì, tận tụy kiến tạo tri thức của Trường Đào tạo cán bộ và gửi gắm niềm tin sâu sắc vào bước chuyển mình chiến lược thành Viện Nghiên cứu và Đào tạo Agribank trong kỷ nguyên số.</p>
+          <p>Các nội dung trọng tâm gồm: Tri ân công lao đặt nền móng của các thế hệ lãnh đạo và thầy cô giáo; khẳng định đào tạo là quốc sách phát triển nguồn nhân lực chất lượng cao; định hướng đẩy mạnh nghiên cứu khoa học chiến lược, tham mưu cơ chế chính sách đột phá và làm chủ công nghệ ngân hàng hiện đại.</p>
         `
       },
       'letter-director': {
-        tag: 'Tuyên Bố Sứ Mệnh • Lời Ngỏ Kỷ Yếu',
-        title: 'Lời Ngỏ Của Viện Trưởng',
-        subtitle: 'Thông điệp bản lề đúc kết tinh hoa 25 năm và sứ mệnh mới',
+        tag: 'Thông Điệp Đang Tiếp Nhận • Lời Ngỏ Kỷ Yếu',
+        title: 'Lời Ngỏ Kỷ Yếu 25 Năm Viện Nghiên Cứu Và Đào Tạo Agribank',
+        subtitle: 'Viện trưởng Viện Nghiên cứu và Đào tạo Agribank',
         content: `
-          <p>Hai mươi lăm năm là một hành trình bền bỉ của niềm tin và sự cống hiến. Chúng ta tự hào về mái trường đã bồi đắp tri thức cho hàng vạn cán bộ khắp dải đất hình chữ S.</p>
+          <div class="curation-notice-box">
+            <i data-lucide="info"></i>
+            <div>
+              <strong>Thông điệp lưu hành nội bộ:</strong> Lời ngỏ đúc kết tinh hoa 25 năm truyền thống và sứ mệnh nghiên cứu - đào tạo giai đoạn mới đang trong quy trình hoàn thiện bản phê duyệt cuối cùng trước khi xuất bản chính thức.
+            </div>
+          </div>
+          <p>Hai mươi lăm năm (1999 – 2024) là một hành trình bền bỉ của niềm tin và sự cống hiến. Chúng ta tự hào về mái trường đã bồi đắp tri thức cho hàng vạn cán bộ khắp dải đất hình chữ S.</p>
           <p>Hôm nay, đứng trước yêu cầu đổi mới của thời đại, Viện Nghiên cứu và Đào tạo Agribank chính thức bước vào kỷ nguyên mới: <em>Vừa là trung tâm đào tạo chuẩn mực, vừa là cơ quan nghiên cứu chiến lược, tham mưu những chính sách đột phá</em>.</p>
-          <p>Xin trân trọng cảm ơn sự đồng hành của quý vị đại biểu, các thế hệ đi trước và toàn thể người lao động!</p>
+          <p>Xin trân trọng tri ân và cảm ơn sự đồng hành của Ban Lãnh đạo Agribank, các thế hệ đi trước và toàn thể người lao động!</p>
         `
       },
       'article-thuy-1': {
@@ -2759,9 +2868,15 @@
       },
       'article-sei-award': {
         tag: 'Dấu Ấn Vinh Danh • Thành Tựu Nổi Bật',
-        title: 'Dấu Ấn SEI AWARD',
-        subtitle: 'Khẳng định chất lượng và vị thế trong công tác chuyên môn',
+        title: 'Dấu Ấn SEI AWARD (Năm 2019)',
+        subtitle: 'Khẳng định chất lượng và vị thế trong công tác đào tạo chuyên môn',
         content: `
+          <div class="curation-notice-box">
+            <i data-lucide="info"></i>
+            <div>
+              <strong>Ghi chú thẩm định dữ liệu:</strong> Hồ sơ trích lục từ thành tựu nổi bật năm 2019 của đơn vị. Ban Biên tập đang đối chiếu số hiệu chứng chỉ và tổ chức kiểm định quốc tế trao giải trước khi in kỷ yếu chính thức.
+            </div>
+          </div>
           <p>Giải thưởng SEI AWARD là minh chứng rõ nét cho chất lượng đào tạo vượt trội và uy tín học thuật của đơn vị trong những năm qua.</p>
           <p>Thành tựu này không chỉ tôn vinh những nỗ lực đổi mới không ngừng của tập thể cán bộ mà còn khẳng định vị thế tiên phong của Agribank trong việc nâng tầm nguồn nhân lực ngành tài chính - ngân hàng.</p>
         `
@@ -2776,7 +2891,7 @@
         `
       },
       'article-ky-uc': {
-        tag: 'Ký Ức Thời Gian • 1999 — 2026',
+        tag: 'Ký Ức Thời Gian • 25 Năm Truyền Thống (1999 — 2024)',
         title: 'Những Khoảnh Khắc Vàng Thời Kỳ Đầu',
         subtitle: 'Lưu giữ qua những trang ảnh tư liệu trắng đen & sepia',
         content: `
@@ -2807,7 +2922,7 @@
         title: 'Ứng Dụng E-Learning Vào Học, Thi Và Đánh Giá Năng Lực',
         subtitle: 'Minh chứng cho sự chuyển đổi số toàn diện',
         content: `
-          <p>Hệ thống E-Learning đã xóa nhòa khoảng cách địa lý, mang bài giảng chuẩn hóa đến hơn 2.200 điểm giao dịch của Agribank trên toàn quốc.</p>
+          <p>Hệ thống E-Learning đã xóa nhòa khoảng cách địa lý, mang bài giảng chuẩn hóa đến các chi nhánh và phòng giao dịch của Agribank trên toàn quốc.</p>
           <p>Quy trình tổ chức thi và sát hạch nghiệp vụ trực tuyến diễn ra khách quan, chính xác, tiết kiệm hàng chục tỷ đồng chi phí đào tạo hàng năm.</p>
         `
       },
@@ -2830,12 +2945,18 @@
         `
       },
       'article-sep-luu': {
-        tag: 'Tâm Huyết & Gửi Gắm • Ban Giám Đốc',
-        title: 'Góc Nhìn & Chia Sẻ Của Sếp Lưu',
-        subtitle: 'Hồi ức kỷ niệm và lời gửi gắm thế hệ trẻ',
+        tag: 'Hồi Ức & Tri Ân • Kỷ Niệm Mái Trường',
+        title: 'Góc Nhìn & Tâm Huyết Của Lãnh Đạo Viện Qua Các Thời Kỳ',
+        subtitle: 'Đồng chí Lưu Bá Đức & Ban Giám đốc qua các giai đoạn phát triển',
         content: `
-          <p>Những chiêm nghiệm sâu sắc về nghề, về trách nhiệm của người cán bộ ngân hàng nông nghiệp và lời căn dặn ân cần tới thế hệ cán bộ trẻ của Viện:</p>
-          <p><em>“Hãy luôn giữ gìn cái tâm trong sáng của người thầy và tinh thần tiên phong học tập suốt đời để cùng Agribank vươn xa!”</em></p>
+          <div class="curation-notice-box">
+            <i data-lucide="info"></i>
+            <div>
+              <strong>Tư liệu hồi ức lịch sử:</strong> Trích lược những chia sẻ tâm huyết của Đồng chí Lưu Bá Đức cùng các đồng chí trong Ban Giám đốc Trường / Viện qua các thời kỳ về chặng đường 25 năm xây dựng và phát triển. (Nội dung đang được Ban Biên tập rà soát và xin ý kiến xác nhận trực tiếp của nhân chứng lịch sử).
+            </div>
+          </div>
+          <p>Bài viết ghi lại những hồi ức mộc mạc từ những ngày đầu đặt nền móng với muôn vàn khó khăn về cơ sở vật chất, đến khi trường lớp được xây dựng khang trang, mạng lưới giảng viên kiêm chức được chuẩn hóa và mở rộng khắp ba miền Bắc - Trung - Nam.</p>
+          <p>Đó là những lời dặn dò tâm huyết gửi tới thế hệ cán bộ, giảng viên trẻ hôm nay: Luôn giữ gìn tâm sáng của người làm giáo dục, không ngừng tự học hỏi, làm chủ công nghệ mới để tiếp tục thắp sáng ngọn lửa tri thức của Agribank.</p>
         `
       },
       'hof-lecturers': {
@@ -2853,7 +2974,7 @@
         title: 'Tập Thể Đồng Hành & Phong Trào Tự Đào Tạo',
         subtitle: 'Vinh danh các Chi nhánh và Đơn vị tiêu biểu toàn hệ thống',
         content: `
-          <p>Công tác đào tạo chỉ thực sự phát huy sức mạnh khi nhận được sự hưởng ứng và lan tỏa mạnh mẽ từ cơ sở. Toàn hệ thống Agribank với hơn 2.200 điểm giao dịch luôn là một môi trường học tập không ngừng nghỉ.</p>
+          <p>Công tác đào tạo chỉ thực sự phát huy sức mạnh khi nhận được sự hưởng ứng và lan tỏa mạnh mẽ từ cơ sở. Toàn hệ thống Agribank với gần 2.300 chi nhánh và phòng giao dịch luôn là một môi trường học tập không ngừng nghỉ.</p>
           <p>Kỷ yếu vinh danh các Chi nhánh, Ban chuyên môn dẫn đầu phong trào tự đào tạo nội bộ, chủ động cử cán bộ tham gia nâng cao nghiệp vụ, tổ chức hội thi tay nghề và tạo mọi điều kiện để người lao động rèn luyện, hoàn thiện năng lực chuyên môn.</p>
         `
       },
@@ -2873,6 +2994,61 @@
         content: `
           <p>Phía sau mỗi lớp học thành công, mỗi bài giảng trực tuyến mượt mà là mồ hôi và sự tận tụy thầm lặng của đội ngũ quản lý lớp, kỹ thuật viên phòng thu, đội ngũ quản trị hệ thống E-learning và cán bộ hậu cần.</p>
           <p>Từ chuẩn bị phòng học, máy chiếu, tài liệu đến thức thâu đêm giám sát kỳ thi sát hạch trực tuyến hay phục vụ từng bữa ăn, chỗ ở cho học viên xa nhà... Tất cả sự chu đáo và ân cần ấy đã tạo nên một mái nhà chung ấm áp nghĩa tình.</p>
+        `
+      },
+      'audit-checklist': {
+        tag: 'Kiểm Soát Xuất Bản • Audit P0',
+        title: 'Danh Mục Rà Soát & Thẩm Định Dữ Liệu Kỷ Yếu 25 Năm',
+        subtitle: 'Bảng đối chiếu thông tin phục vụ thẩm định trước khi công bố xuất bản',
+        content: `
+          <div class="curation-notice-box">
+            <i data-lucide="shield-alert"></i>
+            <div>
+              <strong>Nguyên tắc biên soạn:</strong> Tuân thủ tính xác thực lịch sử, bảo toàn thông tin, không tự suy đoán hoặc sáng tác số liệu và trích dẫn. Dưới đây là bảng rà soát 6 hạng mục trọng yếu cần các phòng ban chức năng ký duyệt.
+            </div>
+          </div>
+          <table class="checklist-table">
+            <thead>
+              <tr>
+                <th>Hạng Mục</th>
+                <th>Thông Tin Hiện Tại</th>
+                <th>Tình Trạng</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>1. Mốc thời gian 25 năm</strong></td>
+                <td>1999 – 2024 (25 năm truyền thống), định hướng phát triển 2024 – Nay.</td>
+                <td><span class="badge-status-verified">Đã Chuẩn Hóa</span></td>
+              </tr>
+              <tr>
+                <td><strong>2. Tên chính thức qua 3 thời kỳ</strong></td>
+                <td>1999: Trung tâm ĐTCB • 2008: Trường ĐTCB • 2024: Viện NC&ĐT.</td>
+                <td><span class="badge-status-verified">Đã Chuẩn Hóa</span></td>
+              </tr>
+              <tr>
+                <td><strong>3. Giải thưởng SEI Award</strong></td>
+                <td>Dấu ấn quốc tế năm 2019 trong công tác đào tạo chuyên môn.</td>
+                <td><span class="badge-status-pending">Cần Bản Gốc</span></td>
+              </tr>
+              <tr>
+                <td><strong>4. Số liệu mạng lưới đào tạo</strong></td>
+                <td>Gần 2.300 chi nhánh & phòng giao dịch toàn hệ thống kết nối E-learning.</td>
+                <td><span class="badge-status-verified">Đã Chuẩn Hóa</span></td>
+              </tr>
+              <tr>
+                <td><strong>5. Số hóa đề thi & sát hạch</strong></td>
+                <td>Chuẩn hóa ngân hàng đề thi & tổ chức thi trực tuyến toàn diện.</td>
+                <td><span class="badge-status-verified">Đã Chuẩn Hóa</span></td>
+              </tr>
+              <tr>
+                <td><strong>6. Thư Chúc mừng & Lời ngỏ</strong></td>
+                <td>Chủ tịch HĐTV & Viện trưởng (Đặt khung tiếp nhận văn kiện chính thức).</td>
+                <td><span class="badge-status-pending">Chờ Ký Duyệt</span></td>
+              </tr>
+            </tbody>
+          </table>
+          <p><em>* Bản rà soát này được lưu hành nội bộ để phối hợp giữa Ban Biên tập Kỷ yếu và các Phòng ban chuyên môn của Viện Nghiên cứu và Đào tạo Agribank.</em></p>
         `
       }
     };
@@ -2910,80 +3086,43 @@
     }
 
     // ====================================================
-    // AUDIO CONTROLLER (MẶC ĐỊNH MỞ NHẠC & CHỈ BÁO EQUALIZER)
+    // AUDIO CONTROLLER (CHỈ PHÁT KHI NGƯỜI DÙNG BẬT - GIAI ĐOẠN 7)
     // ====================================================
     const bgMusic = document.getElementById('bgMusic');
     const audioToggle = document.getElementById('audioToggle');
     const audioText = document.getElementById('audioText');
-    let isMusicPlaying = true; // Mặc định mở theo yêu cầu của bạn
-
-    bgMusic.loop = true;
-    bgMusic.addEventListener('ended', function() {
-      bgMusic.currentTime = 0;
-      bgMusic.play();
-    });
+    let isMusicPlaying = false; // Mặc định không tự phát theo yêu cầu
 
     function setMusicPlayingState(playing) {
       isMusicPlaying = playing;
       if (playing) {
         audioToggle.classList.add('playing');
+        audioToggle.title = 'Tắt Nhạc Nền';
         if (audioText) audioText.textContent = 'Đang Phát';
       } else {
         audioToggle.classList.remove('playing');
-        if (audioText) audioText.textContent = 'Tắt Nhạc';
+        audioToggle.title = 'Bật Nhạc Nền';
+        if (audioText) audioText.textContent = 'Bật Nhạc';
       }
     }
 
-    function tryStartMusic() {
-      if (!isMusicPlaying) return;
-      const promise = bgMusic.play();
-      if (promise !== undefined) {
-        promise.then(() => {
-          setMusicPlayingState(true);
-          detachAutoUnlock();
-        }).catch(() => {
-          // Trình duyệt chặn autoplay khi chưa có tương tác người dùng
-          setMusicPlayingState(true); // Vẫn giữ trạng thái mặc định mở để kích hoạt ở tương tác đầu
-        });
-      }
-    }
-
-    const unlockEvents = ['click', 'touchstart', 'touchend', 'scroll', 'keydown'];
-    function unlockAudioHandler() {
-      if (isMusicPlaying && bgMusic.paused) {
-        bgMusic.play().then(() => {
-          setMusicPlayingState(true);
-          detachAutoUnlock();
-        }).catch(() => {});
-      }
-    }
-
-    function detachAutoUnlock() {
-      unlockEvents.forEach(evt => {
-        window.removeEventListener(evt, unlockAudioHandler, { capture: true });
+    // Nút Bật/Tắt nhạc thủ công: Chỉ phát khi người dùng chủ động bật
+    if (audioToggle && bgMusic) {
+      audioToggle.addEventListener('click', function(e) {
+        e.stopPropagation();
+        if (bgMusic.paused) {
+          bgMusic.play().then(() => {
+            setMusicPlayingState(true);
+          }).catch(err => {
+            console.warn('Audio playback prevented:', err);
+            setMusicPlayingState(false);
+          });
+        } else {
+          bgMusic.pause();
+          setMusicPlayingState(false);
+        }
       });
     }
-
-    // Nút Bật/Tắt nhạc thủ công
-    audioToggle.addEventListener('click', function(e) {
-      e.stopPropagation();
-      if (!bgMusic.paused) {
-        bgMusic.pause();
-        setMusicPlayingState(false);
-      } else {
-        bgMusic.play().then(() => {
-          setMusicPlayingState(true);
-        }).catch(() => {});
-      }
-    });
-
-    // Kích hoạt ngay khi tải trang
-    tryStartMusic();
-    document.addEventListener('DOMContentLoaded', tryStartMusic);
-    window.addEventListener('load', tryStartMusic);
-    unlockEvents.forEach(evt => {
-      window.addEventListener(evt, unlockAudioHandler, { capture: true, passive: true });
-    });
 
     // ====================================================
     // HORIZONTAL SWIPE TABS & SCROLL SPY CHUẨN XÁC 7 SECTIONS
@@ -3076,9 +3215,21 @@
     });
 
     // ====================================================
-    // GSAP SCROLLTRIGGER CINEMATIC ANIMATIONS
+    // GSAP SCROLLTRIGGER CINEMATIC ANIMATIONS (RESILIENT & FALLBACK)
     // ====================================================
     document.addEventListener('DOMContentLoaded', () => {
+      // Graceful fallback nếu GSAP không tải được (CDN bị chặn/offline)
+      if (typeof gsap === 'undefined') {
+        document.querySelectorAll('.timeline-node, .masonry-item-img, .sticky-era-slide').forEach(el => {
+          el.style.opacity = '1';
+          el.style.transform = 'none';
+          if (el.classList.contains('masonry-item-img')) {
+            el.classList.add('revealed');
+          }
+        });
+        return;
+      }
+
       // 1. Hero Reveal
       gsap.from('.hero-badge-gold', { opacity: 0, y: -20, duration: 0.8, delay: 0.2 });
       gsap.from('.hero-title-box', { opacity: 0, scale: 0.9, duration: 1.1, delay: 0.4, ease: 'power2.out' });
@@ -3257,37 +3408,37 @@
     // ====================================================
     const galleryItems = [
       {
-        src: 'backgrounds/agribank_heritage_library.jpg',
+        src: 'backgrounds/agribank_heritage_library.webp',
         tag: 'Dấu Ấn Khởi Đầu • Năm 1999',
         title: 'Bục Giảng Xưa & Những Trang Sách Khởi Nguồn Tri Thức',
         desc: 'Không gian thư viện và giảng đường những năm đầu thành lập Trung tâm Đào tạo cán bộ Agribank, lưu giữ biết bao kỷ niệm thân thương của các thế hệ đầu tiên.'
       },
       {
-        src: 'backgrounds/01_hero_campus.jpg',
+        src: 'backgrounds/01_hero_campus.webp',
         tag: 'Mở Rộng Quy Mô • Năm 2008',
         title: 'Cơ Sở Đào Tạo Khang Trang & Những Mùa Tựu Trường',
         desc: 'Bước chuyển mình mạnh mẽ khi nâng cấp thành Trường Đào tạo cán bộ Agribank, mở rộng khuôn viên, giảng đường và đón hàng vạn học viên về bồi dưỡng nghiệp vụ.'
       },
       {
-        src: 'backgrounds/03_lecture_auditorium.jpg',
+        src: 'backgrounds/03_lecture_auditorium.webp',
         tag: 'Đổi Mới & Vinh Danh • Năm 2019',
         title: 'Hội Trường Lớn & Dấu Ấn Vươn Tầm Quốc Tế (SEI Award)',
         desc: 'Những chuyên đề bồi dưỡng chuyên sâu tại hội trường lớn, khẳng định uy tín và chất lượng đào tạo được ghi nhận bởi các tổ chức uy tín.'
       },
       {
-        src: 'backgrounds/agribank_future_institute_digital.jpg',
+        src: 'backgrounds/agribank_future_institute_digital.webp',
         tag: 'Chuyển Đổi Số • Kỷ Nguyên Mới',
         title: 'Studio Sản Xuất Bài Giảng Điện Tử & Hệ Thống E-Learning',
-        desc: 'Không gian công nghệ hiện đại phục vụ số hóa học liệu, sản xuất bài giảng tương tác và kết nối đào tạo trực tuyến tới hơn 2.200 chi nhánh toàn quốc.'
+        desc: 'Không gian công nghệ hiện đại phục vụ số hóa học liệu, sản xuất bài giảng tương tác và kết nối đào tạo trực tuyến toàn hệ thống Agribank.'
       },
       {
-        src: 'backgrounds/04_future_aspiration.jpg',
+        src: 'backgrounds/04_future_aspiration.webp',
         tag: 'Nghiên Cứu & Đổi Mới • 2024 – Nay',
         title: 'Hội Thảo Khoa Học & Khát Vọng Nghiên Cứu Chiến Lược',
         desc: 'Vừa là cái nôi đào tạo chuẩn mực, vừa là viện nghiên cứu tham mưu chiến lược then chốt, đồng hành cùng sự phát triển bền vững của Agribank.'
       },
       {
-        src: 'backgrounds/agribank_building_sunset.jpg',
+        src: 'backgrounds/agribank_building_sunset.webp',
         tag: 'Hành Trình 25 Năm Rạng Rỡ',
         title: 'Mái Nhà Chung Viện Nghiên Cứu Và Đào Tạo Agribank',
         desc: 'Tự hào truyền thống 25 năm phụng sự và ươm mầm tri thức, tiếp tục tự tin vững bước kiến tạo tương lai trong thời đại số.'
@@ -3380,12 +3531,26 @@
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           isHeroVisible = entry.isIntersecting;
-          if (isHeroVisible && !animationFrameId) {
+          if (isHeroVisible && !document.hidden && !animationFrameId) {
             renderParticles();
           }
         });
       }, { threshold: 0.05 });
       observer.observe(canvas.parentElement);
+
+      // Page Visibility API: Dừng animation khi tab không hoạt động (Giai đoạn 7)
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+          if (animationFrameId) {
+            cancelAnimationFrame(animationFrameId);
+            animationFrameId = null;
+          }
+        } else {
+          if (isHeroVisible && !animationFrameId) {
+            renderParticles();
+          }
+        }
+      });
 
       window.addEventListener('resize', () => {
         w = canvas.width = canvas.parentElement.offsetWidth;
@@ -3413,7 +3578,7 @@
 
       let tick = 0;
       function renderParticles() {
-        if (!isHeroVisible) {
+        if (!isHeroVisible || document.hidden) {
           animationFrameId = null;
           return;
         }
