@@ -101,7 +101,9 @@
       gap: 10px;
       text-decoration: none;
       color: #FFFFFF;
-      flex-shrink: 0;
+      min-width: 0;
+      flex: 1 1 auto;
+      overflow: hidden;
     }
 
     .nav-logo-box {
@@ -125,6 +127,9 @@
       white-space: nowrap;
       color: #FFFFFF;
       text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .nav-actions {
@@ -176,6 +181,20 @@
       border-top: 1px solid rgba(212, 175, 55, 0.25);
       border-bottom: 1px solid rgba(212, 175, 55, 0.35);
       overflow: hidden;
+      position: relative;
+    }
+
+    /* Hiệu ứng mờ biên phải gợi ý người dùng vuốt ngang */
+    .nav-tabs-bar::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 32px;
+      background: linear-gradient(to right, rgba(88, 10, 15, 0), rgba(88, 10, 15, 0.95));
+      pointer-events: none;
+      z-index: 2;
     }
 
     .nav-tabs-scroll {
@@ -184,12 +203,13 @@
       flex-wrap: nowrap !important;
       align-items: center;
       gap: 8px;
-      padding: 7px 16px;
+      padding: 7px 32px 7px 16px;
       overflow-x: auto !important;
       overflow-y: hidden;
       white-space: nowrap !important;
       -webkit-overflow-scrolling: touch !important;
       touch-action: pan-x;
+      overscroll-behavior-x: contain;
       scrollbar-width: none;
     }
 
@@ -213,6 +233,8 @@
       white-space: nowrap !important;
       transition: all 0.2s ease;
       user-select: none;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: pan-x;
     }
 
     .tab-pill i {
