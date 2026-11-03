@@ -386,7 +386,7 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      background: radial-gradient(circle at 50% 35%, #7A0D14 0%, #52070C 50%, #2A0305 100%),
+      background: radial-gradient(circle at 50% 30%, rgba(138, 18, 26, 0.72) 0%, rgba(74, 8, 12, 0.88) 55%, rgba(35, 4, 7, 0.96) 100%),
                   url('backgrounds/bg_01_cover_solemn.jpg') center/cover fixed no-repeat;
       color: #fff;
       text-align: center;
@@ -491,6 +491,20 @@
       pointer-events: none;
       z-index: 1;
       filter: blur(1px);
+    }
+
+    .hero-title-box::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 340px;
+      height: 190px;
+      background: radial-gradient(ellipse at center, rgba(255, 213, 107, 0.35) 0%, rgba(255, 168, 38, 0.15) 45%, transparent 70%);
+      filter: blur(28px);
+      pointer-events: none;
+      z-index: 0;
     }
 
     .hero-flare-star {
@@ -694,7 +708,7 @@
        3. PHẦN 2: TỰ HÀO TRUYỀN THỐNG (DIGITAL MUSEUM & TIMELINE)
        ==================================================== */
     #sec-tradition {
-      background: linear-gradient(rgba(248, 245, 238, 0.96), rgba(248, 245, 238, 0.96)),
+      background: linear-gradient(180deg, rgba(248, 245, 238, 0.86) 0%, rgba(243, 238, 227, 0.90) 100%),
                   url('backgrounds/agribank_heritage_library.jpg') center/cover fixed no-repeat;
     }
 
@@ -814,49 +828,127 @@
       flex-grow: 1;
     }
 
-    /* PHOTO PLACEHOLDER CHUẨN TƯ LIỆU */
+    /* ====================================================
+       MUSEUM-GRADE ARCHIVAL PHOTO PLACEHOLDER
+       ==================================================== */
     .photo-placeholder {
       width: 100%;
       height: 180px;
-      background: linear-gradient(135deg, #ECE5D8 0%, #DFD5C3 100%);
-      border: 1px dashed rgba(130, 19, 25, 0.35);
-      border-radius: 8px;
+      background: linear-gradient(135deg, rgba(250, 247, 241, 0.96) 0%, rgba(240, 233, 222, 0.96) 100%);
+      border: 1px solid rgba(212, 175, 102, 0.5);
+      border-radius: 10px;
       margin-bottom: 18px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 16px;
+      padding: 16px 20px;
       text-align: center;
       position: relative;
       overflow: hidden;
-      transition: all 0.3s;
+      box-shadow: inset 0 0 16px rgba(130, 19, 25, 0.04), 0 4px 14px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .photo-placeholder::before {
+      content: "";
+      position: absolute;
+      inset: 4px;
+      border: 1px dashed rgba(180, 140, 75, 0.32);
+      border-radius: 7px;
+      pointer-events: none;
+      z-index: 1;
     }
 
     .photo-placeholder:hover {
-      border-color: var(--gold-accent);
-      background: linear-gradient(135deg, #F3ECE0 0%, #E8DEC9 100%);
+      border-color: var(--gold-amber);
+      box-shadow: inset 0 0 20px rgba(255, 213, 107, 0.15), 0 8px 24px rgba(130, 19, 25, 0.1);
+      transform: translateY(-2px);
     }
 
-    .photo-placeholder i, .photo-placeholder svg {
-      width: 32px;
-      height: 32px;
+    .photo-placeholder-watermark {
+      position: absolute;
+      right: -8px;
+      bottom: -12px;
+      width: 72px;
+      height: 72px;
+      opacity: 0.07;
+      pointer-events: none;
       color: var(--agri-burgundy);
+      transform: rotate(-10deg);
+      transition: all 0.3s ease;
+      z-index: 0;
+    }
+
+    .photo-placeholder-watermark i, .photo-placeholder-watermark svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .photo-placeholder:hover .photo-placeholder-watermark {
+      opacity: 0.12;
+      transform: rotate(0deg) scale(1.05);
+    }
+
+    .photo-placeholder-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: rgba(130, 19, 25, 0.08);
+      border: 1px solid rgba(130, 19, 25, 0.2);
+      border-radius: 9999px;
+      padding: 3px 10px;
+      font-size: 10.5px;
+      font-weight: 700;
+      color: var(--agri-burgundy);
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
       margin-bottom: 8px;
-      opacity: 0.8;
+      position: relative;
+      z-index: 2;
+    }
+
+    .photo-placeholder-badge i, .photo-placeholder-badge svg {
+      width: 12px;
+      height: 12px;
+      color: var(--agri-burgundy);
+      stroke: var(--agri-burgundy);
     }
 
     .photo-placeholder-caption {
-      font-size: 13px;
-      font-weight: 600;
+      font-size: 13.5px;
+      font-weight: 700;
       color: var(--agri-burgundy-deep);
+      line-height: 1.4;
+      margin-bottom: 4px;
+      position: relative;
+      z-index: 2;
     }
 
     .photo-placeholder-tag {
       font-size: 11px;
-      color: var(--text-muted);
-      letter-spacing: 0.5px;
-      margin-top: 4px;
+      color: #72625A;
+      letter-spacing: 0.2px;
+      font-style: italic;
+      line-height: 1.35;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Hỗ trợ thay thế ảnh thật dễ dàng: chỉ cần chèn <img src="..." class="photo-real"> */
+    .photo-placeholder img.photo-real {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 9px;
+      z-index: 10;
+      transition: transform 0.4s ease;
+    }
+
+    .photo-placeholder:hover img.photo-real {
+      transform: scale(1.04);
     }
 
     /* THẮP SÁNG BẢN LÀNG - NỀN LẮNG ĐỌNG TÌNH NGƯỜI */
@@ -891,7 +983,7 @@
        4. PHẦN 3: KIẾN TẠO TƯƠNG LAI (DIGITAL ACADEMY)
        ==================================================== */
     #sec-future {
-      background: linear-gradient(rgba(250, 248, 244, 0.95), rgba(250, 248, 244, 0.95)),
+      background: linear-gradient(180deg, rgba(248, 250, 252, 0.85) 0%, rgba(238, 243, 250, 0.90) 100%),
                   url('backgrounds/agribank_future_institute_digital.jpg') center/cover fixed no-repeat;
     }
 
@@ -964,7 +1056,7 @@
        5. PHẦN 4: VỮNG BƯỚC ĐỒNG HÀNH (HALL OF FAME)
        ==================================================== */
     #sec-honor {
-      background: linear-gradient(rgba(247, 243, 235, 0.96), rgba(247, 243, 235, 0.96)),
+      background: linear-gradient(180deg, rgba(248, 244, 236, 0.85) 0%, rgba(240, 235, 224, 0.90) 100%),
                   url('backgrounds/03_lecture_auditorium.jpg') center/cover fixed no-repeat;
     }
 
@@ -1029,7 +1121,7 @@
        6. PHẦN 5: SỨC SỐNG AGRIBANK (MEMORY SANCTUARY & POETRY)
        ==================================================== */
     #sec-emotions {
-      background: linear-gradient(rgba(248, 245, 238, 0.96), rgba(248, 245, 238, 0.96)),
+      background: linear-gradient(180deg, rgba(250, 246, 240, 0.85) 0%, rgba(244, 238, 228, 0.90) 100%),
                   url('backgrounds/02_history_timeline.jpg') center/cover fixed no-repeat;
     }
 
@@ -1074,7 +1166,7 @@
        ==================================================== */
     #sec-closing {
       position: relative;
-      background: radial-gradient(circle at 50% 40%, rgba(35, 10, 15, 0.88) 0%, rgba(18, 4, 7, 0.98) 100%),
+      background: radial-gradient(circle at 50% 35%, rgba(88, 12, 18, 0.74) 0%, rgba(42, 6, 9, 0.88) 55%, rgba(18, 3, 5, 0.96) 100%),
                   url('backgrounds/04_future_aspiration.jpg') center/cover fixed no-repeat;
       color: #fff;
       text-align: center;
@@ -1486,10 +1578,13 @@
       <div class="tradition-grid">
         <!-- Bài 1: Lãnh đạo qua các thời kỳ -->
         <div class="article-box">
-          <div class="photo-placeholder">
-            <i data-lucide="image"></i>
-            <span class="photo-placeholder-caption">[Ảnh Tư Liệu Chờ]</span>
-            <span class="photo-placeholder-tag">Chân dung Lãnh đạo & Các thế hệ Thầy Cô (1999 - 2026)</span>
+          <div class="photo-placeholder" data-archive-slot="historic-leaders">
+            <div class="photo-placeholder-watermark"><i data-lucide="landmark"></i></div>
+            <div class="photo-placeholder-badge">
+              <i data-lucide="history"></i> Tư Liệu Lịch Sử 1999 – 2026
+            </div>
+            <div class="photo-placeholder-caption">Chân Dung Lãnh Đạo & Các Thế Hệ Thầy Cô</div>
+            <div class="photo-placeholder-tag">Hồ sơ tư liệu 25 năm • Lưu trữ kỷ yếu truyền thống</div>
           </div>
           <span class="article-author-tag">Kỷ Yếu Truyền Thống • Tác Giả: Thanh Thúy</span>
           <h3 class="article-heading">Trường & Ban Lãnh Đạo Qua Các Thời Kỳ</h3>
@@ -1503,10 +1598,13 @@
 
         <!-- Bài 2: SEI Award -->
         <div class="article-box">
-          <div class="photo-placeholder">
-            <i data-lucide="award"></i>
-            <span class="photo-placeholder-caption">[Ảnh Tư Liệu Chờ]</span>
-            <span class="photo-placeholder-tag">Hình ảnh Lễ Trao Giải Thưởng Quốc Tế SEI AWARD</span>
+          <div class="photo-placeholder" data-archive-slot="sei-award">
+            <div class="photo-placeholder-watermark"><i data-lucide="award"></i></div>
+            <div class="photo-placeholder-badge">
+              <i data-lucide="award"></i> Dấu Ấn Vinh Danh Quốc Tế
+            </div>
+            <div class="photo-placeholder-caption">Hình Ảnh Lễ Trao Giải Thưởng SEI AWARD</div>
+            <div class="photo-placeholder-tag">Khẳng định chất lượng & vị thế chuyên môn xuất sắc</div>
           </div>
           <span class="article-author-tag">Dấu Ấn Vinh Danh • Kỷ Yếu 25 Năm</span>
           <h3 class="article-heading">Dấu Ấn SEI AWARD</h3>
@@ -1520,10 +1618,13 @@
 
         <!-- Bài 3: Ký ức thời gian & ảnh tư liệu -->
         <div class="article-box">
-          <div class="photo-placeholder">
-            <i data-lucide="clock"></i>
-            <span class="photo-placeholder-caption">[Ảnh Tư Liệu Chờ]</span>
-            <span class="photo-placeholder-tag">Khoảnh khắc trắng đen & sepia các khóa học đầu tiên</span>
+          <div class="photo-placeholder" data-archive-slot="heritage-memories">
+            <div class="photo-placeholder-watermark"><i data-lucide="camera"></i></div>
+            <div class="photo-placeholder-badge">
+              <i data-lucide="clock"></i> Kho Lưu Trữ Kỷ Niệm
+            </div>
+            <div class="photo-placeholder-caption">Khoảnh Khắc Giảng Đường & Khóa Học Đầu Tiên</div>
+            <div class="photo-placeholder-tag">Hình ảnh trắng đen & sepia thời kỳ 1999 – 2008</div>
           </div>
           <span class="article-author-tag">Hành Trình Tri Thức • 1999 — 2026</span>
           <h3 class="article-heading">Ký Ức Thời Gian & Ảnh Tư Liệu</h3>
@@ -1588,10 +1689,13 @@
       <div class="future-steps-list">
         <!-- Bước 1: Chiến lược & KCTĐT -->
         <div class="step-card">
-          <div class="photo-placeholder" style="height: 150px;">
-            <i data-lucide="compass"></i>
-            <span class="photo-placeholder-caption">[Sơ Đồ Chiến Lược Chờ]</span>
-            <span class="photo-placeholder-tag">Khung Chương Trình Đào Tạo Tiên Tiến</span>
+          <div class="photo-placeholder" style="height: 155px;" data-archive-slot="curriculum-map">
+            <div class="photo-placeholder-watermark"><i data-lucide="compass"></i></div>
+            <div class="photo-placeholder-badge">
+              <i data-lucide="compass"></i> Bản Đồ Chiến Lược
+            </div>
+            <div class="photo-placeholder-caption">Sơ Đồ Khung Chương Trình Đào Tạo Mới</div>
+            <div class="photo-placeholder-tag">Chuẩn hóa năng lực quản trị rủi ro & tài chính số</div>
           </div>
           <span class="article-author-tag">Chiến Lược Phát Triển • Tác Giả: Thanh Thúy</span>
           <h3 class="article-heading">Chiến Lược & Khung Chương Trình Đào Tạo (KCTĐT)</h3>
@@ -1605,10 +1709,13 @@
 
         <!-- Bước 2: Bài giảng điện tử đầu tiên -->
         <div class="step-card">
-          <div class="photo-placeholder" style="height: 150px;">
-            <i data-lucide="video"></i>
-            <span class="photo-placeholder-caption">[Tư Liệu Studio Chờ]</span>
-            <span class="photo-placeholder-tag">Hậu trường sản xuất bài giảng điện tử</span>
+          <div class="photo-placeholder" style="height: 155px;" data-archive-slot="studio-production">
+            <div class="photo-placeholder-watermark"><i data-lucide="video"></i></div>
+            <div class="photo-placeholder-badge">
+              <i data-lucide="video"></i> Tư Liệu Số Hóa
+            </div>
+            <div class="photo-placeholder-caption">Hậu Trường Studio Sản Xuất Bài Giảng Điện Tử</div>
+            <div class="photo-placeholder-tag">Hành trình tiên phong xây dựng kho học liệu số</div>
           </div>
           <span class="article-author-tag">Dấu Ấn Đổi Mới • Tác Giả: Phương Anh</span>
           <h3 class="article-heading">Những Bài Giảng Điện Tử (BGĐT) Đầu Tiên</h3>
@@ -1622,10 +1729,13 @@
 
         <!-- Bước 3: Ứng dụng E-learning -->
         <div class="step-card">
-          <div class="photo-placeholder" style="height: 150px;">
-            <i data-lucide="monitor"></i>
-            <span class="photo-placeholder-caption">[Giao Diện Số Chờ]</span>
-            <span class="photo-placeholder-tag">Hệ thống khảo sát thi cử trực tuyến E-Learning</span>
+          <div class="photo-placeholder" style="height: 155px;" data-archive-slot="elearning-system">
+            <div class="photo-placeholder-watermark"><i data-lucide="monitor"></i></div>
+            <div class="photo-placeholder-badge">
+              <i data-lucide="monitor"></i> Nền Tảng Chuyển Đổi Số
+            </div>
+            <div class="photo-placeholder-caption">Giao Diện Hệ Thống E-Learning & Khảo Thí</div>
+            <div class="photo-placeholder-tag">Kết nối học tập tới hơn 2.200 chi nhánh toàn quốc</div>
           </div>
           <span class="article-author-tag">Chuyển Đổi Số • Tác Giả: Bích Ngọc</span>
           <h3 class="article-heading">Ứng Dụng E-Learning Toàn Diện</h3>
@@ -1723,10 +1833,13 @@
       <div class="emotions-grid">
         <!-- Bài 1: Người lao động hiện tại -->
         <div class="article-box">
-          <div class="photo-placeholder" style="height: 160px;">
-            <i data-lucide="smile"></i>
-            <span class="photo-placeholder-caption">[Ảnh Chụp Tập Thể Chờ]</span>
-            <span class="photo-placeholder-tag">Nụ cười rạng rỡ của toàn thể CBNV các phòng ban Viện</span>
+          <div class="photo-placeholder" style="height: 165px;" data-archive-slot="team-members">
+            <div class="photo-placeholder-watermark"><i data-lucide="users"></i></div>
+            <div class="photo-placeholder-badge">
+              <i data-lucide="users"></i> Tập Thể Đoàn Kết
+            </div>
+            <div class="photo-placeholder-caption">Chân Dung Người Lao Động Đang Cống Hiến</div>
+            <div class="photo-placeholder-tag">Nụ cười rạng rỡ của toàn thể CBNV các phòng ban Viện</div>
           </div>
           <span class="article-author-tag">Tập Thể Đoàn Kết • Tác Giả: Thanh Thúy</span>
           <h3 class="article-heading">Chân Dung Người Lao Động Tại Viện</h3>
@@ -1740,10 +1853,13 @@
 
         <!-- Bài 2: Chạm vào cảm xúc -->
         <div class="article-box">
-          <div class="photo-placeholder" style="height: 160px;">
-            <i data-lucide="heart"></i>
-            <span class="photo-placeholder-caption">[Khoảnh Khắc Kỷ Niệm Chờ]</span>
-            <span class="photo-placeholder-tag">Hình ảnh những chuyến công tác & lớp học vùng miền</span>
+          <div class="photo-placeholder" style="height: 165px;" data-archive-slot="classroom-moments">
+            <div class="photo-placeholder-watermark"><i data-lucide="heart"></i></div>
+            <div class="photo-placeholder-badge">
+              <i data-lucide="heart"></i> Kỷ Niệm Mái Trường
+            </div>
+            <div class="photo-placeholder-caption">Hình Ảnh Lớp Học & Chuyến Đi Vùng Miền</div>
+            <div class="photo-placeholder-tag">Những chuyến công tác đong đầy nghĩa tình thầy trò</div>
           </div>
           <span class="article-author-tag">Ký Ức Giảng Đường • Tác Giả: Diệp & Dương Phương</span>
           <h3 class="article-heading">Chạm Vào Cảm Xúc: Kỷ Niệm Mái Trường</h3>
@@ -1757,10 +1873,13 @@
 
         <!-- Bài 3: Chia sẻ của Sếp Lưu -->
         <div class="article-box">
-          <div class="photo-placeholder" style="height: 160px;">
-            <i data-lucide="user-check"></i>
-            <span class="photo-placeholder-caption">[Chân Dung Ban Giám Đốc Chờ]</span>
-            <span class="photo-placeholder-tag">Góc nhìn & Lời dặn dò thế hệ kế cận</span>
+          <div class="photo-placeholder" style="height: 165px;" data-archive-slot="leadership-perspective">
+            <div class="photo-placeholder-watermark"><i data-lucide="user-check"></i></div>
+            <div class="photo-placeholder-badge">
+              <i data-lucide="user-check"></i> Ban Giám Đốc Gửi Gắm
+            </div>
+            <div class="photo-placeholder-caption">Chân Dung & Thông Điệp Của Sếp Lưu</div>
+            <div class="photo-placeholder-tag">Hồi ức kỷ niệm & lời dặn dò tâm huyết thế hệ trẻ</div>
           </div>
           <span class="article-author-tag">Tâm Huyết & Gửi Gắm • Ban Giám Đốc</span>
           <h3 class="article-heading">Góc Nhìn & Chia Sẻ Của Sếp Lưu</h3>
