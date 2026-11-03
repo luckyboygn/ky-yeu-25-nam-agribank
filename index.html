@@ -14,8 +14,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
   
-  <!-- Preload Critical Hero Background (WebP High Performance) -->
+  <!-- Preload Critical Hero Assets (WebP High Performance) -->
   <link rel="preload" href="backgrounds/bg_01_cover_solemn.webp" as="image" type="image/webp">
+  <link rel="preload" href="images/hero_25_nam_gold.webp" as="image" type="image/webp">
 
   <!-- Lucide Icons (Pinned stable version v0.469.0) -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.469.0/umd/lucide.min.js"></script>
@@ -464,36 +465,39 @@
 
     .hero-title-box {
       position: relative;
-      display: inline-block;
-      margin-bottom: 10px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 12px;
+      z-index: 2;
     }
 
     .hero-heading {
-      font-family: var(--font-cinzel);
+      font-family: var(--font-cinzel), 'Playfair Display', Georgia, serif;
       font-size: clamp(52px, 9.5vw, 96px);
       font-weight: 800;
       letter-spacing: 4px;
-      line-height: 1.05;
+      line-height: 1;
       margin: 0;
-      display: inline-block;
-      background: linear-gradient(180deg, #FFFFFF 0%, #FFF5BD 20%, #F5B82E 50%, #CF8A12 75%, #8C5503 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      filter: drop-shadow(0 4px 18px rgba(0, 0, 0, 0.75)) drop-shadow(0 0 35px rgba(245, 184, 46, 0.5));
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-emblem-25 {
+      width: clamp(290px, 46vw, 490px);
+      max-width: 100%;
+      height: auto;
+      display: block;
+      filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.85)) drop-shadow(0 2px 6px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 45px rgba(245, 184, 46, 0.35));
+      transform: translateZ(0);
+      user-select: none;
     }
 
     .hero-title-box::before {
-      content: "";
-      position: absolute;
-      top: 55%;
-      left: -25%;
-      right: -25%;
-      height: 2px;
-      background: linear-gradient(90deg, transparent 0%, rgba(255, 230, 150, 0.1) 20%, rgba(255, 230, 150, 0.85) 50%, rgba(255, 230, 150, 0.1) 80%, transparent 100%);
-      transform: translateY(-50%);
-      pointer-events: none;
-      z-index: 1;
-      filter: blur(1px);
+      display: none;
     }
 
     .hero-title-box::after {
@@ -502,8 +506,8 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 340px;
-      height: 190px;
+      width: 440px;
+      height: 220px;
       background: radial-gradient(ellipse at center, rgba(255, 213, 107, 0.35) 0%, rgba(255, 168, 38, 0.15) 45%, transparent 70%);
       filter: blur(28px);
       pointer-events: none;
@@ -512,13 +516,13 @@
 
     .hero-flare-star {
       position: absolute;
-      top: 8%;
-      right: 18%;
-      width: 32px;
-      height: 32px;
+      top: 6%;
+      right: 3%;
+      width: 28px;
+      height: 28px;
       pointer-events: none;
-      z-index: 3;
-      background: radial-gradient(circle, #FFFFFF 20%, rgba(255, 225, 120, 0.95) 45%, transparent 70%);
+      z-index: 4;
+      background: radial-gradient(circle, #FFFFFF 25%, rgba(255, 235, 140, 0.95) 50%, transparent 72%);
       animation: pulseStar 3s infinite ease-in-out;
     }
 
@@ -529,7 +533,7 @@
       left: 50%;
       transform: translate(-50%, -50%);
       background: #FFFFFF;
-      box-shadow: 0 0 8px #FFD700;
+      box-shadow: 0 0 10px #FFD700;
     }
 
     .hero-flare-star::before { width: 2px; height: 28px; }
@@ -2013,9 +2017,10 @@
         font-size: clamp(38px, 11.5vw, 62px);
       }
       .hero-flare-star {
-        width: 22px;
-        height: 22px;
-        right: 14%;
+        width: 20px;
+        height: 20px;
+        right: 4%;
+        top: 6%;
       }
       .hero-badge-gold {
         font-size: 11px;
@@ -2134,7 +2139,12 @@
       
       <div class="hero-title-box">
         <div class="hero-flare-star"></div>
-        <h1 class="hero-heading">25 NĂM</h1>
+        <h1 class="hero-heading" aria-label="25 NĂM">
+          <picture>
+            <source srcset="images/hero_25_nam_gold.webp" type="image/webp">
+            <img src="images/hero_25_nam_gold.png" alt="25 NĂM" class="hero-emblem-25" width="480" height="157" fetchpriority="high">
+          </picture>
+        </h1>
       </div>
 
       <h2 class="hero-subheading">Tự Hào Truyền Thống, Kiến Tạo Tương Lai</h2>
