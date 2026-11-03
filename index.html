@@ -156,6 +156,19 @@
       border-color: #F7E7A9;
     }
 
+    .btn-quiet.playing {
+      background: #D4AF37 !important;
+      color: #580a0f !important;
+      border-color: #F7E7A9 !important;
+      box-shadow: 0 0 12px rgba(212, 175, 55, 0.6);
+      animation: pulseMusic 1.8s infinite ease-in-out;
+    }
+
+    @keyframes pulseMusic {
+      0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.6); }
+      50% { transform: scale(1.03); box-shadow: 0 0 0 8px rgba(212, 175, 55, 0); }
+    }
+
     /* THANH ĐIỀU HƯỚNG VUỐT KÉO NGANG (ĐỎ BOOC-ĐÔ & VÀNG GOLD) */
     .nav-tabs-bar {
       width: 100%;
@@ -827,6 +840,9 @@
 </head>
 <body>
 
+  <!-- Nhạc Nền Kỷ Yếu (Chạy hết tự động lặp lại liên tục từ đầu) -->
+  <audio id="bgMusic" src="audio/nhac_nen_ky_yeu.mp3" loop preload="auto"></audio>
+
   <!-- Top Progress Bar -->
   <div class="top-progress" id="topProgress"></div>
 
@@ -1331,67 +1347,65 @@
       }
     }
 
-    // Quiet, gentle, meditative background chord progression (Web Audio API)
-    let audioCtx = null;
-    let isPlaying = false;
-    let timer = null;
+    // Background Music Controller (Bài ca nghề giáo tôi yêu - Lặp lại liên tục)
+    const bgMusic = document.getElementById('bgMusic');
+    const audioToggle = document.getElementById('audioToggle');
+    const audioText = document.getElementById('audioText');
+    const audioIcon = document.getElementById('audioIcon');
+    let isMusicPlaying = false;
 
-    document.getElementById('audioToggle').addEventListener('click', () => {
-      if (!isPlaying) {
-        startAmbient();
-        document.getElementById('audioText').textContent = 'Đang Bật';
-        isPlaying = true;
-      } else {
-        stopAmbient();
-        document.getElementById('audioText').textContent = 'Nhạc Nền';
-        isPlaying = false;
-      }
+    // Đảm bảo bài hát phát hết sẽ tự động lặp lại từ đầu liên tục
+    bgMusic.loop = true;
+    bgMusic.addEventListener('ended', function() {
+      bgMusic.currentTime = 0;
+      bgMusic.play();
     });
 
-    function startAmbient() {
-      try {
-        const AudioCtx = window.AudioContext || window.webkitAudioContext;
-        audioCtx = new AudioCtx();
-        const chords = [
-          [220, 261.63, 329.63, 392], // A min7 (contemplative)
-          [174.61, 220, 261.63, 329.63], // F maj7 (nostalgic)
-          [196, 246.94, 293.66, 392], // G maj (warm)
-          [130.81, 196, 261.63, 329.63] // C maj (peaceful)
-        ];
-        let idx = 0;
-
-        function play() {
-          if (!audioCtx) return;
-          const current = chords[idx % chords.length];
-          idx++;
-          current.forEach(f => {
-            const osc = audioCtx.createOscillator();
-            const gain = audioCtx.createGain();
-            osc.type = 'sine';
-            osc.frequency.setValueAtTime(f, audioCtx.currentTime);
-
-            gain.gain.setValueAtTime(0.0001, audioCtx.currentTime);
-            gain.gain.exponentialRampToValueAtTime(0.02, audioCtx.currentTime + 1.5);
-            gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 5.2);
-
-            osc.connect(gain);
-            gain.connect(audioCtx.destination);
-            osc.start(audioCtx.currentTime);
-            osc.stop(audioCtx.currentTime + 5.5);
-          });
-        }
-        play();
-        timer = setInterval(play, 5000);
-      } catch (err) {
-        console.log(err);
+    function toggleBackgroundMusic() {
+      if (bgMusic.paused) {
+        bgMusic.play().then(() => {
+          isMusicPlaying = true;
+          updateMusicUI(true);
+        }).catch(err => {
+          console.log('Audio playback permission:', err);
+        });
+      } else {
+        bgMusic.pause();
+        isMusicPlaying = false;
+        updateMusicUI(false);
       }
     }
 
-    function stopAmbient() {
-      if (timer) clearInterval(timer);
-      if (audioCtx) audioCtx.close();
-      audioCtx = null;
+    function updateMusicUI(playing) {
+      if (playing) {
+        audioToggle.classList.add('playing');
+        if (audioText) audioText.textContent = 'Đang Phát';
+        audioIcon.setAttribute('data-lucide', 'volume-2');
+      } else {
+        audioToggle.classList.remove('playing');
+        if (audioText) audioText.textContent = 'Nhạc Nền';
+        audioIcon.setAttribute('data-lucide', 'volume-x');
+      }
+      lucide.createIcons();
     }
+
+    audioToggle.addEventListener('click', toggleBackgroundMusic);
+
+    // Tự động phát khi người dùng tương tác lần đầu (bấm / chạm vào màn hình)
+    function autoPlayOnFirstTouch() {
+      if (!isMusicPlaying && bgMusic.paused) {
+        bgMusic.play().then(() => {
+          isMusicPlaying = true;
+          updateMusicUI(true);
+        }).catch(() => {
+          // Trình duyệt yêu cầu bấm trực tiếp nút Nhạc Nền
+        });
+      }
+      window.removeEventListener('click', autoPlayOnFirstTouch);
+      window.removeEventListener('touchstart', autoPlayOnFirstTouch);
+    }
+    window.addEventListener('click', autoPlayOnFirstTouch, { once: true });
+    window.addEventListener('touchstart', autoPlayOnFirstTouch, { once: true });
 
     // Auto-update & Auto-Center Active Tab in Horizontal Scroll Bar on Page Scroll
     const tabPills = document.querySelectorAll('.tab-pill');
