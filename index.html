@@ -410,6 +410,16 @@
       z-index: 1;
     }
 
+    .hero-particles-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
     .hero-box {
       max-width: 940px;
       margin: 0 auto;
@@ -1331,6 +1341,7 @@
        PHẦN 1: MÀN HÌNH MỞ ĐẦU CINEMATIC & LỜI NGỎ (100VH)
        ============================================== -->
   <section class="story-section" id="sec-hero">
+    <canvas id="heroParticles" class="hero-particles-canvas"></canvas>
     <div class="hero-drum-bg"></div>
     <div class="hero-wave-bg"></div>
 
@@ -2125,6 +2136,146 @@
           ease: 'power2.out'
         });
       }
+
+      // 5. Parallax Scroll Effects
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        gsap.to('.hero-drum-bg', {
+          scrollTrigger: {
+            trigger: '#sec-hero',
+            start: 'top top',
+            end: 'bottom top',
+            scrub: 1
+          },
+          y: 80,
+          opacity: 0.25,
+          ease: 'none'
+        });
+
+        gsap.to('.hero-wave-bg', {
+          scrollTrigger: {
+            trigger: '#sec-hero',
+            start: 'top top',
+            end: 'bottom top',
+            scrub: 1
+          },
+          y: 80,
+          opacity: 0.2,
+          ease: 'none'
+        });
+
+        gsap.to('.hero-box', {
+          scrollTrigger: {
+            trigger: '#sec-hero',
+            start: 'top top',
+            end: 'bottom top',
+            scrub: 1
+          },
+          y: 70,
+          opacity: 0.85,
+          ease: 'none'
+        });
+
+        gsap.to('.closing-huge-25', {
+          scrollTrigger: {
+            trigger: '#sec-closing',
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: 1
+          },
+          scale: 1.15,
+          y: -40,
+          ease: 'none'
+        });
+      }
+    });
+
+    // ====================================================
+    // GOLDEN AMBIENT PARTICLES (CANVAS 60FPS LIGHTWEIGHT)
+    // ====================================================
+    (function initGoldenParticles() {
+      const canvas = document.getElementById('heroParticles');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+      let w = canvas.width = canvas.parentElement.offsetWidth;
+      let h = canvas.height = canvas.parentElement.offsetHeight;
+      let isHeroVisible = true;
+      let animationFrameId = null;
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          isHeroVisible = entry.isIntersecting;
+          if (isHeroVisible && !animationFrameId) {
+            renderParticles();
+          }
+        });
+      }, { threshold: 0.05 });
+      observer.observe(canvas.parentElement);
+
+      window.addEventListener('resize', () => {
+        w = canvas.width = canvas.parentElement.offsetWidth;
+        h = canvas.height = canvas.parentElement.offsetHeight;
+      }, { passive: true });
+
+      const PARTICLE_COUNT = Math.min(48, Math.max(20, Math.floor(w / 25)));
+      const particles = [];
+      const colors = ['rgba(255, 213, 107, ', 'rgba(255, 168, 38, ', 'rgba(252, 227, 148, ', 'rgba(255, 255, 255, '];
+
+      for (let i = 0; i < PARTICLE_COUNT; i++) {
+        particles.push({
+          x: Math.random() * w,
+          y: Math.random() * h,
+          r: 1.2 + Math.random() * 2.4,
+          speedY: 0.25 + Math.random() * 0.45,
+          speedX: (Math.random() - 0.5) * 0.3,
+          baseAlpha: 0.25 + Math.random() * 0.55,
+          alpha: 0.4,
+          pulseSpeed: 0.015 + Math.random() * 0.02,
+          pulseOffset: Math.random() * Math.PI * 2,
+          colorBase: colors[Math.floor(Math.random() * colors.length)]
+        });
+      }
+
+      let tick = 0;
+      function renderParticles() {
+        if (!isHeroVisible) {
+          animationFrameId = null;
+          return;
+        }
+        ctx.clearRect(0, 0, w, h);
+        tick += 0.02;
+
+        for (let i = 0; i < particles.length; i++) {
+          const p = particles[i];
+          p.y -= p.speedY;
+          p.x += Math.sin(tick + p.pulseOffset) * 0.4 + p.speedX;
+          p.alpha = p.baseAlpha + Math.sin(tick * 2 + p.pulseOffset) * 0.2;
+
+          if (p.y < -10) {
+            p.y = h + 10;
+            p.x = Math.random() * w;
+          }
+          if (p.x < -10) p.x = w + 10;
+          if (p.x > w + 10) p.x = -10;
+
+          ctx.save();
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fillStyle = p.colorBase + Math.max(0.1, Math.min(0.9, p.alpha)) + ')';
+          ctx.shadowColor = 'rgba(255, 213, 107, 0.8)';
+          ctx.shadowBlur = p.r * 3;
+          ctx.fill();
+          ctx.restore();
+        }
+
+        animationFrameId = requestAnimationFrame(renderParticles);
+      }
+
+      renderParticles();
+    })();
     });
   </script>
 </body>
