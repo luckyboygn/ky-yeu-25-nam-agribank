@@ -23,16 +23,17 @@
 
   <style>
     :root {
-      --agri-burgundy: #720910;
-      --agri-burgundy-deep: #4c0409;
-      --agri-burgundy-soft: #8e151d;
-      --gold-accent: #C5A059;
-      --gold-light: #E8D3A2;
+      --agri-burgundy: #821319;
+      --agri-burgundy-deep: #580a0f;
+      --agri-burgundy-soft: #9c1b23;
+      --agri-burgundy-banner: #781016;
+      --gold-accent: #D4AF37;
+      --gold-light: #F7E7A9;
       --bg-paper: #F8F5EE;
       --bg-cream: #FCFAF6;
       --text-main: #2C2623;
       --text-muted: #6E6864;
-      --border-soft: rgba(197, 160, 89, 0.28);
+      --border-soft: rgba(212, 175, 55, 0.35);
     }
 
     * {
@@ -68,22 +69,22 @@
       left: 0;
       width: 0%;
       height: 3px;
-      background: linear-gradient(90deg, var(--gold-accent), var(--agri-burgundy));
+      background: linear-gradient(90deg, #D4AF37, #F7E7A9, #FFFFFF);
       z-index: 1000;
     }
 
+    /* THANH HEADER ĐỎ BOOC-ĐÔ THƯƠNG HIỆU AGRIBANK */
     .site-nav {
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
-      background: rgba(248, 245, 238, 0.97);
-      backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--border-soft);
+      background: linear-gradient(180deg, #821319 0%, #6E0E14 100%);
+      border-bottom: 1px solid rgba(212, 175, 55, 0.4);
       z-index: 999;
       display: flex;
       flex-direction: column;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
     }
 
     .nav-top-row {
@@ -99,7 +100,7 @@
       align-items: center;
       gap: 10px;
       text-decoration: none;
-      color: var(--agri-burgundy);
+      color: #FFFFFF;
       flex-shrink: 0;
     }
 
@@ -107,21 +108,23 @@
       font-family: 'Cinzel', serif;
       font-weight: 800;
       font-size: 13px;
-      background: var(--agri-burgundy);
-      color: var(--gold-light);
+      background: #FFFFFF;
+      color: #821319;
       padding: 4px 10px;
       border-radius: 4px;
       letter-spacing: 1px;
       white-space: nowrap;
       flex-shrink: 0;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
     }
 
     .nav-brand-text {
       font-size: 13.5px;
       font-weight: 700;
-      letter-spacing: 0.3px;
+      letter-spacing: 0.5px;
       white-space: nowrap;
-      color: var(--agri-burgundy);
+      color: #FFFFFF;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.3);
     }
 
     .nav-actions {
@@ -132,9 +135,9 @@
     }
 
     .btn-quiet {
-      background: none;
-      border: 1px solid var(--border-soft);
-      color: var(--agri-burgundy);
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(212, 175, 55, 0.45);
+      color: #F7E7A9;
       padding: 5px 12px;
       border-radius: 20px;
       font-size: 12px;
@@ -148,15 +151,17 @@
     }
 
     .btn-quiet:hover {
-      background: var(--agri-burgundy);
-      color: #fff;
+      background: #D4AF37;
+      color: #580a0f;
+      border-color: #F7E7A9;
     }
 
-    /* THANH ĐIỀU HƯỚNG VUỐT KÉO NGANG (HORIZONTAL SCROLL TABS) */
+    /* THANH ĐIỀU HƯỚNG VUỐT KÉO NGANG (ĐỎ BOOC-ĐÔ & VÀNG GOLD) */
     .nav-tabs-bar {
       width: 100%;
-      background: rgba(243, 239, 230, 0.92);
-      border-top: 1px solid rgba(197, 160, 89, 0.22);
+      background: rgba(88, 10, 15, 0.95);
+      border-top: 1px solid rgba(212, 175, 55, 0.25);
+      border-bottom: 1px solid rgba(212, 175, 55, 0.35);
       overflow: hidden;
     }
 
@@ -187,10 +192,10 @@
       border-radius: 20px;
       font-size: 12.5px;
       font-weight: 600;
-      color: var(--text-muted);
+      color: rgba(255, 255, 255, 0.88);
       text-decoration: none;
-      background: #FFFFFF;
-      border: 1px solid var(--border-soft);
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(212, 175, 55, 0.35);
       flex-shrink: 0 !important;
       white-space: nowrap !important;
       transition: all 0.2s ease;
@@ -200,19 +205,20 @@
     .tab-pill i {
       width: 14px;
       height: 14px;
-      color: var(--agri-burgundy);
+      color: #F7E7A9;
       flex-shrink: 0;
     }
 
     .tab-pill:hover, .tab-pill.active {
-      background: var(--agri-burgundy) !important;
-      color: #FFFFFF !important;
-      border-color: var(--agri-burgundy) !important;
-      box-shadow: 0 2px 8px rgba(114, 9, 16, 0.25);
+      background: linear-gradient(135deg, #D4AF37 0%, #F7E7A9 100%) !important;
+      color: #580a0f !important;
+      border-color: #F7E7A9 !important;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+      font-weight: 700;
     }
 
     .tab-pill.active i {
-      color: var(--gold-light) !important;
+      color: #580a0f !important;
     }
 
     /* SECTION BASICS */
