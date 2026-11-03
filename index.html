@@ -51,6 +51,7 @@
 
     html {
       scroll-behavior: smooth;
+      scroll-padding-top: 104px;
       text-rendering: optimizeLegibility;
       -webkit-font-smoothing: antialiased;
     }
@@ -98,8 +99,8 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      height: 52px;
-      padding: 0 28px;
+      height: 48px;
+      padding: 0 24px;
     }
 
     .nav-brand-group {
@@ -220,8 +221,8 @@
     /* THANH TAB ĐIỀU HƯỚNG VUỐT NGANG (HORIZONTAL SCROLL TABS) */
     .nav-tabs-bar {
       width: 100%;
-      background: rgba(50, 4, 7, 0.95);
-      border-top: 1px solid rgba(229, 192, 123, 0.2);
+      background: rgba(45, 4, 7, 0.96);
+      border-top: 1px solid rgba(229, 192, 123, 0.15);
       border-bottom: 1px solid rgba(229, 192, 123, 0.25);
       overflow: hidden;
       position: relative;
@@ -233,8 +234,8 @@
       top: 0;
       right: 0;
       bottom: 0;
-      width: 36px;
-      background: linear-gradient(to right, rgba(50, 4, 7, 0), rgba(50, 4, 7, 0.98));
+      width: 32px;
+      background: linear-gradient(to right, rgba(45, 4, 7, 0), rgba(45, 4, 7, 0.98));
       pointer-events: none;
       z-index: 2;
     }
@@ -244,8 +245,8 @@
       flex-direction: row !important;
       flex-wrap: nowrap !important;
       align-items: center;
-      gap: 10px;
-      padding: 7px 36px 7px 24px;
+      gap: 8px;
+      padding: 5px 32px 5px 20px;
       overflow-x: auto !important;
       overflow-y: hidden;
       white-space: nowrap !important;
@@ -262,53 +263,60 @@
     .tab-pill {
       display: inline-flex !important;
       align-items: center;
-      gap: 7px;
-      padding: 6px 16px;
+      gap: 6px;
+      padding: 5px 14px;
       border-radius: 9999px;
-      font-size: 13px;
+      font-size: 12.5px;
       font-weight: 600;
+      letter-spacing: 0.2px;
       color: #FFFFFF !important;
       text-decoration: none;
-      background: rgba(88, 14, 20, 0.65);
-      border: 1px solid rgba(245, 215, 140, 0.35);
+      background: rgba(85, 12, 18, 0.55);
+      border: 1px solid rgba(245, 215, 140, 0.28);
       flex-shrink: 0 !important;
       white-space: nowrap !important;
-      transition: all 0.25s ease;
+      transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
       user-select: none;
       -webkit-tap-highlight-color: transparent;
       touch-action: pan-x;
     }
 
     .tab-pill i, .tab-pill svg {
-      width: 15px;
-      height: 15px;
+      width: 14px;
+      height: 14px;
       color: var(--gold-primary) !important;
       stroke: var(--gold-primary) !important;
       flex-shrink: 0;
     }
 
     .tab-pill:hover {
-      background: rgba(120, 18, 25, 0.85);
+      background: rgba(120, 18, 25, 0.75);
       border-color: var(--gold-primary);
       color: #FFFFFF !important;
+      transform: translateY(-1px);
     }
 
     .tab-pill.active {
-      background: linear-gradient(180deg, #FFD56B 0%, #FFA826 100%) !important;
-      color: #610B10 !important;
+      background: linear-gradient(135deg, #FFE29A 0%, #FFA826 100%) !important;
+      color: #4A080C !important;
       border-color: #FFA826 !important;
       font-weight: 700 !important;
-      box-shadow: 0 0 18px rgba(255, 180, 50, 0.7), 0 2px 8px rgba(0,0,0,0.3) !important;
+      box-shadow: 0 2px 14px rgba(255, 180, 50, 0.5), 0 1px 4px rgba(0,0,0,0.3) !important;
+      transform: translateY(-1px);
     }
 
     .tab-pill.active i, .tab-pill.active svg {
-      color: #610B10 !important;
-      stroke: #610B10 !important;
+      color: #4A080C !important;
+      stroke: #4A080C !important;
     }
 
     /* ====================================================
        SECTION BASICS & SCROLLYTELLING CONTAINER
        ==================================================== */
+    .story-section, .letters-section {
+      scroll-margin-top: 104px;
+    }
+
     .story-section {
       position: relative;
       min-height: 100vh;
@@ -1224,17 +1232,32 @@
        RESPONSIVE MOBILE STYLES (< 992px)
        ==================================================== */
     @media (max-width: 991px) {
+      html {
+        scroll-padding-top: 88px;
+      }
+      .story-section, .letters-section {
+        scroll-margin-top: 88px;
+      }
       .nav-top-row {
         padding: 0 16px;
-        height: 48px;
+        height: 44px;
       }
       .site-official-logo {
-        height: 23px;
-        max-width: 175px;
+        height: 22px;
+        max-width: 165px;
+      }
+      .nav-tabs-scroll {
+        padding: 4px 20px 4px 12px;
+        gap: 6px;
+      }
+      .tab-pill {
+        padding: 4px 11px;
+        font-size: 11.5px;
+        gap: 5px;
       }
       .btn-quiet {
-        padding: 5px 12px;
-        font-size: 12px;
+        padding: 4px 10px;
+        font-size: 11.5px;
       }
       .nav-actions {
         gap: 6px;
@@ -1327,10 +1350,10 @@
     <!-- Thanh 6 Tab Điều Hướng Vuốt Ngang -->
     <nav class="nav-tabs-bar" id="tabsBar">
       <div class="nav-tabs-scroll" id="tabsScroll">
-        <a href="#sec-hero" class="tab-pill active"><i data-lucide="home"></i> Lời Ngỏ</a>
+        <a href="#sec-letters" class="tab-pill"><i data-lucide="book-open"></i> Lời Ngỏ</a>
         <a href="#sec-tradition" class="tab-pill"><i data-lucide="history"></i> Tự Hào Truyền Thống</a>
         <a href="#sec-future" class="tab-pill"><i data-lucide="sparkles"></i> Kiến Tạo Tương Lai</a>
-        <a href="#sec-honor" class="tab-pill"><i data-lucide="heart"></i> Vững Bước Đồng Hành</a>
+        <a href="#sec-honor" class="tab-pill"><i data-lucide="award"></i> Vững Bước Đồng Hành</a>
         <a href="#sec-emotions" class="tab-pill"><i data-lucide="heart"></i> Sức Sống Agribank</a>
         <a href="#sec-closing" class="tab-pill"><i data-lucide="bookmark"></i> Khép Lại & Mở Ra</a>
       </div>
@@ -2040,41 +2063,94 @@
     });
 
     // ====================================================
-    // HORIZONTAL SWIPE TABS & SCROLL SPY
+    // HORIZONTAL SWIPE TABS & SCROLL SPY CHUẨN XÁC 7 SECTIONS
     // ====================================================
     const tabPills = document.querySelectorAll('.tab-pill');
     const tabsScrollContainer = document.getElementById('tabsScroll');
+    let currentActiveHref = null;
 
-    window.addEventListener('scroll', () => {
-      const sections = [
-        { id: 'sec-hero', href: '#sec-hero' },
-        { id: 'sec-tradition', href: '#sec-tradition' },
-        { id: 'sec-future', href: '#sec-future' },
-        { id: 'sec-honor', href: '#sec-honor' },
-        { id: 'sec-emotions', href: '#sec-emotions' },
-        { id: 'sec-closing', href: '#sec-closing' }
-      ];
-      
-      const scrollPos = window.scrollY + 180;
-      sections.forEach(sec => {
+    // Danh sách 6 mục tương ứng trên thanh tab (Logo đại diện cho #sec-hero)
+    const spySections = [
+      { id: 'sec-closing', href: '#sec-closing' },
+      { id: 'sec-emotions', href: '#sec-emotions' },
+      { id: 'sec-honor', href: '#sec-honor' },
+      { id: 'sec-future', href: '#sec-future' },
+      { id: 'sec-tradition', href: '#sec-tradition' },
+      { id: 'sec-letters', href: '#sec-letters' }
+    ];
+
+    function updateScrollSpy() {
+      const scrollY = window.scrollY || window.pageYOffset;
+      const docHeight = document.documentElement.scrollHeight;
+      const winHeight = window.innerHeight;
+
+      // 1. Nếu cuộn đến sát đáy trang -> Kích hoạt Tab Khép Lại & Mở Ra
+      if (scrollY + winHeight >= docHeight - 80) {
+        setActiveTab('#sec-closing');
+        return;
+      }
+
+      // 2. Nếu đang ở màn hình Hero (mở đầu) -> Logo đại diện cho Hero, không bật tab con
+      const heroEl = document.getElementById('sec-hero');
+      if (heroEl) {
+        const heroRect = heroEl.getBoundingClientRect();
+        if (heroRect.bottom > 200) {
+          setActiveTab(null);
+          return;
+        }
+      }
+
+      // 3. Quét các section từ dưới lên dựa trên đường kích hoạt (trigger line 140px)
+      const triggerY = 140;
+      let matchedHref = null;
+      for (let i = 0; i < spySections.length; i++) {
+        const sec = spySections[i];
         const el = document.getElementById(sec.id);
         if (el) {
-          const top = el.offsetTop;
-          const height = el.offsetHeight;
-          if (scrollPos >= top && scrollPos < top + height) {
-            tabPills.forEach(pill => {
-              if (pill.getAttribute('href') === sec.href) {
-                if (!pill.classList.contains('active')) {
-                  tabPills.forEach(p => p.classList.remove('active'));
-                  pill.classList.add('active');
-                  pill.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-                }
-              }
-            });
+          const rect = el.getBoundingClientRect();
+          if (rect.top <= triggerY) {
+            matchedHref = sec.href;
+            break;
           }
         }
+      }
+
+      setActiveTab(matchedHref);
+    }
+
+    function setActiveTab(targetHref) {
+      if (currentActiveHref === targetHref) return; // Không thay đổi -> Không làm gì để tránh rung/nhảy menu
+      currentActiveHref = targetHref;
+
+      tabPills.forEach(pill => {
+        const href = pill.getAttribute('href');
+        if (targetHref && href === targetHref) {
+          pill.classList.add('active');
+          pill.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        } else {
+          pill.classList.remove('active');
+        }
       });
+    }
+
+    let isScrolling = false;
+    window.addEventListener('scroll', () => {
+      if (!isScrolling) {
+        window.requestAnimationFrame(() => {
+          updateScrollSpy();
+          isScrolling = false;
+        });
+        isScrolling = true;
+      }
     }, { passive: true });
+
+    // Khởi tạo trạng thái ban đầu
+    updateScrollSpy();
+
+    // Hỗ trợ đóng Modal bằng phím Escape
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeModal();
+    });
 
     // ====================================================
     // GSAP SCROLLTRIGGER CINEMATIC ANIMATIONS
@@ -2276,7 +2352,6 @@
 
       renderParticles();
     })();
-    });
   </script>
 </body>
 </html>
