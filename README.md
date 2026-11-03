@@ -1,7 +1,7 @@
-# Kỷ Yếu 25 Năm Agribank (1999 — 2026)
+# Kỷ Yếu 25 Năm Agribank (1999 — 2024)
 ## "Tự Hào Truyền Thống, Kiến Tạo Tương Lai"
 
-Trang kỷ yếu điện tử dạng **Scrollytelling** kỷ niệm 25 năm thành lập, công bố chuyển đổi thành **Viện Nghiên cứu và Đào tạo Agribank** & chào mừng **Ngày Nhà giáo Việt Nam 20/11**.
+Trang kỷ yếu điện tử dạng **Scrollytelling** kỷ niệm 25 năm thành lập Trường Đào tạo cán bộ, công bố chuyển đổi thành **Viện Nghiên cứu và Đào tạo Agribank**.
 
 ### 🌟 Tính năng nổi bật
 - **Hiệu ứng Scrollytelling:** Cuộn trang điện ảnh mượt mà bằng GSAP & ScrollTrigger.
