@@ -12,11 +12,10 @@
   <!-- Typography Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;0,800;0,900;1,700&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
   
   <!-- Preload Critical Hero Assets (WebP High Performance) -->
   <link rel="preload" href="backgrounds/bg_01_cover_solemn.webp" as="image" type="image/webp">
-  <link rel="preload" href="images/hero_25_nam_gold.webp" as="image" type="image/webp">
 
   <!-- Lucide Icons (Pinned stable version v0.469.0) -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.469.0/umd/lucide.min.js"></script>
@@ -225,10 +224,11 @@
     /* THANH TAB ĐIỀU HƯỚNG VUỐT NGANG (HORIZONTAL SCROLL TABS) */
     .nav-tabs-bar {
       width: 100%;
-      background: rgba(45, 4, 7, 0.96);
-      border-top: 1px solid rgba(229, 192, 123, 0.15);
-      border-bottom: 1px solid rgba(229, 192, 123, 0.25);
-      overflow: hidden;
+      background: linear-gradient(180deg, #360307 0%, #200204 100%);
+      border-top: 1px solid rgba(245, 196, 110, 0.22);
+      border-bottom: 1px solid rgba(245, 196, 110, 0.35);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.45);
+      padding: 6px 0;
       position: relative;
     }
 
@@ -249,8 +249,8 @@
       flex-direction: row !important;
       flex-wrap: nowrap !important;
       align-items: center;
-      gap: 8px;
-      padding: 5px 32px 5px 20px;
+      gap: 10px;
+      padding: 4px 20px;
       overflow-x: auto !important;
       overflow-y: hidden;
       white-space: nowrap !important;
@@ -260,6 +260,18 @@
       scrollbar-width: none;
     }
 
+    @media (min-width: 992px) {
+      .nav-tabs-scroll {
+        justify-content: center !important;
+      }
+    }
+
+    @media (max-width: 991px) {
+      .nav-tabs-scroll {
+        justify-content: flex-start !important;
+      }
+    }
+
     .nav-tabs-scroll::-webkit-scrollbar {
       display: none;
     }
@@ -267,16 +279,16 @@
     .tab-pill {
       display: inline-flex !important;
       align-items: center;
-      gap: 6px;
-      padding: 5px 14px;
+      gap: 7px;
+      padding: 7px 18px;
       border-radius: 9999px;
-      font-size: 12.5px;
+      font-size: 13px;
       font-weight: 600;
       letter-spacing: 0.2px;
       color: #FFFFFF !important;
       text-decoration: none;
-      background: rgba(85, 12, 18, 0.55);
-      border: 1px solid rgba(245, 215, 140, 0.28);
+      background: linear-gradient(180deg, rgba(82, 10, 16, 0.65) 0%, rgba(45, 4, 8, 0.75) 100%);
+      border: 1px solid rgba(245, 196, 110, 0.55);
       flex-shrink: 0 !important;
       white-space: nowrap !important;
       transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
@@ -286,32 +298,37 @@
     }
 
     .tab-pill i, .tab-pill svg {
-      width: 14px;
-      height: 14px;
-      color: var(--gold-primary) !important;
-      stroke: var(--gold-primary) !important;
+      width: 15px;
+      height: 15px;
+      color: #F5C46E !important;
+      stroke: #F5C46E !important;
       flex-shrink: 0;
+      display: inline-block;
+      vertical-align: middle;
     }
 
     .tab-pill:hover {
-      background: rgba(120, 18, 25, 0.75);
-      border-color: var(--gold-primary);
+      background: linear-gradient(180deg, rgba(115, 16, 24, 0.85) 0%, rgba(65, 6, 12, 0.9) 100%);
+      border-color: #FFD56B;
+      box-shadow: 0 0 12px rgba(245, 196, 110, 0.35);
       color: #FFFFFF !important;
       transform: translateY(-1px);
     }
 
+    /* Active Pill: Radiant Gold, deep burgundy text & glowing aura (Image 1 reference) */
     .tab-pill.active {
-      background: linear-gradient(135deg, #FFE29A 0%, #FFA826 100%) !important;
-      color: #4A080C !important;
-      border-color: #FFA826 !important;
+      background: linear-gradient(180deg, #FDE69E 0%, #F5B82E 50%, #E29910 100%) !important;
+      color: #4A040A !important;
+      border: 1px solid rgba(255, 235, 170, 0.95) !important;
       font-weight: 700 !important;
-      box-shadow: 0 2px 14px rgba(255, 180, 50, 0.5), 0 1px 4px rgba(0,0,0,0.3) !important;
+      box-shadow: 0 4px 18px rgba(245, 184, 46, 0.65), 0 0 25px rgba(254, 230, 158, 0.45) !important;
       transform: translateY(-1px);
     }
 
     .tab-pill.active i, .tab-pill.active svg {
-      color: #4A080C !important;
-      stroke: #4A080C !important;
+      color: #4A040A !important;
+      stroke: #4A040A !important;
+      stroke-width: 2.2px !important;
     }
 
     /* ====================================================
@@ -437,6 +454,10 @@
       margin: 0 auto;
       position: relative;
       z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
     }
 
     .hero-badge-gold {
@@ -465,39 +486,49 @@
 
     .hero-title-box {
       position: relative;
-      display: inline-flex;
+      display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 12px;
+      margin-bottom: 16px;
       z-index: 2;
     }
 
     .hero-heading {
-      font-family: var(--font-cinzel), 'Playfair Display', Georgia, serif;
-      font-size: clamp(52px, 9.5vw, 96px);
-      font-weight: 800;
-      letter-spacing: 4px;
-      line-height: 1;
       margin: 0;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       position: relative;
       z-index: 2;
+      line-height: 1;
     }
 
-    .hero-emblem-25 {
-      width: clamp(290px, 46vw, 490px);
-      max-width: 100%;
-      height: auto;
-      display: block;
-      filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.85)) drop-shadow(0 2px 6px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 45px rgba(245, 184, 46, 0.35));
-      transform: translateZ(0);
+    /* 3D Metallic Gold Typography (100% Native Fail-Safe) */
+    .hero-25-text {
+      font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+      font-size: clamp(56px, 10.5vw, 102px);
+      font-weight: 800;
+      letter-spacing: 4px;
+      line-height: 1;
+      display: inline-block;
+      position: relative;
+      z-index: 2;
+      color: #FFE699;
+      background: linear-gradient(180deg, 
+        #FFFDE6 0%, 
+        #FFEAA0 18%, 
+        #F7C244 42%, 
+        #E59E1A 68%, 
+        #B86B04 88%, 
+        #FDE895 100%
+      );
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 3px 0 #5E3200)
+              drop-shadow(0 5px 1px #3A1E00)
+              drop-shadow(0 14px 26px rgba(0, 0, 0, 0.95))
+              drop-shadow(0 0 40px rgba(245, 184, 46, 0.5));
       user-select: none;
-    }
-
-    .hero-title-box::before {
-      display: none;
     }
 
     .hero-title-box::after {
@@ -506,23 +537,25 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 440px;
-      height: 220px;
-      background: radial-gradient(ellipse at center, rgba(255, 213, 107, 0.35) 0%, rgba(255, 168, 38, 0.15) 45%, transparent 70%);
+      width: 480px;
+      height: 180px;
+      background: radial-gradient(ellipse at center, rgba(255, 213, 107, 0.42) 0%, rgba(255, 168, 38, 0.16) 48%, transparent 72%);
       filter: blur(28px);
       pointer-events: none;
       z-index: 0;
     }
 
+    /* Specular Lens Flare on M Apex */
     .hero-flare-star {
       position: absolute;
-      top: 6%;
-      right: 3%;
-      width: 28px;
-      height: 28px;
+      top: -6px;
+      right: 0px;
+      width: 34px;
+      height: 34px;
       pointer-events: none;
-      z-index: 4;
-      background: radial-gradient(circle, #FFFFFF 25%, rgba(255, 235, 140, 0.95) 50%, transparent 72%);
+      z-index: 5;
+      background: radial-gradient(circle, #FFFFFF 22%, rgba(255, 230, 130, 0.95) 45%, transparent 70%);
+      filter: drop-shadow(0 0 10px #FFD700);
       animation: pulseStar 3s infinite ease-in-out;
     }
 
@@ -533,11 +566,37 @@
       left: 50%;
       transform: translate(-50%, -50%);
       background: #FFFFFF;
-      box-shadow: 0 0 10px #FFD700;
+      box-shadow: 0 0 8px #FFD700;
     }
 
-    .hero-flare-star::before { width: 2px; height: 28px; }
-    .hero-flare-star::after { width: 28px; height: 2px; }
+    .hero-flare-star::before { width: 2px; height: 34px; }
+    .hero-flare-star::after { width: 34px; height: 2px; }
+
+    /* Horizontal Anamorphic Lens Flare Streak */
+    .hero-flare-streak {
+      position: absolute;
+      top: 14px;
+      right: -30px;
+      width: 160px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, rgba(255, 230, 150, 0.85) 40%, rgba(255, 255, 255, 1) 50%, rgba(255, 230, 150, 0.85) 60%, transparent);
+      filter: blur(0.5px);
+      pointer-events: none;
+      z-index: 4;
+    }
+
+    /* Subtle Lens Flare Glint on 2 */
+    .hero-flare-2 {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      width: 18px;
+      height: 18px;
+      pointer-events: none;
+      z-index: 5;
+      background: radial-gradient(circle, #FFFFFF 25%, rgba(255, 235, 140, 0.8) 50%, transparent 70%);
+      filter: drop-shadow(0 0 6px #FFD700);
+    }
 
     @keyframes pulseStar {
       0%, 100% { transform: scale(0.9) rotate(0deg); opacity: 0.85; filter: drop-shadow(0 0 4px #FFA826); }
@@ -2111,15 +2170,33 @@
       </div>
     </div>
 
-    <!-- Thanh 6 Tab Điều Hướng Vuốt Ngang -->
+    <!-- Thanh 6 Tab Điều Hướng Vuốt Ngang (Khớp chuẩn 100% Giao diện Thiết Kế) -->
     <nav class="nav-tabs-bar" id="tabsBar">
       <div class="nav-tabs-scroll" id="tabsScroll">
-        <a href="#sec-letters" class="tab-pill"><i data-lucide="book-open"></i> Lời Ngỏ</a>
-        <a href="#sec-tradition" class="tab-pill"><i data-lucide="history"></i> Tự Hào Truyền Thống</a>
-        <a href="#sec-future" class="tab-pill"><i data-lucide="sparkles"></i> Kiến Tạo Tương Lai</a>
-        <a href="#sec-honor" class="tab-pill"><i data-lucide="award"></i> Vững Bước Đồng Hành</a>
-        <a href="#sec-emotions" class="tab-pill"><i data-lucide="heart"></i> Sức Sống Agribank</a>
-        <a href="#sec-closing" class="tab-pill"><i data-lucide="bookmark"></i> Khép lại và mở ra</a>
+        <a href="#sec-letters" class="tab-pill active">
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          Lời Ngỏ
+        </a>
+        <a href="#sec-tradition" class="tab-pill">
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l4 2"/></svg>
+          Tự Hào Truyền Thống
+        </a>
+        <a href="#sec-future" class="tab-pill">
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>
+          Kiến Tạo Tương Lai
+        </a>
+        <a href="#sec-honor" class="tab-pill">
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+          Vững Bước Đồng Hành
+        </a>
+        <a href="#sec-emotions" class="tab-pill">
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+          Mảnh Ghép Cảm Xúc
+        </a>
+        <a href="#sec-closing" class="tab-pill">
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" x2="4" y1="22" y2="15"/></svg>
+          Khép Lại & Mở Ra
+        </a>
       </div>
     </nav>
   </header>
@@ -2140,11 +2217,10 @@
       <div class="hero-title-box">
         <div class="hero-flare-star"></div>
         <h1 class="hero-heading" aria-label="25 NĂM">
-          <picture>
-            <source srcset="images/hero_25_nam_gold.webp" type="image/webp">
-            <img src="images/hero_25_nam_gold.png" alt="25 NĂM" class="hero-emblem-25" width="480" height="157" fetchpriority="high">
-          </picture>
+          <span class="hero-25-text">25 NĂM</span>
         </h1>
+        <div class="hero-flare-streak"></div>
+        <div class="hero-flare-2"></div>
       </div>
 
       <h2 class="hero-subheading">Tự Hào Truyền Thống, Kiến Tạo Tương Lai</h2>
@@ -3179,12 +3255,12 @@
         return;
       }
 
-      // 2. Nếu đang ở màn hình Hero (mở đầu) -> Logo đại diện cho Hero, không bật tab con
+      // 2. Nếu đang ở màn hình Hero (mở đầu) -> Kích hoạt Tab Lời Ngỏ (Trang bìa & Khởi đầu kỷ yếu)
       const heroEl = document.getElementById('sec-hero');
       if (heroEl) {
         const heroRect = heroEl.getBoundingClientRect();
         if (heroRect.bottom > 200) {
-          setActiveTab(null);
+          setActiveTab('#sec-letters');
           return;
         }
       }
