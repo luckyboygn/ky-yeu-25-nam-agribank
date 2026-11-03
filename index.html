@@ -840,8 +840,8 @@
 </head>
 <body>
 
-  <!-- Nhạc Nền Kỷ Yếu (Chạy hết tự động lặp lại liên tục từ đầu) -->
-  <audio id="bgMusic" src="audio/nhac_nen_ky_yeu.mp3" loop preload="auto"></audio>
+  <!-- Nhạc Nền Kỷ Yếu (Tự động phát khi vào trang & lặp lại liên tục từ đầu) -->
+  <audio id="bgMusic" src="audio/nhac_nen_ky_yeu.mp3" autoplay loop preload="auto" playsinline webkit-playsinline></audio>
 
   <!-- Top Progress Bar -->
   <div class="top-progress" id="topProgress"></div>
@@ -1347,7 +1347,7 @@
       }
     }
 
-    // Background Music Controller (Bài ca nghề giáo tôi yêu - Lặp lại liên tục)
+    // Background Music Controller (Tự động phát ngay khi vào web - Lặp lại liên tục)
     const bgMusic = document.getElementById('bgMusic');
     const audioToggle = document.getElementById('audioToggle');
     const audioText = document.getElementById('audioText');
@@ -1361,21 +1361,7 @@
       bgMusic.play();
     });
 
-    function toggleBackgroundMusic() {
-      if (bgMusic.paused) {
-        bgMusic.play().then(() => {
-          isMusicPlaying = true;
-          updateMusicUI(true);
-        }).catch(err => {
-          console.log('Audio playback permission:', err);
-        });
-      } else {
-        bgMusic.pause();
-        isMusicPlaying = false;
-        updateMusicUI(false);
-      }
-    }
-
+    // Cập nhật giao diện nút Bật/Tắt
     function updateMusicUI(playing) {
       if (playing) {
         audioToggle.classList.add('playing');
@@ -1383,29 +1369,63 @@
         audioIcon.setAttribute('data-lucide', 'volume-2');
       } else {
         audioToggle.classList.remove('playing');
-        if (audioText) audioText.textContent = 'Nhạc Nền';
+        if (audioText) audioText.textContent = 'Tắt Nhạc';
         audioIcon.setAttribute('data-lucide', 'volume-x');
       }
       lucide.createIcons();
     }
 
-    audioToggle.addEventListener('click', toggleBackgroundMusic);
-
-    // Tự động phát khi người dùng tương tác lần đầu (bấm / chạm vào màn hình)
-    function autoPlayOnFirstTouch() {
-      if (!isMusicPlaying && bgMusic.paused) {
+    // Nút trên thanh điều hướng chỉ dùng để Tắt / Bật nhạc nền
+    audioToggle.addEventListener('click', function(e) {
+      e.stopPropagation();
+      if (!bgMusic.paused) {
+        bgMusic.pause();
+        isMusicPlaying = false;
+        updateMusicUI(false);
+      } else {
         bgMusic.play().then(() => {
           isMusicPlaying = true;
           updateMusicUI(true);
-        }).catch(() => {
-          // Trình duyệt yêu cầu bấm trực tiếp nút Nhạc Nền
+        }).catch(err => {
+          console.log('Audio playback error:', err);
         });
       }
-      window.removeEventListener('click', autoPlayOnFirstTouch);
-      window.removeEventListener('touchstart', autoPlayOnFirstTouch);
+    });
+
+    // Hàm kích hoạt tự động phát nhạc ngay khi vào web
+    function tryAutoPlayAudio() {
+      if (bgMusic && bgMusic.paused) {
+        const playPromise = bgMusic.play();
+        if (playPromise !== undefined) {
+          playPromise.then(() => {
+            isMusicPlaying = true;
+            updateMusicUI(true);
+            removeAutoPlayListeners();
+          }).catch(() => {
+            // Trình duyệt chặn autoplay khi chưa chạm màn hình, sẽ kích hoạt ở cử chỉ chạm/lướt đầu tiên
+          });
+        }
+      }
     }
-    window.addEventListener('click', autoPlayOnFirstTouch, { once: true });
-    window.addEventListener('touchstart', autoPlayOnFirstTouch, { once: true });
+
+    const autoEvents = ['touchstart', 'touchend', 'click', 'pointerdown', 'scroll'];
+    function removeAutoPlayListeners() {
+      autoEvents.forEach(evt => {
+        window.removeEventListener(evt, tryAutoPlayAudio, { capture: true });
+        document.removeEventListener(evt, tryAutoPlayAudio, { capture: true });
+      });
+    }
+
+    // Thử phát ngay lập tức khi tải trang
+    tryAutoPlayAudio();
+    document.addEventListener('DOMContentLoaded', tryAutoPlayAudio);
+    window.addEventListener('load', tryAutoPlayAudio);
+
+    // Bắt ngay bất kỳ cử chỉ lướt/chạm đầu tiên nếu trình duyệt chặn autoplay ban đầu
+    autoEvents.forEach(evt => {
+      window.addEventListener(evt, tryAutoPlayAudio, { capture: true, passive: true });
+      document.addEventListener(evt, tryAutoPlayAudio, { capture: true, passive: true });
+    });
 
     // Auto-update & Auto-Center Active Tab in Horizontal Scroll Bar on Page Scroll
     const tabPills = document.querySelectorAll('.tab-pill');
