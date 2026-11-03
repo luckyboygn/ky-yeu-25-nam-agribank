@@ -8,15 +8,15 @@
   <meta http-equiv="Expires" content="0">
   <title>Kỷ Yếu 25 Năm Agribank | Tự Hào Truyền Thống, Kiến Tạo Tương Lai</title>
   
-  <!-- Fonts -->
+  <!-- Typography Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
   
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
   
-  <!-- GSAP & Canvas Confetti -->
+  <!-- GSAP 3.12 & ScrollTrigger & Confetti -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/canvas-confetti/1.6.0/confetti.browser.min.js"></script>
@@ -24,16 +24,22 @@
   <style>
     :root {
       --agri-burgundy: #821319;
-      --agri-burgundy-deep: #580a0f;
-      --agri-burgundy-soft: #9c1b23;
-      --agri-burgundy-banner: #781016;
-      --gold-accent: #D4AF37;
+      --agri-burgundy-deep: #4A080C;
+      --agri-burgundy-dark: #320407;
+      --agri-burgundy-light: #9E1C24;
+      --gold-primary: #FFD56B;
+      --gold-amber: #FFA826;
+      --gold-champagne: #FCE394;
+      --gold-accent: #E5C07B;
       --gold-light: #F7E7A9;
-      --bg-paper: #F8F5EE;
       --bg-cream: #FCFAF6;
-      --text-main: #2C2623;
+      --bg-paper: #F8F5EE;
+      --text-main: #2A2421;
       --text-muted: #6E6864;
-      --border-soft: rgba(212, 175, 55, 0.35);
+      --border-soft: rgba(229, 192, 123, 0.35);
+      --font-serif: 'Playfair Display', Georgia, serif;
+      --font-cinzel: 'Cinzel', serif;
+      --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
     }
 
     * {
@@ -44,48 +50,47 @@
 
     html {
       scroll-behavior: smooth;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
     }
 
     body {
-      background-color: var(--bg-paper);
+      background-color: var(--agri-burgundy-dark);
       color: var(--text-main);
-      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-family: var(--font-sans);
       line-height: 1.8;
       overflow-x: hidden;
     }
 
-    h1, h2, h3, .font-serif {
-      font-family: 'Playfair Display', serif;
-    }
-
-    .font-cinzel {
-      font-family: 'Cinzel', serif;
-    }
-
-    /* NAV BAR - TỐI GIẢN LẮNG ĐỌNG */
+    /* READING PROGRESS BAR */
     .top-progress {
       position: fixed;
       top: 0;
       left: 0;
       width: 0%;
       height: 3px;
-      background: linear-gradient(90deg, #D4AF37, #F7E7A9, #FFFFFF);
+      background: linear-gradient(90deg, #F5A623, #FFD56B, #FFFFFF, #FFD56B);
       z-index: 1000;
+      box-shadow: 0 0 10px rgba(255, 213, 107, 0.8);
+      transition: width 0.1s linear;
     }
 
-    /* THANH HEADER ĐỎ BOOC-ĐÔ THƯƠNG HIỆU AGRIBANK CHUẨN THIẾT KẾ */
+    /* ====================================================
+       HEADER & NAVIGATION BAR - CHUẨN ĐỒ HỌA MẪU
+       ==================================================== */
     .site-nav {
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
-      background: linear-gradient(180deg, #4A080C 0%, #350407 100%);
+      background: linear-gradient(180deg, rgba(65, 7, 12, 0.98) 0%, rgba(45, 4, 7, 0.98) 100%);
       border-bottom: 1px solid rgba(229, 192, 123, 0.3);
-      backdrop-filter: blur(12px);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
       z-index: 999;
       display: flex;
       flex-direction: column;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 4px 25px rgba(0, 0, 0, 0.45);
     }
 
     .nav-top-row {
@@ -93,7 +98,7 @@
       align-items: center;
       justify-content: space-between;
       height: 52px;
-      padding: 0 24px;
+      padding: 0 28px;
     }
 
     .nav-brand-group {
@@ -123,7 +128,7 @@
     }
 
     .nav-agribank-text {
-      font-family: 'Cinzel', serif;
+      font-family: var(--font-cinzel);
       font-weight: 700;
       font-size: 15.5px;
       letter-spacing: 1.5px;
@@ -144,7 +149,7 @@
       font-weight: 700;
       letter-spacing: 0.3px;
       white-space: nowrap;
-      color: #FCE394;
+      color: var(--gold-champagne);
       text-shadow: 0 1px 3px rgba(0,0,0,0.4);
       min-width: 0;
       overflow: hidden;
@@ -167,69 +172,92 @@
       font-size: 12.5px;
       font-weight: 600;
       cursor: pointer;
-      display: flex;
+      display: inline-flex;
       align-items: center;
       gap: 6px;
-      transition: all 0.25s;
+      transition: all 0.25s ease;
       white-space: nowrap;
-    }
-
-    .btn-quiet i, .btn-quiet svg {
-      width: 14px;
-      height: 14px;
-      color: #F5CE75;
-      stroke: #F5CE75;
+      text-decoration: none;
     }
 
     .btn-quiet:hover {
       background: rgba(245, 206, 117, 0.2);
-      border-color: #F5CE75;
+      border-color: var(--gold-primary);
       color: #FFFFFF;
     }
 
+    /* Soundwave Equalizer on Header Button */
+    .equalizer-bars {
+      display: inline-flex;
+      align-items: flex-end;
+      gap: 2px;
+      height: 13px;
+      width: 14px;
+    }
+
+    .equalizer-bars span {
+      width: 3px;
+      background: var(--gold-primary);
+      border-radius: 1px;
+      height: 100%;
+      animation: soundWave 1.2s infinite ease-in-out alternate;
+    }
+
+    .equalizer-bars span:nth-child(1) { height: 45%; animation-delay: 0.15s; }
+    .equalizer-bars span:nth-child(2) { height: 100%; animation-delay: 0.35s; }
+    .equalizer-bars span:nth-child(3) { height: 60%; animation-delay: 0.25s; }
+
+    .btn-quiet:not(.playing) .equalizer-bars span {
+      animation: none;
+      height: 3px;
+      background: rgba(255, 255, 255, 0.4);
+    }
+
+    @keyframes soundWave {
+      0% { height: 25%; }
+      50% { height: 100%; }
+      100% { height: 40%; }
+    }
+
     .btn-quiet.playing {
-      background: linear-gradient(135deg, rgba(255, 213, 107, 0.3) 0%, rgba(255, 168, 38, 0.4) 100%) !important;
-      border-color: #F5CE75 !important;
+      background: linear-gradient(135deg, rgba(255, 213, 107, 0.25) 0%, rgba(255, 168, 38, 0.35) 100%) !important;
+      border-color: var(--gold-primary) !important;
       color: #FFFFFF !important;
-      box-shadow: 0 0 12px rgba(245, 206, 117, 0.4);
-      animation: pulseMusic 2s infinite ease-in-out;
+      box-shadow: 0 0 12px rgba(245, 206, 117, 0.35);
     }
 
     .btn-celebrate {
       background: linear-gradient(135deg, rgba(230, 140, 50, 0.25) 0%, rgba(180, 50, 30, 0.4) 100%);
-      border: 1px solid #F5CE75;
-      color: #FCEAA8;
+      border: 1px solid var(--gold-primary);
+      color: var(--gold-champagne);
       box-shadow: 0 0 10px rgba(245, 206, 117, 0.25);
+    }
+
+    .btn-celebrate i, .btn-celebrate svg {
+      color: var(--gold-primary);
     }
 
     .btn-celebrate:hover {
       background: linear-gradient(135deg, #FFD56B 0%, #FFA826 100%);
-      color: #610B10;
+      color: var(--agri-burgundy-deep);
       border-color: #FFA826;
       box-shadow: 0 0 16px rgba(255, 180, 50, 0.6);
     }
 
     .btn-celebrate:hover i, .btn-celebrate:hover svg {
-      color: #610B10;
-      stroke: #610B10;
+      color: var(--agri-burgundy-deep);
     }
 
-    @keyframes pulseMusic {
-      0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(245, 206, 117, 0.5); }
-      50% { transform: scale(1.03); box-shadow: 0 0 0 8px rgba(245, 206, 117, 0); }
-    }
-
-    /* THANH ĐIỀU HƯỚNG VUỐT KÉO NGANG (ĐỎ BOOC-ĐÔ & VÀNG GOLD) */
+    /* THANH TAB ĐIỀU HƯỚNG VUỐT NGANG (HORIZONTAL SCROLL TABS) */
     .nav-tabs-bar {
       width: 100%;
-      background: rgba(56, 4, 7, 0.95);
+      background: rgba(50, 4, 7, 0.95);
       border-top: 1px solid rgba(229, 192, 123, 0.2);
       border-bottom: 1px solid rgba(229, 192, 123, 0.25);
       overflow: hidden;
       position: relative;
     }
 
-    /* Hiệu ứng mờ biên phải gợi ý người dùng vuốt ngang */
     .nav-tabs-bar::after {
       content: "";
       position: absolute;
@@ -237,7 +265,7 @@
       right: 0;
       bottom: 0;
       width: 36px;
-      background: linear-gradient(to right, rgba(56, 4, 7, 0), rgba(56, 4, 7, 0.98));
+      background: linear-gradient(to right, rgba(50, 4, 7, 0), rgba(50, 4, 7, 0.98));
       pointer-events: none;
       z-index: 2;
     }
@@ -248,7 +276,7 @@
       flex-wrap: nowrap !important;
       align-items: center;
       gap: 10px;
-      padding: 7px 36px 7px 20px;
+      padding: 7px 36px 7px 24px;
       overflow-x: auto !important;
       overflow-y: hidden;
       white-space: nowrap !important;
@@ -285,14 +313,14 @@
     .tab-pill i, .tab-pill svg {
       width: 15px;
       height: 15px;
-      color: #F5CE75 !important;
-      stroke: #F5CE75 !important;
+      color: var(--gold-primary) !important;
+      stroke: var(--gold-primary) !important;
       flex-shrink: 0;
     }
 
     .tab-pill:hover {
       background: rgba(120, 18, 25, 0.85);
-      border-color: #F5CE75;
+      border-color: var(--gold-primary);
       color: #FFFFFF !important;
     }
 
@@ -309,21 +337,23 @@
       stroke: #610B10 !important;
     }
 
-    /* SECTION BASICS */
+    /* ====================================================
+       SECTION BASICS & SCROLLYTELLING CONTAINER
+       ==================================================== */
     .story-section {
       position: relative;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding: 120px 24px 100px;
+      padding: 130px 24px 100px;
       background-size: cover;
       background-position: center;
       background-attachment: fixed;
     }
 
     .story-container {
-      max-width: 1140px;
+      max-width: 1160px;
       margin: 0 auto;
       width: 100%;
       position: relative;
@@ -331,59 +361,70 @@
     }
 
     .section-lead-tag {
-      display: inline-block;
-      font-size: 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12.5px;
       font-weight: 700;
       letter-spacing: 2px;
       text-transform: uppercase;
       color: var(--gold-accent);
-      margin-bottom: 12px;
-      position: relative;
+      margin-bottom: 14px;
     }
 
     .section-lead-tag::after {
       content: "";
-      display: block;
-      width: 40px;
-      height: 1px;
-      background: var(--gold-accent);
-      margin-top: 6px;
+      display: inline-block;
+      width: 44px;
+      height: 1.5px;
+      background: linear-gradient(90deg, var(--gold-accent), transparent);
+      margin-left: 10px;
     }
 
     .section-title {
-      font-size: clamp(30px, 4.2vw, 50px);
+      font-family: var(--font-serif);
+      font-size: clamp(32px, 4.4vw, 52px);
       color: var(--agri-burgundy);
       line-height: 1.25;
-      margin-bottom: 18px;
+      margin-bottom: 16px;
+      font-weight: 700;
     }
 
     .section-subtitle {
-      font-size: 17px;
+      font-size: 16.5px;
       color: var(--text-muted);
-      max-width: 760px;
+      max-width: 820px;
       margin-bottom: 48px;
       font-weight: 400;
+      line-height: 1.8;
     }
 
-    /* 1. HERO - NỀN LẮNG ĐỌNG 01 CHUẨN THIẾT KẾ MẪU */
+    /* ====================================================
+       1. HERO SECTION - MÀN HÌNH MỞ ĐẦU CINEMATIC (100VH)
+       ==================================================== */
     #sec-hero {
       position: relative;
-      background: radial-gradient(circle at 50% 35%, #7A0D14 0%, #52070C 50%, #350306 100%),
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: radial-gradient(circle at 50% 35%, #7A0D14 0%, #52070C 50%, #2A0305 100%),
                   url('backgrounds/bg_01_cover_solemn.jpg') center/cover fixed no-repeat;
       color: #fff;
       text-align: center;
       overflow: hidden;
-      padding-top: 135px;
+      padding: 130px 24px 60px;
     }
 
     .hero-drum-bg {
       position: absolute;
       bottom: 0;
       left: 0;
-      width: 360px;
-      height: 240px;
+      width: 400px;
+      height: 260px;
       background: url('images/drum_watermark.png') bottom left / contain no-repeat;
-      opacity: 0.7;
+      opacity: 0.65;
       pointer-events: none;
       z-index: 1;
     }
@@ -392,16 +433,16 @@
       position: absolute;
       bottom: 0;
       right: 0;
-      width: 360px;
-      height: 240px;
+      width: 400px;
+      height: 260px;
       background: url('images/wave_watermark.png') bottom right / contain no-repeat;
-      opacity: 0.65;
+      opacity: 0.6;
       pointer-events: none;
       z-index: 1;
     }
 
     .hero-box {
-      max-width: 900px;
+      max-width: 940px;
       margin: 0 auto;
       position: relative;
       z-index: 2;
@@ -412,10 +453,10 @@
       align-items: center;
       gap: 8px;
       padding: 6px 22px;
-      border: 1px solid #E5C07B;
+      border: 1px solid var(--gold-accent);
       border-radius: 9999px;
       background: rgba(55, 6, 11, 0.65);
-      color: #FCE394;
+      color: var(--gold-champagne);
       font-size: 13px;
       font-weight: 700;
       letter-spacing: 1.5px;
@@ -427,31 +468,30 @@
     .hero-badge-gold i, .hero-badge-gold svg {
       width: 16px;
       height: 16px;
-      color: #FCE394;
-      stroke: #FCE394;
+      color: var(--gold-champagne);
+      stroke: var(--gold-champagne);
     }
 
     .hero-title-box {
       position: relative;
       display: inline-block;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
     }
 
     .hero-heading {
-      font-family: 'Cinzel', 'Playfair Display', serif;
-      font-size: clamp(48px, 9vw, 92px);
+      font-family: var(--font-cinzel);
+      font-size: clamp(52px, 9.5vw, 96px);
       font-weight: 800;
-      letter-spacing: 3px;
+      letter-spacing: 4px;
       line-height: 1.05;
       margin: 0;
       display: inline-block;
       background: linear-gradient(180deg, #FFFFFF 0%, #FFF5BD 20%, #F5B82E 50%, #CF8A12 75%, #8C5503 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      filter: drop-shadow(0 4px 15px rgba(0, 0, 0, 0.7)) drop-shadow(0 0 35px rgba(245, 184, 46, 0.5));
+      filter: drop-shadow(0 4px 18px rgba(0, 0, 0, 0.75)) drop-shadow(0 0 35px rgba(245, 184, 46, 0.5));
     }
 
-    /* Tia sáng ngang qua tiêu đề 25 NĂM */
     .hero-title-box::before {
       content: "";
       position: absolute;
@@ -466,7 +506,6 @@
       filter: blur(1px);
     }
 
-    /* Ngôi sao lấp lánh (Lens Flare) trên đỉnh chữ N */
     .hero-flare-star {
       position: absolute;
       top: 8%;
@@ -489,15 +528,8 @@
       box-shadow: 0 0 8px #FFD700;
     }
 
-    .hero-flare-star::before {
-      width: 2px;
-      height: 28px;
-    }
-
-    .hero-flare-star::after {
-      width: 28px;
-      height: 2px;
-    }
+    .hero-flare-star::before { width: 2px; height: 28px; }
+    .hero-flare-star::after { width: 28px; height: 2px; }
 
     @keyframes pulseStar {
       0%, 100% { transform: scale(0.9) rotate(0deg); opacity: 0.85; filter: drop-shadow(0 0 4px #FFA826); }
@@ -505,50 +537,115 @@
     }
 
     .hero-subheading {
-      font-size: clamp(20px, 3.5vw, 34px);
-      font-family: 'Playfair Display', serif;
+      font-size: clamp(21px, 3.6vw, 36px);
+      font-family: var(--font-serif);
       font-style: italic;
       font-weight: 600;
       color: #F8DF95;
       letter-spacing: 1.5px;
-      margin-bottom: 28px;
+      margin-bottom: 24px;
       text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6), 0 0 20px rgba(248, 223, 149, 0.35);
     }
 
     .hero-quote {
-      font-size: 16px;
+      font-size: 16.5px;
       color: rgba(255, 255, 255, 0.95);
-      line-height: 1.85;
+      line-height: 1.9;
       max-width: 820px;
-      margin: 0 auto 40px;
-      font-weight: 400;
+      margin: 0 auto 36px;
+      font-weight: 300;
       text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
     }
 
-    /* CARDS: THƯ & LỜI NGỎ */
+    .hero-cta-group {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 48px;
+    }
+
+    .btn-hero-journey {
+      background: linear-gradient(135deg, #FFD56B 0%, #FFA826 100%);
+      color: var(--agri-burgundy-deep);
+      font-weight: 700;
+      font-size: 14.5px;
+      padding: 12px 28px;
+      border-radius: 9999px;
+      border: 1px solid #FFE58F;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      box-shadow: 0 4px 20px rgba(255, 168, 38, 0.45);
+      transition: all 0.25s ease;
+      cursor: pointer;
+    }
+
+    .btn-hero-journey:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(255, 168, 38, 0.6);
+    }
+
+    /* Scroll Prompt Indicator */
+    .hero-scroll-indicator {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      color: var(--gold-champagne);
+      font-size: 12.5px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      opacity: 0.85;
+      animation: floatIndicator 2.2s infinite ease-in-out;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .hero-scroll-indicator i, .hero-scroll-indicator svg {
+      width: 18px;
+      height: 18px;
+      color: var(--gold-primary);
+    }
+
+    @keyframes floatIndicator {
+      0%, 100% { transform: translateY(0); opacity: 0.7; }
+      50% { transform: translateY(8px); opacity: 1; }
+    }
+
+    /* ====================================================
+       2. LỜI NGỎ (EDITORIAL MAGAZINE CARDS)
+       ==================================================== */
+    .letters-section {
+      background: linear-gradient(180deg, #2A0305 0%, #3B060B 100%);
+      padding: 80px 24px 100px;
+      position: relative;
+    }
+
     .letters-row {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
       gap: 32px;
-      margin-top: 40px;
+      margin-top: 30px;
       text-align: left;
     }
 
     .paper-card {
       background: #FFFFFF;
       border: 1px solid var(--border-soft);
-      border-radius: 12px;
-      padding: 34px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+      border-radius: 14px;
+      padding: 38px 34px;
+      box-shadow: 0 12px 36px rgba(0,0,0,0.12);
       display: flex;
       flex-direction: column;
       position: relative;
-      transition: all 0.3s ease;
+      transition: all 0.35s ease;
     }
 
     .paper-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 16px 40px rgba(114, 9, 16, 0.08);
+      transform: translateY(-5px);
+      box-shadow: 0 20px 45px rgba(114, 9, 16, 0.15);
       border-color: var(--gold-accent);
     }
 
@@ -559,23 +656,29 @@
     }
 
     .paper-card-title {
-      font-size: 18px;
+      font-family: var(--font-serif);
+      font-size: 20px;
       color: var(--agri-burgundy);
-      margin-bottom: 4px;
+      margin-bottom: 6px;
+      font-weight: 700;
     }
 
     .paper-card-role {
-      font-size: 13px;
+      font-size: 13.5px;
       color: var(--text-muted);
+      font-weight: 500;
     }
 
     .paper-card-snippet {
+      font-family: var(--font-serif);
       font-style: italic;
-      font-size: 15px;
+      font-size: 15.5px;
       color: #4A4441;
-      line-height: 1.8;
-      margin-bottom: 24px;
+      line-height: 1.85;
+      margin-bottom: 26px;
       flex-grow: 1;
+      border-left: 2px solid var(--gold-primary);
+      padding-left: 14px;
     }
 
     .btn-read-article {
@@ -584,14 +687,15 @@
       color: var(--agri-burgundy);
       font-size: 13px;
       font-weight: 600;
-      padding: 8px 18px;
+      padding: 9px 20px;
       border-radius: 6px;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
-      gap: 6px;
+      gap: 7px;
       align-self: flex-start;
-      transition: all 0.2s;
+      transition: all 0.25s ease;
+      font-family: var(--font-sans);
     }
 
     .btn-read-article:hover {
@@ -599,120 +703,281 @@
       color: #fff;
     }
 
-    /* 2. PHẦN 2: TỰ HÀO TRUYỀN THỐNG (NỀN 02 & NỀN 03) */
+    /* ====================================================
+       3. PHẦN 2: TỰ HÀO TRUYỀN THỐNG (DIGITAL MUSEUM & TIMELINE)
+       ==================================================== */
     #sec-tradition {
-      background: linear-gradient(rgba(248, 245, 238, 0.95), rgba(248, 245, 238, 0.95)),
-                  url('backgrounds/bg_02_heritage_thuy.jpg') center/cover fixed no-repeat,
+      background: linear-gradient(rgba(248, 245, 238, 0.96), rgba(248, 245, 238, 0.96)),
                   url('backgrounds/agribank_heritage_library.jpg') center/cover fixed no-repeat;
     }
 
+    /* Interactive Timeline 1999 - 2026 */
+    .timeline-wrapper {
+      position: relative;
+      margin: 40px 0 60px;
+      padding-left: 30px;
+    }
+
+    .timeline-line {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 15px;
+      width: 3px;
+      background: linear-gradient(180deg, var(--agri-burgundy) 0%, var(--gold-primary) 100%);
+      border-radius: 2px;
+    }
+
+    .timeline-node {
+      position: relative;
+      margin-bottom: 36px;
+      padding-left: 24px;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: -22px;
+      top: 6px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #FFFFFF;
+      border: 4px solid var(--agri-burgundy);
+      box-shadow: 0 0 10px rgba(130, 19, 25, 0.4);
+      transition: all 0.3s;
+    }
+
+    .timeline-node:hover .timeline-dot {
+      border-color: var(--gold-amber);
+      transform: scale(1.3);
+      box-shadow: 0 0 14px rgba(255, 168, 38, 0.6);
+    }
+
+    .timeline-year {
+      font-family: var(--font-cinzel);
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--agri-burgundy);
+      letter-spacing: 1px;
+    }
+
+    .timeline-title {
+      font-size: 16.5px;
+      font-weight: 700;
+      color: var(--text-main);
+      margin: 4px 0 6px;
+    }
+
+    .timeline-desc {
+      font-size: 14.5px;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    /* Museum Exhibition Cards Grid */
     .tradition-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 28px;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 30px;
       margin-bottom: 50px;
     }
 
     .article-box {
-      background: rgba(255, 255, 255, 0.85);
+      background: rgba(255, 255, 255, 0.92);
       backdrop-filter: blur(8px);
       border: 1px solid var(--border-soft);
-      border-radius: 10px;
-      padding: 28px;
-      transition: all 0.3s;
+      border-radius: 12px;
+      padding: 30px;
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
     }
 
     .article-box:hover {
       background: #FFFFFF;
-      border-color: var(--gold-accent);
-      transform: translateY(-4px);
+      border-color: var(--gold-primary);
+      transform: translateY(-5px);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
     }
 
     .article-author-tag {
-      font-size: 11.5px;
+      font-size: 12px;
       font-weight: 700;
-      letter-spacing: 1px;
+      letter-spacing: 1.2px;
       text-transform: uppercase;
       color: var(--gold-accent);
-      margin-bottom: 8px;
-      display: block;
+      margin-bottom: 10px;
+      display: inline-block;
     }
 
     .article-heading {
-      font-size: 20px;
+      font-family: var(--font-serif);
+      font-size: 21px;
       color: var(--agri-burgundy);
       margin-bottom: 12px;
       line-height: 1.35;
+      font-weight: 700;
     }
 
     .article-lead {
       font-size: 14.5px;
       color: var(--text-muted);
-      line-height: 1.7;
-      margin-bottom: 18px;
+      line-height: 1.75;
+      margin-bottom: 22px;
+      flex-grow: 1;
     }
 
-    /* THẮP SÁNG BẢN LÀNG - NỀN RIÊNG 03 */
+    /* PHOTO PLACEHOLDER CHUẨN TƯ LIỆU */
+    .photo-placeholder {
+      width: 100%;
+      height: 180px;
+      background: linear-gradient(135deg, #ECE5D8 0%, #DFD5C3 100%);
+      border: 1px dashed rgba(130, 19, 25, 0.35);
+      border-radius: 8px;
+      margin-bottom: 18px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s;
+    }
+
+    .photo-placeholder:hover {
+      border-color: var(--gold-accent);
+      background: linear-gradient(135deg, #F3ECE0 0%, #E8DEC9 100%);
+    }
+
+    .photo-placeholder i, .photo-placeholder svg {
+      width: 32px;
+      height: 32px;
+      color: var(--agri-burgundy);
+      margin-bottom: 8px;
+      opacity: 0.8;
+    }
+
+    .photo-placeholder-caption {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--agri-burgundy-deep);
+    }
+
+    .photo-placeholder-tag {
+      font-size: 11px;
+      color: var(--text-muted);
+      letter-spacing: 0.5px;
+      margin-top: 4px;
+    }
+
+    /* THẮP SÁNG BẢN LÀNG - NỀN LẮNG ĐỌNG TÌNH NGƯỜI */
     .special-highlight-card {
-      background: linear-gradient(rgba(44, 38, 35, 0.85), rgba(44, 38, 35, 0.9)),
-                  url('backgrounds/bg_03_community_banlang.jpg') center/cover no-repeat,
+      background: linear-gradient(rgba(45, 10, 15, 0.88), rgba(28, 5, 8, 0.94)),
                   url('backgrounds/01_hero_campus.jpg') center/cover no-repeat;
       color: #fff;
-      border-radius: 14px;
-      padding: 48px;
-      margin: 40px 0 60px;
-      border: 1px solid rgba(197, 160, 89, 0.35);
-      box-shadow: 0 16px 40px rgba(0,0,0,0.1);
+      border-radius: 16px;
+      padding: 50px 44px;
+      margin: 40px 0 50px;
+      border: 1px solid rgba(229, 192, 123, 0.35);
+      box-shadow: 0 16px 45px rgba(0,0,0,0.25);
+      position: relative;
     }
 
     .special-highlight-card h3 {
-      font-size: 26px;
-      color: var(--gold-light);
+      font-family: var(--font-serif);
+      font-size: 28px;
+      color: var(--gold-champagne);
       margin-bottom: 14px;
     }
 
     .special-highlight-card p {
       font-size: 16px;
-      color: rgba(255,255,255,0.88);
-      max-width: 800px;
-      line-height: 1.8;
+      color: rgba(255,255,255,0.9);
+      max-width: 840px;
+      line-height: 1.85;
       margin-bottom: 24px;
     }
 
-    /* 3. PHẦN 3: KIẾN TẠO TƯƠNG LAI (NỀN 04) */
+    /* ====================================================
+       4. PHẦN 3: KIẾN TẠO TƯƠNG LAI (DIGITAL ACADEMY)
+       ==================================================== */
     #sec-future {
-      background: linear-gradient(rgba(252, 250, 246, 0.94), rgba(252, 250, 246, 0.94)),
-                  url('backgrounds/bg_04_future_digital.jpg') center/cover fixed no-repeat,
+      background: linear-gradient(rgba(250, 248, 244, 0.95), rgba(250, 248, 244, 0.95)),
                   url('backgrounds/agribank_future_institute_digital.jpg') center/cover fixed no-repeat;
+    }
+
+    /* Tech Stats Bar */
+    .future-stats-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+
+    .stat-card {
+      background: #FFFFFF;
+      border: 1px solid var(--border-soft);
+      border-radius: 10px;
+      padding: 22px 18px;
+      text-align: center;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.04);
+      transition: all 0.3s;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--gold-amber);
+      box-shadow: 0 12px 30px rgba(130, 19, 25, 0.08);
+    }
+
+    .stat-num {
+      font-family: var(--font-cinzel);
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--agri-burgundy);
+      line-height: 1.1;
+      margin-bottom: 6px;
+    }
+
+    .stat-label {
+      font-size: 13px;
+      color: var(--text-muted);
+      font-weight: 600;
     }
 
     .future-steps-list {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
       gap: 28px;
       margin-bottom: 40px;
     }
 
     .step-card {
       background: #FFFFFF;
-      border-left: 3px solid var(--agri-burgundy);
+      border-left: 4px solid var(--agri-burgundy);
       border-top: 1px solid var(--border-soft);
       border-right: 1px solid var(--border-soft);
       border-bottom: 1px solid var(--border-soft);
-      border-radius: 0 10px 10px 0;
-      padding: 28px;
+      border-radius: 0 12px 12px 0;
+      padding: 30px;
       transition: all 0.3s;
+      display: flex;
+      flex-direction: column;
     }
 
     .step-card:hover {
-      border-left-color: var(--gold-accent);
-      transform: translateY(-3px);
-      box-shadow: 0 12px 30px rgba(0,0,0,0.05);
+      border-left-color: var(--gold-amber);
+      transform: translateY(-4px);
+      box-shadow: 0 16px 35px rgba(0,0,0,0.06);
     }
 
-    /* 4. PHẦN 4: VỮNG BƯỚC ĐỒNG HÀNH (NỀN HỘI TRƯỜNG LẮNG ĐỌNG) */
+    /* ====================================================
+       5. PHẦN 4: VỮNG BƯỚC ĐỒNG HÀNH (HALL OF FAME)
+       ==================================================== */
     #sec-honor {
-      background: linear-gradient(rgba(247, 244, 236, 0.95), rgba(247, 244, 236, 0.95)),
+      background: linear-gradient(rgba(247, 243, 235, 0.96), rgba(247, 243, 235, 0.96)),
                   url('backgrounds/03_lecture_auditorium.jpg') center/cover fixed no-repeat;
     }
 
@@ -720,49 +985,85 @@
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 24px;
+      margin-bottom: 40px;
     }
 
     .honor-quad-card {
-      background: #fff;
+      background: #FFFFFF;
       border: 1px solid var(--border-soft);
-      border-radius: 10px;
-      padding: 28px;
+      border-radius: 12px;
+      padding: 32px 24px;
       text-align: center;
+      transition: all 0.3s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .honor-quad-card:hover {
+      border-color: var(--gold-amber);
+      transform: translateY(-5px);
+      box-shadow: 0 16px 36px rgba(130, 19, 25, 0.08);
+    }
+
+    .honor-badge-icon {
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(255, 213, 107, 0.2) 0%, rgba(130, 19, 25, 0.1) 100%);
+      border: 1px solid var(--gold-accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 18px;
+    }
+
+    .honor-badge-icon i, .honor-badge-icon svg {
+      width: 24px;
+      height: 24px;
+      color: var(--agri-burgundy);
     }
 
     .honor-quad-card h4 {
-      font-size: 18px;
+      font-family: var(--font-serif);
+      font-size: 19px;
       color: var(--agri-burgundy);
       margin-bottom: 10px;
+      font-weight: 700;
     }
 
     .honor-quad-card p {
       font-size: 14px;
       color: var(--text-muted);
+      line-height: 1.7;
     }
 
-    /* 5. PHẦN 5: NHỮNG MẢNH GHÉP CẢM XÚC (NỀN 05) */
+    /* ====================================================
+       6. PHẦN 5: SỨC SỐNG AGRIBANK (MEMORY SANCTUARY & POETRY)
+       ==================================================== */
     #sec-emotions {
-      background: linear-gradient(rgba(248, 245, 238, 0.95), rgba(248, 245, 238, 0.95)),
-                  url('backgrounds/bg_05_emotions_poetry.jpg') center/cover fixed no-repeat,
+      background: linear-gradient(rgba(248, 245, 238, 0.96), rgba(248, 245, 238, 0.96)),
                   url('backgrounds/02_history_timeline.jpg') center/cover fixed no-repeat;
     }
 
+    /* Poetry Spread - Trang Thơ Tri Ân */
     .poetry-container {
-      background: rgba(255, 255, 255, 0.85);
+      background: linear-gradient(180deg, #FFFFFF 0%, #FAF6EE 100%);
       border: 1px solid var(--border-soft);
-      border-radius: 12px;
-      padding: 40px;
-      max-width: 800px;
+      border-radius: 14px;
+      padding: 44px 36px;
+      max-width: 820px;
       margin: 0 auto 50px;
       text-align: center;
+      box-shadow: 0 12px 36px rgba(0,0,0,0.06);
+      position: relative;
     }
 
     .poetry-lines {
-      font-family: 'Playfair Display', serif;
-      font-size: 18px;
+      font-family: var(--font-serif);
+      font-size: 19px;
       font-style: italic;
-      color: #3C3633;
+      color: #38322F;
       line-height: 2.2;
       margin: 20px 0;
     }
@@ -772,52 +1073,88 @@
       font-weight: 700;
       color: var(--gold-accent);
       text-transform: uppercase;
-      letter-spacing: 1px;
+      letter-spacing: 1.5px;
     }
 
     .emotions-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 28px;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 30px;
     }
 
-    /* 6. PHẦN 6: KHÉP LẠI & MỞ RA (NỀN TÒA NHÀ VƯƠN CAO LÊN BẦU TRỜI XANH) */
+    /* ====================================================
+       7. PHẦN 6: KHÉP LẠI & MỞ RA (CINEMATIC EPILOGUE)
+       ==================================================== */
     #sec-closing {
-      background: linear-gradient(rgba(24, 38, 58, 0.82), rgba(13, 20, 32, 0.92)),
-                  url('backgrounds/04_future_aspiration.jpg') center/cover fixed no-repeat,
-                  url('backgrounds/agribank_building_sunset.jpg') center/cover fixed no-repeat;
+      position: relative;
+      background: radial-gradient(circle at 50% 40%, rgba(35, 10, 15, 0.88) 0%, rgba(18, 4, 7, 0.98) 100%),
+                  url('backgrounds/04_future_aspiration.jpg') center/cover fixed no-repeat;
       color: #fff;
       text-align: center;
-      padding: 140px 24px 100px;
+      padding: 150px 24px 100px;
+      overflow: hidden;
     }
 
     .closing-card-inner {
-      max-width: 820px;
+      max-width: 860px;
       margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .closing-huge-25 {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -55%);
+      font-family: var(--font-cinzel);
+      font-size: clamp(140px, 24vw, 280px);
+      font-weight: 900;
+      color: rgba(255, 213, 107, 0.04);
+      pointer-events: none;
+      z-index: 1;
+      user-select: none;
+      letter-spacing: 10px;
     }
 
     .closing-title {
-      font-family: 'Cinzel', serif;
-      font-size: clamp(32px, 4.8vw, 54px);
-      color: var(--gold-light);
-      margin-bottom: 20px;
-      letter-spacing: 2px;
+      font-family: var(--font-cinzel);
+      font-size: clamp(34px, 5vw, 56px);
+      color: var(--gold-champagne);
+      margin-bottom: 22px;
+      letter-spacing: 2.5px;
+      line-height: 1.2;
+      text-shadow: 0 4px 20px rgba(0,0,0,0.6);
     }
 
     .closing-sub {
       font-size: 18px;
-      color: rgba(255,255,255,0.85);
-      line-height: 1.8;
+      color: rgba(255,255,255,0.9);
+      line-height: 1.9;
       margin-bottom: 40px;
       font-weight: 300;
     }
 
-    /* MODAL ĐỌC BÀI VIẾT */
+    .closing-thanks-box {
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(229, 192, 123, 0.3);
+      border-radius: 14px;
+      padding: 32px;
+      max-width: 720px;
+      margin: 0 auto 40px;
+      text-align: left;
+    }
+
+    /* ====================================================
+       MODAL ARTICLE VIEWER
+       ==================================================== */
     .article-modal {
       position: fixed;
       inset: 0;
-      background: rgba(44, 38, 35, 0.75);
-      backdrop-filter: blur(8px);
+      background: rgba(20, 3, 5, 0.85);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
       z-index: 2000;
       display: none;
       align-items: center;
@@ -827,15 +1164,21 @@
 
     .modal-content-box {
       background: #FFFFFF;
-      max-width: 780px;
+      max-width: 820px;
       width: 100%;
-      max-height: 85vh;
+      max-height: 86vh;
       overflow-y: auto;
-      border-radius: 12px;
-      padding: 44px;
+      border-radius: 14px;
+      padding: 46px 42px;
       position: relative;
       border: 1px solid var(--border-soft);
-      box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+      box-shadow: 0 25px 70px rgba(0,0,0,0.4);
+      animation: modalSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes modalSlideUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     .btn-close {
@@ -844,49 +1187,66 @@
       right: 20px;
       background: #F3EFEB;
       border: none;
-      width: 36px;
-      height: 36px;
+      width: 38px;
+      height: 38px;
       border-radius: 50%;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
       color: var(--text-main);
-      font-size: 20px;
+      font-size: 22px;
+      transition: all 0.2s;
+    }
+
+    .btn-close:hover {
+      background: var(--agri-burgundy);
+      color: #FFFFFF;
     }
 
     .modal-header-tag {
-      font-size: 12px;
+      font-size: 12.5px;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 1.5px;
       color: var(--gold-accent);
-      margin-bottom: 8px;
+      margin-bottom: 10px;
     }
 
     .modal-article-title {
+      font-family: var(--font-serif);
       font-size: 28px;
       color: var(--agri-burgundy);
-      margin-bottom: 18px;
-      line-height: 1.3;
+      margin-bottom: 12px;
+      line-height: 1.35;
+      font-weight: 700;
+    }
+
+    .modal-article-subtitle {
+      font-size: 14.5px;
+      color: var(--text-muted);
+      font-style: italic;
+      margin-bottom: 24px;
+      border-bottom: 1px solid var(--border-soft);
+      padding-bottom: 16px;
     }
 
     .modal-article-body {
       font-size: 16px;
       color: #3C3633;
-      line-height: 1.85;
+      line-height: 1.9;
     }
 
     .modal-article-body p {
-      margin-bottom: 16px;
+      margin-bottom: 18px;
     }
 
-    /* ==============================================
+    /* ====================================================
        RESPONSIVE MOBILE STYLES (< 992px)
-       ============================================== */
+       ==================================================== */
     @media (max-width: 991px) {
       .nav-top-row {
-        padding: 0 14px;
+        padding: 0 16px;
         height: 48px;
       }
       .nav-agribank-text {
@@ -896,158 +1256,79 @@
       .nav-brand-title {
         font-size: 12px;
         max-width: 140px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
       }
-      .hero-drum-bg {
-        width: 200px;
-        height: 140px;
-        opacity: 0.45;
+      .btn-label-desktop {
+        display: none !important;
       }
-      .hero-wave-bg {
-        width: 200px;
+      .btn-quiet {
+        padding: 5px 10px;
+      }
+      .nav-actions {
+        gap: 6px;
+      }
+      .hero-drum-bg, .hero-wave-bg {
+        width: 220px;
         height: 140px;
         opacity: 0.45;
       }
       .hero-heading {
-        font-size: clamp(38px, 11vw, 56px);
+        font-size: clamp(38px, 11.5vw, 62px);
       }
       .hero-flare-star {
         width: 22px;
         height: 22px;
         right: 14%;
       }
-      .btn-label-desktop {
-        display: none !important; /* Icon only on mobile to save space */
+      .hero-badge-gold {
+        font-size: 11px;
+        padding: 6px 14px;
       }
-      .btn-quiet {
-        padding: 5px 9px;
+      .hero-subheading {
+        font-size: clamp(17px, 5vw, 24px);
+        margin-bottom: 18px;
       }
-      .nav-actions {
-        gap: 6px;
+      .hero-quote {
+        font-size: 14.5px;
+        line-height: 1.75;
+        margin-bottom: 28px;
+        text-align: justify;
       }
       .story-section {
         padding: 110px 16px 50px;
-        background-attachment: scroll !important; /* Smooth scroll on iOS/Android */
+        background-attachment: scroll !important;
       }
-      .hero-box {
-        padding: 0 4px;
-      }
-      .hero-badge-gold {
-        font-size: 11px;
-        padding: 6px 12px;
-        line-height: 1.4;
-        max-width: 100%;
-        text-align: center;
-        letter-spacing: 0.5px;
-        border-radius: 24px;
-      }
-      .hero-heading {
-        font-size: clamp(34px, 12vw, 56px);
-        margin-bottom: 10px;
-      }
-      .hero-subheading {
-        font-size: clamp(16px, 4.8vw, 24px);
-        line-height: 1.4;
-        margin-bottom: 20px;
-        text-wrap: balance;
-      }
-      .hero-quote {
-        font-size: 14px;
-        line-height: 1.7;
-        margin-bottom: 28px;
-        text-align: justify;
-        text-justify: inter-word;
-      }
-      .letters-row {
+      .letters-row, .tradition-grid, .future-steps-list, .honor-quad, .emotions-grid {
         grid-template-columns: 1fr;
-        gap: 18px;
-        margin-top: 24px;
+        gap: 20px;
       }
-      .paper-card {
-        padding: 22px 16px;
-      }
-      .paper-card-title {
-        font-size: 17px;
-      }
-      .paper-card-snippet {
-        font-size: 14px;
-        line-height: 1.7;
-        margin-bottom: 18px;
-      }
-      .section-title {
-        font-size: clamp(24px, 6.5vw, 36px);
-        text-wrap: balance;
-        margin-bottom: 12px;
-      }
-      .section-subtitle {
-        font-size: 14px;
-        line-height: 1.6;
-        margin-bottom: 28px;
-      }
-      .tradition-grid, .future-steps-list, .emotions-grid, .honor-quad {
-        grid-template-columns: 1fr;
-        gap: 16px;
-      }
-      .article-box, .step-card, .honor-quad-card {
-        padding: 20px 16px;
-      }
-      .article-heading {
-        font-size: 18px;
-        line-height: 1.35;
+      .paper-card, .article-box, .step-card, .honor-quad-card {
+        padding: 24px 18px;
       }
       .special-highlight-card {
-        padding: 26px 16px;
-        border-radius: 12px;
-        margin: 24px 0 36px;
+        padding: 30px 20px;
       }
       .special-highlight-card h3 {
-        font-size: 21px;
-      }
-      .special-highlight-card p {
-        font-size: 14px;
-        line-height: 1.7;
-      }
-      .poetry-container {
-        padding: 24px 16px;
-      }
-      .poetry-lines {
-        font-size: 15px;
-        line-height: 1.95;
+        font-size: 22px;
       }
       .modal-content-box {
-        padding: 28px 18px 22px;
-        width: 94%;
-        max-height: 85vh;
+        padding: 30px 20px;
+        width: 95%;
       }
       .modal-article-title {
-        font-size: 21px;
-        line-height: 1.35;
-      }
-      .modal-article-body {
-        font-size: 14.5px;
-        line-height: 1.75;
-      }
-      .closing-title {
-        font-size: clamp(26px, 7vw, 38px);
-      }
-      .closing-sub {
-        font-size: 14.5px;
-        line-height: 1.7;
+        font-size: 22px;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- Nhạc Nền Kỷ Yếu (Đã cắt bỏ hoàn toàn khoảng lặng - Phát ngay lập tức 0s & lặp liên tục) -->
-  <audio id="bgMusic" src="audio/nhac_nen_ky_yeu.mp3?v=2" autoplay loop preload="auto" playsinline webkit-playsinline></audio>
+  <!-- Background Music Audio Tag (DEFAULT ON & CONTINUOUS LOOP) -->
+  <audio id="bgMusic" src="audio/nhac_nen_ky_yeu.mp3?v=2" preload="auto" loop playsinline webkit-playsinline></audio>
 
-  <!-- Top Progress Bar -->
+  <!-- Top Reading Progress Indicator -->
   <div class="top-progress" id="topProgress"></div>
 
-  <!-- Header Navigation: Top Bar & Horizontal Swipeable Nav Tabs -->
+  <!-- Header Navigation: Top Brand Bar & Horizontal Swipeable Tabs -->
   <header class="site-nav">
     <div class="nav-top-row">
       <a href="#sec-hero" class="nav-brand-group">
@@ -1060,8 +1341,11 @@
       </a>
 
       <div class="nav-actions">
-        <button class="btn-quiet" id="audioToggle" title="Bật/Tắt Nhạc Nền">
-          <i data-lucide="volume-2" id="audioIcon"></i>
+        <!-- Nút Nhạc Nền: Mặc định MỞ kèm sóng âm thanh động -->
+        <button class="btn-quiet playing" id="audioToggle" title="Bật/Tắt Nhạc Nền">
+          <span class="equalizer-bars">
+            <span></span><span></span><span></span>
+          </span>
           <span id="audioText" class="btn-label-desktop">Nhạc Nền</span>
         </button>
         <button class="btn-quiet btn-celebrate" onclick="triggerCelebration()" title="Chúc Mừng 25 Năm">
@@ -1071,29 +1355,27 @@
       </div>
     </div>
 
-    <!-- Thanh Điều Hướng Vuốt Ngang (Horizontal Scroll Tabs) -->
+    <!-- Thanh 6 Tab Điều Hướng Vuốt Ngang -->
     <nav class="nav-tabs-bar" id="tabsBar">
       <div class="nav-tabs-scroll" id="tabsScroll">
         <a href="#sec-hero" class="tab-pill active"><i data-lucide="home"></i> Lời Ngỏ</a>
         <a href="#sec-tradition" class="tab-pill"><i data-lucide="history"></i> Tự Hào Truyền Thống</a>
         <a href="#sec-future" class="tab-pill"><i data-lucide="sparkles"></i> Kiến Tạo Tương Lai</a>
         <a href="#sec-honor" class="tab-pill"><i data-lucide="heart"></i> Vững Bước Đồng Hành</a>
-        <a href="#sec-emotions" class="tab-pill"><i data-lucide="heart"></i> Mảnh Ghép Cảm Xúc</a>
+        <a href="#sec-emotions" class="tab-pill"><i data-lucide="heart"></i> Sức Sống Agribank</a>
         <a href="#sec-closing" class="tab-pill"><i data-lucide="bookmark"></i> Khép Lại & Mở Ra</a>
       </div>
     </nav>
   </header>
 
   <!-- ==============================================
-       PHẦN 1: LỜI NGỎ - NHỊP CẦU NỐI QUÁ KHỨ & TƯƠNG LAI
-       (Nền: Đỏ đô trầm ấm, họa tiết Trống đồng Đông Sơn, ánh sáng lấp lánh)
+       PHẦN 1: MÀN HÌNH MỞ ĐẦU CINEMATIC & LỜI NGỎ (100VH)
        ============================================== -->
   <section class="story-section" id="sec-hero">
-    <!-- Họa tiết Trống đồng Đông Sơn & Sóng nước truyền thống chìm mờ -->
     <div class="hero-drum-bg"></div>
     <div class="hero-wave-bg"></div>
 
-    <div class="story-container hero-box">
+    <div class="hero-box">
       <div class="hero-badge-gold">
         <i data-lucide="award"></i> KỶ NIỆM 25 NĂM • CHÀO MỪNG NGÀY NHÀ GIÁO VN 20/11
       </div>
@@ -1111,12 +1393,30 @@
         <strong>Khát vọng đổi mới, vươn tầm chiến lược</strong> của Viện Nghiên cứu và Đào tạo Agribank trong kỷ nguyên số.
       </p>
 
-      <!-- Hai bức thư / lời ngỏ chính -->
+      <div class="hero-cta-group">
+        <a href="#sec-letters" class="btn-hero-journey">
+          <i data-lucide="book-open"></i> Bắt Đầu Hành Trình
+        </a>
+      </div>
+
+      <a href="#sec-letters" class="hero-scroll-indicator">
+        <span>Cuộn để khám phá</span>
+        <i data-lucide="chevron-down"></i>
+      </a>
+    </div>
+  </section>
+
+  <!-- PHẦN LỜI NGỎ (MAGAZINE EDITORIAL SPREAD) -->
+  <section class="letters-section" id="sec-letters">
+    <div class="story-container">
+      <span class="section-lead-tag">Lời Ngỏ • Nhịp Cầu Nối Quá Khứ & Tương Lai</span>
+      
       <div class="letters-row">
         <!-- Thư Chủ tịch HĐTV -->
         <div class="paper-card">
           <div class="paper-card-header">
-            <h3 class="paper-card-title">Thư Chúc Mừng Ngày 20/11</h3>
+            <span class="article-author-tag">Thông Điệp Lãnh Đạo • Kỷ Niệm 25 Năm</span>
+            <h3 class="paper-card-title">Thư Chúc Mừng Ngày Nhà Giáo VN 20/11</h3>
             <p class="paper-card-role">Chủ tịch Hội đồng Thành viên Agribank</p>
           </div>
           <div class="paper-card-snippet">
@@ -1130,6 +1430,7 @@
         <!-- Lời ngỏ Viện trưởng -->
         <div class="paper-card">
           <div class="paper-card-header">
+            <span class="article-author-tag">Tuyên Bố Sứ Mệnh • Kỷ Nguyên Mới</span>
             <h3 class="paper-card-title">Lời Ngỏ của Viện Trưởng</h3>
             <p class="paper-card-role">Giám đốc Trường / Viện trưởng Viện NC&ĐT Agribank</p>
           </div>
@@ -1145,60 +1446,107 @@
   </section>
 
   <!-- ==============================================
-       PHẦN 2: TỰ HÀO TRUYỀN THỐNG - DẤU ẤN 25 NĂM TRỒNG NGƯỜI
-       (Nền: Giấy dó ngà, thư viện cổ điển, lắng đọng thời gian)
+       PHẦN 2: TỰ HÀO TRUYỀN THỐNG (DIGITAL MUSEUM & TIMELINE)
        ============================================== -->
   <section class="story-section" id="sec-tradition">
     <div class="story-container">
       <span class="section-lead-tag">Phần 2 • Dấu Ấn 25 Năm Trồng Người</span>
       <h2 class="section-title">Tự Hào Truyền Thống</h2>
       <p class="section-subtitle">
-        Vinh danh lịch sử và những nền móng vững chắc được dựng xây bằng tâm huyết của bao thế hệ lãnh đạo, thầy cô và cán bộ Agribank.
+        Không gian triển lãm lịch sử tương tác: Vinh danh những nền móng vững chắc được dựng xây bằng tâm huyết của bao thế hệ lãnh đạo, thầy cô và cán bộ Agribank từ năm 1999 đến nay.
       </p>
 
-      <!-- 3 Bài viết chính phần 2 -->
+      <!-- Interactive Timeline 1999 — 2026 -->
+      <div class="timeline-wrapper">
+        <div class="timeline-line"></div>
+
+        <div class="timeline-node">
+          <div class="timeline-dot"></div>
+          <span class="timeline-year">NĂM 1999</span>
+          <h4 class="timeline-title">Thành Lập Trung Tâm Đào Tạo Cán Bộ Agribank</h4>
+          <p class="timeline-desc">Những ngày đầu đặt nền móng với bục giảng đơn sơ, thắp lên ngọn lửa tri thức đầu tiên cho hệ thống ngân hàng nông nghiệp.</p>
+        </div>
+
+        <div class="timeline-node">
+          <div class="timeline-dot"></div>
+          <span class="timeline-year">NĂM 2008</span>
+          <h4 class="timeline-title">Nâng Cấp Thành Trường Đào Tạo Cán Bộ Agribank</h4>
+          <p class="timeline-desc">Mở rộng quy mô, chuẩn hóa giáo trình đào tạo nghiệp vụ và xây dựng mạng lưới giảng viên kiêm chức vững mạnh toàn quốc.</p>
+        </div>
+
+        <div class="timeline-node">
+          <div class="timeline-dot"></div>
+          <span class="timeline-year">NĂM 2019</span>
+          <h4 class="timeline-title">Dấu Ấn Quốc Tế & Đổi Mới Toàn Diện (SEI AWARD)</h4>
+          <p class="timeline-desc">Đơn vị vinh dự đón nhận giải thưởng SEI AWARD, khẳng định chất lượng vượt trội trong công tác đào tạo chuyên môn tài chính.</p>
+        </div>
+
+        <div class="timeline-node">
+          <div class="timeline-dot"></div>
+          <span class="timeline-year">NĂM 2024 — NAY</span>
+          <h4 class="timeline-title">Chuyển Đổi Thành Viện Nghiên Cứu Và Đào Tạo Agribank</h4>
+          <p class="timeline-desc">Bước ngoặt lịch sử: Vừa là trung tâm đào tạo chuẩn mực, vừa là viện nghiên cứu chiến lược, tham mưu chính sách đột phá trong kỷ nguyên số.</p>
+        </div>
+      </div>
+
+      <!-- 3 Bài viết chính phần 2 kèm vị trí ảnh tư liệu chờ -->
       <div class="tradition-grid">
-        <!-- Bài 1: Thúy -->
+        <!-- Bài 1: Lãnh đạo qua các thời kỳ -->
         <div class="article-box">
-          <span class="article-author-tag">[Bài viết 1 - Thúy]</span>
+          <div class="photo-placeholder">
+            <i data-lucide="image"></i>
+            <span class="photo-placeholder-caption">[Ảnh Tư Liệu Chờ]</span>
+            <span class="photo-placeholder-tag">Chân dung Lãnh đạo & Các thế hệ Thầy Cô (1999 - 2026)</span>
+          </div>
+          <span class="article-author-tag">Kỷ Yếu Truyền Thống • Tác Giả: Thanh Thúy</span>
           <h3 class="article-heading">Trường & Ban Lãnh Đạo Qua Các Thời Kỳ</h3>
           <p class="article-lead">
             Tóm tắt quá trình hình thành, phát triển từ những ngày đầu gian khó; khắc họa chân dung và gửi lời tri ân sâu sắc đến các đồng chí nguyên Lãnh đạo Agribank, nguyên Lãnh đạo Trường đã đặt nền móng cho công tác đào tạo.
           </p>
           <button class="btn-read-article" onclick="openArticle('article-thuy-1')">
-            Xem Chi Tiết Bài Viết
+            <i data-lucide="book-open"></i> Xem Chi Tiết Bài Viết
           </button>
         </div>
 
-        <!-- Bài 3: SEI Award -->
+        <!-- Bài 2: SEI Award -->
         <div class="article-box">
-          <span class="article-author-tag">[Bài viết 3]</span>
+          <div class="photo-placeholder">
+            <i data-lucide="award"></i>
+            <span class="photo-placeholder-caption">[Ảnh Tư Liệu Chờ]</span>
+            <span class="photo-placeholder-tag">Hình ảnh Lễ Trao Giải Thưởng Quốc Tế SEI AWARD</span>
+          </div>
+          <span class="article-author-tag">Dấu Ấn Vinh Danh • Kỷ Yếu 25 Năm</span>
           <h3 class="article-heading">Dấu Ấn SEI AWARD</h3>
           <p class="article-lead">
             Tôn vinh thành tựu nổi bật, khẳng định chất lượng và vị thế vững chắc của đơn vị trong công tác chuyên môn, tạo dựng niềm tin và uy tín trên toàn hệ thống.
           </p>
           <button class="btn-read-article" onclick="openArticle('article-sei-award')">
-            Xem Chi Tiết Bài Viết
+            <i data-lucide="award"></i> Xem Chi Tiết Bài Viết
           </button>
         </div>
 
-        <!-- Cột mốc Timeline & Ký ức -->
+        <!-- Bài 3: Ký ức thời gian & ảnh tư liệu -->
         <div class="article-box">
+          <div class="photo-placeholder">
+            <i data-lucide="clock"></i>
+            <span class="photo-placeholder-caption">[Ảnh Tư Liệu Chờ]</span>
+            <span class="photo-placeholder-tag">Khoảnh khắc trắng đen & sepia các khóa học đầu tiên</span>
+          </div>
           <span class="article-author-tag">Hành Trình Tri Thức • 1999 — 2026</span>
           <h3 class="article-heading">Ký Ức Thời Gian & Ảnh Tư Liệu</h3>
           <p class="article-lead">
             Bản đồ cột mốc lịch sử và những khoảnh khắc vàng trắng đen/sepia của các thế hệ cán bộ, giảng viên, học viên thời kỳ đầu.
           </p>
           <button class="btn-read-article" onclick="openArticle('article-ky-uc')">
-            Khám Phá Ký Ức
+            <i data-lucide="history"></i> Khám Phá Ký Ức
           </button>
         </div>
       </div>
 
-      <!-- Bài 4: Thắp sáng bản làng (Nền riêng lắng đọng tình người) -->
+      <!-- Thắp sáng bản làng -->
       <div class="special-highlight-card">
         <span style="font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gold-light);">
-          [Bài viết 4 - Lục lại bài cũ] • Trách Nhiệm Xã Hội
+          Văn Hóa Nghĩa Tình • Trách Nhiệm Xã Hội Agribank
         </span>
         <h3>Thắp Sáng Bản Làng</h3>
         <p>
@@ -1214,185 +1562,265 @@
   </section>
 
   <!-- ==============================================
-       PHẦN 3: KIẾN TẠO TƯƠNG LAI - TẦM VÓC MỚI, KHÁT VỌNG MỚI
-       (Nền: Không gian viện hiện đại, công nghệ tối giản, tinh khôi)
+       PHẦN 3: KIẾN TẠO TƯƠNG LAI (DIGITAL ACADEMY & INNOVATION)
        ============================================== -->
   <section class="story-section" id="sec-future">
     <div class="story-container">
       <span class="section-lead-tag">Phần 3 • Tầm Vóc Mới, Khát Vọng Mới</span>
       <h2 class="section-title">Kiến Tạo Tương Lai</h2>
       <p class="section-subtitle">
-        Bước ngoặt lịch sử: Chuyển đổi thành Viện Nghiên cứu và Đào tạo Agribank, mở ra chân trời nghiên cứu chiến lược, số hóa học liệu và không gian học tập tương lai.
+        Chuyển mình mạnh mẽ từ mô hình trường truyền thống sang Viện Nghiên cứu và Đào tạo: Xây dựng hệ sinh thái học tập số, nghiên cứu chiến lược và bồi dưỡng nhân tài trong kỷ nguyên số.
       </p>
 
+      <!-- Key Tech Statistics -->
+      <div class="future-stats-row">
+        <div class="stat-card">
+          <div class="stat-num">2.200+</div>
+          <div class="stat-label">Điểm giao dịch kết nối E-Learning</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">100%</div>
+          <div class="stat-label">Số hóa ngân hàng đề thi trực tuyến</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">25 Năm</div>
+          <div class="stat-label">Di sản tri thức phụng sự ngành</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">Chuẩn Mới</div>
+          <div class="stat-label">Khung chương trình đào tạo quốc tế</div>
+        </div>
+      </div>
+
       <div class="future-steps-list">
-        <!-- Bài 2: Thúy -->
+        <!-- Bước 1: Chiến lược & KCTĐT -->
         <div class="step-card">
-          <span class="article-author-tag">[Bài viết 2 - Thúy]</span>
-          <h3 class="article-heading">Chiến Lược & Khung Chương Trình Đào Tạo</h3>
+          <div class="photo-placeholder" style="height: 150px;">
+            <i data-lucide="compass"></i>
+            <span class="photo-placeholder-caption">[Sơ Đồ Chiến Lược Chờ]</span>
+            <span class="photo-placeholder-tag">Khung Chương Trình Đào Tạo Tiên Tiến</span>
+          </div>
+          <span class="article-author-tag">Chiến Lược Phát Triển • Tác Giả: Thanh Thúy</span>
+          <h3 class="article-heading">Chiến Lược & Khung Chương Trình Đào Tạo (KCTĐT)</h3>
           <p class="article-lead">
             Tầm nhìn mới, giới thiệu định hướng nghiên cứu chuyên sâu và giảng dạy thực chiến nhằm đáp ứng toàn diện yêu cầu phát triển của Agribank trong kỷ nguyên số.
           </p>
-          <button class="btn-read-article" onclick="openArticle('article-thuy-2')">Đọc Bài Viết</button>
+          <button class="btn-read-article" onclick="openArticle('article-thuy-2')">
+            <i data-lucide="book-open"></i> Đọc Bài Viết
+          </button>
         </div>
 
-        <!-- Bài 5: PA -->
+        <!-- Bước 2: Bài giảng điện tử đầu tiên -->
         <div class="step-card">
-          <span class="article-author-tag">[Bài viết 5 - PA]</span>
+          <div class="photo-placeholder" style="height: 150px;">
+            <i data-lucide="video"></i>
+            <span class="photo-placeholder-caption">[Tư Liệu Studio Chờ]</span>
+            <span class="photo-placeholder-tag">Hậu trường sản xuất bài giảng điện tử</span>
+          </div>
+          <span class="article-author-tag">Dấu Ấn Đổi Mới • Tác Giả: Phương Anh</span>
           <h3 class="article-heading">Những Bài Giảng Điện Tử (BGĐT) Đầu Tiên</h3>
           <p class="article-lead">
             Hành trình vượt khó và tinh thần tiên phong đổi mới phương pháp giảng dạy từ truyền thống sang số hóa của tập thể cán bộ Viện.
           </p>
-          <button class="btn-read-article" onclick="openArticle('article-pa-bgdt')">Đọc Bài Viết</button>
+          <button class="btn-read-article" onclick="openArticle('article-pa-bgdt')">
+            <i data-lucide="book-open"></i> Đọc Bài Viết
+          </button>
         </div>
 
-        <!-- Bài 6: Ngọc -->
+        <!-- Bước 3: Ứng dụng E-learning -->
         <div class="step-card">
-          <span class="article-author-tag">[Bài viết 6 - Ngọc]</span>
+          <div class="photo-placeholder" style="height: 150px;">
+            <i data-lucide="monitor"></i>
+            <span class="photo-placeholder-caption">[Giao Diện Số Chờ]</span>
+            <span class="photo-placeholder-tag">Hệ thống khảo sát thi cử trực tuyến E-Learning</span>
+          </div>
+          <span class="article-author-tag">Chuyển Đổi Số • Tác Giả: Bích Ngọc</span>
           <h3 class="article-heading">Ứng Dụng E-Learning Toàn Diện</h3>
           <p class="article-lead">
             Chi tiết về việc áp dụng công nghệ vào học tập, thi cử và đánh giá năng lực minh bạch, hiện đại — minh chứng cho bước chuyển đổi số thần tốc.
           </p>
-          <button class="btn-read-article" onclick="openArticle('article-ngoc-elearning')">Đọc Bài Viết</button>
+          <button class="btn-read-article" onclick="openArticle('article-ngoc-elearning')">
+            <i data-lucide="book-open"></i> Đọc Bài Viết
+          </button>
         </div>
       </div>
 
-      <!-- Vinh danh học liệu số -->
-      <div style="background: rgba(114, 9, 16, 0.05); border: 1px solid var(--border-soft); border-radius: 10px; padding: 24px; text-align: center;">
-        <span style="font-size: 13px; font-weight: 700; color: var(--agri-burgundy);">
+      <!-- Vinh danh các đơn vị tiêu biểu -->
+      <div style="background: rgba(130, 19, 25, 0.05); border: 1px solid var(--border-soft); border-radius: 12px; padding: 26px; text-align: center;">
+        <span style="font-size: 13.5px; font-weight: 700; color: var(--agri-burgundy);">
           <i data-lucide="check-circle-2"></i> VINH DANH CÁC ĐƠN VỊ TIÊU BIỂU
         </span>
         <p style="font-size: 14.5px; color: var(--text-muted); margin-top: 6px;">
-          Tuyên dương các Chi nhánh và tập thể xuất sắc đã chủ động xây dựng học liệu số, ngân hàng câu hỏi và lan tỏa tinh thần tự học toàn hệ thống.
+          Tuyên dương các Chi nhánh và tập thể xuất sắc đã chủ động xây dựng học liệu số, ngân hàng câu hỏi và lan tỏa tinh thần tự học toàn hệ thống Agribank.
         </p>
       </div>
     </div>
   </section>
 
   <!-- ==============================================
-       PHẦN 4: VỮNG BƯỚC ĐỒNG HÀNH - TRI ÂN & VINH DANH
+       PHẦN 4: VỮNG BƯỚC ĐỒNG HÀNH (HALL OF FAME & TRI ÂN)
        ============================================== -->
   <section class="story-section" id="sec-honor">
     <div class="story-container">
       <span class="section-lead-tag">Phần 4 • Tri Ân & Vinh Danh</span>
       <h2 class="section-title">Vững Bước Đồng Hành</h2>
       <p class="section-subtitle">
-        Tôn vinh những nhân tố đang nối dài truyền thống và dựng xây tương lai: từ người thầy trên bục giảng đến những đóng góp thầm lặng nơi hậu phương.
+        Đại sảnh danh vọng (Hall of Fame): Tôn vinh những nhân tố đang nối dài truyền thống và dựng xây tương lai — từ người thầy trên bục giảng đến những đóng góp thầm lặng nơi hậu phương.
       </p>
 
       <div class="honor-quad">
         <div class="honor-quad-card">
+          <div class="honor-badge-icon">
+            <i data-lucide="award"></i>
+          </div>
           <h4>Bảng Vàng Giảng Viên</h4>
-          <p>Lãnh đạo Agribank trực tiếp đứng lớp và các Giảng viên kiêm chức xuất sắc giai đoạn 2022-2026.</p>
+          <p>Ban Lãnh đạo Agribank trực tiếp đứng lớp và các Giảng viên kiêm chức xuất sắc giai đoạn 2022-2026 tận tâm truyền lửa nghề.</p>
         </div>
 
         <div class="honor-quad-card">
+          <div class="honor-badge-icon">
+            <i data-lucide="users"></i>
+          </div>
           <h4>Tập Thể Đồng Hành</h4>
-          <p>Các Chi nhánh/Đơn vị có đóng góp lớn cho công tác đào tạo, tự đào tạo và phát triển văn hóa học tập.</p>
+          <p>Các Chi nhánh/Đơn vị có đóng góp lớn cho công tác đào tạo, tự đào tạo và phát triển văn hóa học tập suốt đời.</p>
         </div>
 
         <div class="honor-quad-card">
+          <div class="honor-badge-icon">
+            <i data-lucide="landmark"></i>
+          </div>
           <h4>Đối Tác Chiến Lược</h4>
-          <p>Các Viện, trường Đại học uy tín trong nước và quốc tế đã đồng hành nâng tầm học thuật cùng Agribank.</p>
+          <p>Các Viện, trường Đại học uy tín trong nước và quốc tế đã đồng hành nâng tầm học thuật và chuẩn hóa năng lực cùng Agribank.</p>
         </div>
 
         <div class="honor-quad-card">
+          <div class="honor-badge-icon">
+            <i data-lucide="heart"></i>
+          </div>
           <h4>Gương Mặt Thầm Lặng</h4>
-          <p>Vinh danh cán bộ quản lý lớp, cán bộ vận hành E-learning, tổ truyền thông và đội ngũ hậu cần tận tụy.</p>
+          <p>Vinh danh cán bộ quản lý lớp, kỹ thuật vận hành E-learning, tổ truyền thông và đội ngũ hậu cần luôn thầm lặng cống hiến.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- ==============================================
-       PHẦN 5: SỨC SỐNG AGRIBANK - NHỮNG MẢNH GHÉP CẢM XÚC
-       (Nền: Trang nhật ký, ấm áp, sâu lắng, thơ ca)
+       PHẦN 5: SỨC SỐNG AGRIBANK (MẢNH GHÉP CẢM XÚC & THƠ)
        ============================================== -->
   <section class="story-section" id="sec-emotions">
     <div class="story-container">
       <span class="section-lead-tag">Phần 5 • Những Mảnh Ghép Cảm Xúc</span>
       <h2 class="section-title">Sức Sống Agribank</h2>
       <p class="section-subtitle">
-        Nơi lắng đọng tình cảm của những con người đã và đang gắn bó trọn vẹn thanh xuân cùng mái trường Viện.
+        Không gian lưu giữ ký ức: Nơi lắng đọng tình cảm của những con người đã và đang gắn bó trọn vẹn thanh xuân cùng mái trường Viện.
       </p>
 
-      <!-- Bài 8: Thơ C. Thanh Hương -->
+      <!-- Trang Thơ Tri Ân Tri Kỷ -->
       <div class="poetry-container">
-        <span class="article-author-tag">[Bài viết 8 - C. Thanh Hương] • Thơ Tri Ân</span>
+        <span class="article-author-tag">Hoa Dâng Thầy Cô • Tác Giả: Thanh Hương</span>
         <div class="poetry-lines">
           “Hai mươi lăm năm một chặng đường dài<br>
           Nặng nghĩa tri ân hạt giống ươm mầm<br>
           Mái trường xưa dẫu đổi thay vóc dáng<br>
           Ngọn lửa nghề vẫn sáng mãi ngàn năm...”
         </div>
-        <div class="author-sign">Tác giả: C. Thanh Hương</div>
+        <div class="author-sign">Nhà Giáo / Tác Giả: C. Thanh Hương</div>
       </div>
 
       <div class="emotions-grid">
-        <!-- Bài 1 Thúy (NLĐ) -->
+        <!-- Bài 1: Người lao động hiện tại -->
         <div class="article-box">
-          <span class="article-author-tag">[Bài viết 1 - Thúy]</span>
-          <h3 class="article-heading">Người Lao Động Hiện Tại</h3>
+          <div class="photo-placeholder" style="height: 160px;">
+            <i data-lucide="smile"></i>
+            <span class="photo-placeholder-caption">[Ảnh Chụp Tập Thể Chờ]</span>
+            <span class="photo-placeholder-tag">Nụ cười rạng rỡ của toàn thể CBNV các phòng ban Viện</span>
+          </div>
+          <span class="article-author-tag">Tập Thể Đoàn Kết • Tác Giả: Thanh Thúy</span>
+          <h3 class="article-heading">Chân Dung Người Lao Động Tại Viện</h3>
           <p class="article-lead">
-            Chân dung rạng rỡ của toàn thể cán bộ, nhân viên, giảng viên đang miệt mài cống hiến tại các phòng ban của Viện.
+            Chân dung rạng rỡ của toàn thể cán bộ, nhân viên, giảng viên đang miệt mài cống hiến tại các phòng ban của Viện Nghiên cứu và Đào tạo.
           </p>
-          <button class="btn-read-article" onclick="openArticle('article-nld')">Xem Hình Ảnh & Bài Viết</button>
+          <button class="btn-read-article" onclick="openArticle('article-nld')">
+            <i data-lucide="users"></i> Xem Hình Ảnh & Bài Viết
+          </button>
         </div>
 
-        <!-- Bài 7: A. Diệp, Dương Phương -->
+        <!-- Bài 2: Chạm vào cảm xúc -->
         <div class="article-box">
-          <span class="article-author-tag">[Bài viết 7 - A. Diệp, Dương Phương]</span>
-          <h3 class="article-heading">Chạm Vào Cảm Xúc</h3>
+          <div class="photo-placeholder" style="height: 160px;">
+            <i data-lucide="heart"></i>
+            <span class="photo-placeholder-caption">[Khoảnh Khắc Kỷ Niệm Chờ]</span>
+            <span class="photo-placeholder-tag">Hình ảnh những chuyến công tác & lớp học vùng miền</span>
+          </div>
+          <span class="article-author-tag">Ký Ức Giảng Đường • Tác Giả: Diệp & Dương Phương</span>
+          <h3 class="article-heading">Chạm Vào Cảm Xúc: Kỷ Niệm Mái Trường</h3>
           <p class="article-lead">
-            Những ký ức mộc mạc, những kỷ niệm gắn bó máu thịt với nghề và với mái trường qua từng bài giảng, từng chuyến công tác.
+            Những ký ức mộc mạc, những kỷ niệm gắn bó máu thịt với nghề và với mái trường qua từng bài giảng, từng chuyến công tác khắp mọi miền đất nước.
           </p>
-          <button class="btn-read-article" onclick="openArticle('article-diep-phuong')">Đọc Tâm Tình</button>
+          <button class="btn-read-article" onclick="openArticle('article-diep-phuong')">
+            <i data-lucide="feather"></i> Đọc Tâm Tình
+          </button>
         </div>
 
-        <!-- Bài 9: Sếp Lưu -->
+        <!-- Bài 3: Chia sẻ của Sếp Lưu -->
         <div class="article-box">
-          <span class="article-author-tag">[Bài viết 9 - Sếp Lưu]</span>
+          <div class="photo-placeholder" style="height: 160px;">
+            <i data-lucide="user-check"></i>
+            <span class="photo-placeholder-caption">[Chân Dung Ban Giám Đốc Chờ]</span>
+            <span class="photo-placeholder-tag">Góc nhìn & Lời dặn dò thế hệ kế cận</span>
+          </div>
+          <span class="article-author-tag">Tâm Huyết & Gửi Gắm • Ban Giám Đốc</span>
           <h3 class="article-heading">Góc Nhìn & Chia Sẻ Của Sếp Lưu</h3>
           <p class="article-lead">
-            Hồi ức kỷ niệm quý giá và những lời dặn dò, gửi gắm ân cần dành cho thế hệ trẻ của Viện Nghiên cứu và Đào tạo.
+            Hồi ức kỷ niệm quý giá và những lời dặn dò, gửi gắm ân cần dành cho thế hệ trẻ của Viện Nghiên cứu và Đào tạo tiếp tục giữ vững tâm sáng và tinh thần học hỏi.
           </p>
-          <button class="btn-read-article" onclick="openArticle('article-sep-luu')">Đọc Bài Chia Sẻ</button>
+          <button class="btn-read-article" onclick="openArticle('article-sep-luu')">
+            <i data-lucide="book-open"></i> Đọc Bài Chia Sẻ
+          </button>
         </div>
       </div>
     </div>
   </section>
 
   <!-- ==============================================
-       PHẦN 6: KHÉP LẠI & MỞ RA
-       (Nền: Tòa nhà Viện vươn cao lên bầu trời xanh thanh khiết)
+       PHẦN 6: KHÉP LẠI & MỞ RA (CINEMATIC EPILOGUE)
        ============================================== -->
   <section class="story-section" id="sec-closing">
-    <div class="story-container closing-card-inner">
-      <span class="section-lead-tag" style="color: var(--gold-light);">Phần 6 • Khép Lại & Mở Ra</span>
+    <div class="closing-huge-25">25</div>
+    
+    <div class="closing-card-inner">
+      <span class="section-lead-tag" style="color: var(--gold-champagne);">Phần 6 • Khép Lại & Mở Ra</span>
       <h2 class="closing-title">TỰ HÀO TRUYỀN THỐNG<br>KIẾN TẠO TƯƠNG LAI</h2>
       
       <p class="closing-sub">
         Cuốn kỷ yếu khép lại trang sử 25 năm vàng son của Trường Đào tạo cán bộ, đồng thời mở ra kỷ nguyên mới rực rỡ dưới bầu trời tri thức của Viện Nghiên cứu và Đào tạo Agribank.
       </p>
 
-      <div style="background: rgba(255,255,255,0.1); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.2); border-radius: 12px; padding: 28px; max-width: 680px; margin: 0 auto 36px; text-align: left;">
-        <h4 style="color: var(--gold-light); font-size: 16px; margin-bottom: 8px;">Lời Cảm Ơn Từ Ban Biên Tập</h4>
-        <p style="font-size: 14px; color: rgba(255,255,255,0.85); line-height: 1.7;">
-          Xin trân trọng cảm ơn Đảng ủy, Ban Lãnh đạo Agribank, các đồng chí nguyên Lãnh đạo qua các thời kỳ, các thế hệ thầy cô giáo, tác giả các bài viết và toàn thể cán bộ nhân viên đã chung tay hoàn thành cuốn kỷ yếu đầy ý nghĩa này.
+      <div class="closing-thanks-box">
+        <h4 style="color: var(--gold-champagne); font-size: 17px; margin-bottom: 10px; font-weight: 700;">
+          Lời Cảm Ơn Từ Ban Biên Tập
+        </h4>
+        <p style="font-size: 14.5px; color: rgba(255,255,255,0.9); line-height: 1.8;">
+          Xin trân trọng cảm ơn Đảng ủy, Ban Lãnh đạo Agribank, các đồng chí nguyên Lãnh đạo qua các thời kỳ, các thế hệ thầy cô giáo, tác giả các bài viết và toàn thể cán bộ nhân viên đã chung tay hoàn thành cuốn kỷ yếu điện tử đầy ý nghĩa này.
         </p>
       </div>
 
-      <button class="btn-quiet" style="border-color: var(--gold-light); color: var(--gold-light); padding: 12px 30px; font-size: 14px;" onclick="triggerCelebration()">
-        <i data-lucide="sparkles"></i> Chúc Mừng 25 Năm Agribank & 20/11
-      </button>
+      <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
+        <button class="btn-quiet btn-celebrate" style="padding: 12px 28px; font-size: 14px;" onclick="triggerCelebration()">
+          <i data-lucide="sparkles"></i> Chúc Mừng 25 Năm Agribank & 20/11
+        </button>
+        <a href="#sec-hero" class="btn-quiet" style="padding: 12px 24px; font-size: 14px;">
+          <i data-lucide="arrow-up"></i> Về Đầu Trang
+        </a>
+      </div>
 
       <div style="margin-top: 60px; font-size: 13px; color: rgba(255,255,255,0.6);">
-        © 2026 Viện Nghiên cứu và Đào tạo Agribank • Kỷ Yếu Scrollytelling Điện Tử
+        © 2026 Viện Nghiên cứu và Đào tạo Agribank • Kỷ Yếu Scrollytelling Điện Tử Cao Cấp
       </div>
     </div>
   </section>
 
-  <!-- MODAL ĐỌC BÀI VIẾT CHI TIẾT -->
+  <!-- MODAL ĐỌC BÀI VIẾT CHI TIẾT (FULL ARTICLE VIEWER) -->
   <div class="article-modal" id="articleModal" onclick="closeModal(event)">
     <div class="modal-content-box" onclick="event.stopPropagation()">
       <button class="btn-close" onclick="closeModal()">&times;</button>
@@ -1404,20 +1832,23 @@
     // Initialize Lucide Icons
     lucide.createIcons();
 
-    // GSAP ScrollTrigger
+    // Register GSAP ScrollTrigger
     gsap.registerPlugin(ScrollTrigger);
 
-    // Scroll Progress Bar
+    // Reading Progress Bar Tracker
     window.addEventListener('scroll', () => {
       const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
       const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-      document.getElementById('topProgress').style.width = ((winScroll / height) * 100) + '%';
+      const pct = (winScroll / height) * 100;
+      document.getElementById('topProgress').style.width = pct + '%';
     });
 
-    // Article Content Registry (Full texts for all articles in the user script)
+    // ====================================================
+    // FULL ARTICLES DATABASE (CHUẨN HÓA KHÔNG GHI CHÚ THÔ)
+    // ====================================================
     const articles = {
       'letter-chairman': {
-        tag: 'Trang 2-3 • Thư Chúc Mừng',
+        tag: 'Thông Điệp Lãnh Đạo • Thư Chúc Mừng',
         title: 'Thư Chúc Mừng Ngày Nhà Giáo Việt Nam 20/11',
         subtitle: 'Chủ tịch Hội đồng thành viên Agribank',
         content: `
@@ -1428,7 +1859,7 @@
         `
       },
       'letter-director': {
-        tag: 'Trang 4-5 • Lời Ngỏ',
+        tag: 'Tuyên Bố Sứ Mệnh • Lời Ngỏ Kỷ Yếu',
         title: 'Lời Ngỏ Của Viện Trưởng',
         subtitle: 'Thông điệp bản lề đúc kết tinh hoa 25 năm và sứ mệnh mới',
         content: `
@@ -1438,7 +1869,7 @@
         `
       },
       'article-thuy-1': {
-        tag: '[Bài viết 1 - Thúy] • Phần 2: Tự Hào Truyền Thống',
+        tag: 'Kỷ Yếu Truyền Thống • Tác Giả: Thanh Thúy',
         title: 'Trường Và Ban Lãnh Đạo Qua Các Thời Kỳ',
         subtitle: 'Hành trình 25 năm dựng xây và tri ân cội nguồn',
         content: `
@@ -1448,7 +1879,7 @@
         `
       },
       'article-sei-award': {
-        tag: '[Bài viết 3] • Thành Tựu Nổi Bật',
+        tag: 'Dấu Ấn Vinh Danh • Thành Tựu Nổi Bật',
         title: 'Dấu Ấn SEI AWARD',
         subtitle: 'Khẳng định chất lượng và vị thế trong công tác chuyên môn',
         content: `
@@ -1457,7 +1888,7 @@
         `
       },
       'article-ban-lang': {
-        tag: '[Bài viết 4 - Lục lại bài cũ] • Văn Hóa Nghĩa Tình',
+        tag: 'Văn Hóa Nghĩa Tình • Trách Nhiệm Xã Hội',
         title: 'Thắp Sáng Bản Làng',
         subtitle: 'Hành trình mang tri thức và yêu thương đến vùng cao',
         content: `
@@ -1475,7 +1906,7 @@
         `
       },
       'article-thuy-2': {
-        tag: '[Bài viết 2 - Thúy] • Phần 3: Kiến Tạo Tương Lai',
+        tag: 'Chiến Lược Phát Triển • Tác Giả: Thanh Thúy',
         title: 'Chiến Lược & Khung Chương Trình Đào Tạo (KCTĐT)',
         subtitle: 'Tầm nhìn mới đáp ứng yêu cầu kỷ nguyên số',
         content: `
@@ -1484,7 +1915,7 @@
         `
       },
       'article-pa-bgdt': {
-        tag: '[Bài viết 5 - PA] • Dấu Ấn Đổi Mới',
+        tag: 'Dấu Ấn Đổi Mới • Tác Giả: Phương Anh',
         title: 'Hành Trình Xây Dựng Những Bài Giảng Điện Tử (BGĐT) Đầu Tiên',
         subtitle: 'Câu chuyện vượt khó và ngọn lửa tiên phong',
         content: `
@@ -1493,7 +1924,7 @@
         `
       },
       'article-ngoc-elearning': {
-        tag: '[Bài viết 6 - Ngọc] • Chuyển Đổi Số',
+        tag: 'Chuyển Đổi Số • Tác Giả: Bích Ngọc',
         title: 'Ứng Dụng E-Learning Vào Học, Thi Và Đánh Giá Năng Lực',
         subtitle: 'Minh chứng cho sự chuyển đổi số toàn diện',
         content: `
@@ -1502,7 +1933,7 @@
         `
       },
       'article-nld': {
-        tag: '[Bài viết 1 - Thúy] • Phần 5: Sức Sống Agribank',
+        tag: 'Tập Thể Đoàn Kết • Sức Sống Viện NC&ĐT',
         title: 'Chân Dung Người Lao Động Hiện Tại Tại Viện',
         subtitle: 'Những nụ cười rạng rỡ của tập thể CBNV và giảng viên',
         content: `
@@ -1511,7 +1942,7 @@
         `
       },
       'article-diep-phuong': {
-        tag: '[Bài viết 7 - A. Diệp, Dương Phương] • Chạm Vào Cảm Xúc',
+        tag: 'Ký Ức Giảng Đường • Tác Giả: Diệp & Dương Phương',
         title: 'Chạm Vào Cảm Xúc: Kỷ Niệm Gắn Bó Với Mái Trường',
         subtitle: 'Những dòng hồi ức chân thành',
         content: `
@@ -1520,7 +1951,7 @@
         `
       },
       'article-sep-luu': {
-        tag: '[Bài viết 9 - Sếp Lưu] • Góc Nhìn & Dặn Dò',
+        tag: 'Tâm Huyết & Gửi Gắm • Ban Giám Đốc',
         title: 'Góc Nhìn & Chia Sẻ Của Sếp Lưu',
         subtitle: 'Hồi ức kỷ niệm và lời gửi gắm thế hệ trẻ',
         content: `
@@ -1538,109 +1969,109 @@
       container.innerHTML = `
         <div class="modal-header-tag">${art.tag}</div>
         <h3 class="modal-article-title">${art.title}</h3>
-        <p style="font-size: 14px; color: var(--gold-accent); margin-bottom: 20px; font-style: italic;">${art.subtitle}</p>
+        <p class="modal-article-subtitle">${art.subtitle}</p>
         <div class="modal-article-body">${art.content}</div>
       `;
       modal.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
     }
 
-    function closeModal(e) {
+    function closeModal() {
       document.getElementById('articleModal').style.display = 'none';
+      document.body.style.overflow = 'auto';
     }
 
     // Celebration fireworks
     function triggerCelebration() {
       if (typeof confetti === 'function') {
         confetti({
-          particleCount: 70,
-          spread: 60,
+          particleCount: 80,
+          spread: 70,
           origin: { y: 0.7 },
-          colors: ['#720910', '#C5A059', '#E8D3A2', '#F8F5EE']
+          colors: ['#821319', '#FFD56B', '#FCE394', '#FFFFFF']
         });
       }
     }
 
-    // Background Music Controller (Tự động phát ngay khi vào web - Lặp lại liên tục)
+    // ====================================================
+    // AUDIO CONTROLLER (MẶC ĐỊNH MỞ NHẠC & CHỈ BÁO EQUALIZER)
+    // ====================================================
     const bgMusic = document.getElementById('bgMusic');
     const audioToggle = document.getElementById('audioToggle');
     const audioText = document.getElementById('audioText');
-    const audioIcon = document.getElementById('audioIcon');
-    let isMusicPlaying = false;
+    let isMusicPlaying = true; // Mặc định mở theo yêu cầu của bạn
 
-    // Đảm bảo bài hát phát hết sẽ tự động lặp lại từ đầu liên tục
     bgMusic.loop = true;
     bgMusic.addEventListener('ended', function() {
       bgMusic.currentTime = 0;
       bgMusic.play();
     });
 
-    // Cập nhật giao diện nút Bật/Tắt
-    function updateMusicUI(playing) {
+    function setMusicPlayingState(playing) {
+      isMusicPlaying = playing;
       if (playing) {
         audioToggle.classList.add('playing');
         if (audioText) audioText.textContent = 'Đang Phát';
-        audioIcon.setAttribute('data-lucide', 'volume-2');
       } else {
         audioToggle.classList.remove('playing');
         if (audioText) audioText.textContent = 'Tắt Nhạc';
-        audioIcon.setAttribute('data-lucide', 'volume-x');
       }
-      lucide.createIcons();
     }
 
-    // Nút trên thanh điều hướng chỉ dùng để Tắt / Bật nhạc nền
+    function tryStartMusic() {
+      if (!isMusicPlaying) return;
+      const promise = bgMusic.play();
+      if (promise !== undefined) {
+        promise.then(() => {
+          setMusicPlayingState(true);
+          detachAutoUnlock();
+        }).catch(() => {
+          // Trình duyệt chặn autoplay khi chưa có tương tác người dùng
+          setMusicPlayingState(true); // Vẫn giữ trạng thái mặc định mở để kích hoạt ở tương tác đầu
+        });
+      }
+    }
+
+    const unlockEvents = ['click', 'touchstart', 'touchend', 'scroll', 'keydown'];
+    function unlockAudioHandler() {
+      if (isMusicPlaying && bgMusic.paused) {
+        bgMusic.play().then(() => {
+          setMusicPlayingState(true);
+          detachAutoUnlock();
+        }).catch(() => {});
+      }
+    }
+
+    function detachAutoUnlock() {
+      unlockEvents.forEach(evt => {
+        window.removeEventListener(evt, unlockAudioHandler, { capture: true });
+      });
+    }
+
+    // Nút Bật/Tắt nhạc thủ công
     audioToggle.addEventListener('click', function(e) {
       e.stopPropagation();
       if (!bgMusic.paused) {
         bgMusic.pause();
-        isMusicPlaying = false;
-        updateMusicUI(false);
+        setMusicPlayingState(false);
       } else {
         bgMusic.play().then(() => {
-          isMusicPlaying = true;
-          updateMusicUI(true);
-        }).catch(err => {
-          console.log('Audio playback error:', err);
-        });
+          setMusicPlayingState(true);
+        }).catch(() => {});
       }
     });
 
-    // Hàm kích hoạt tự động phát nhạc ngay khi vào web
-    function tryAutoPlayAudio() {
-      if (bgMusic && bgMusic.paused) {
-        const playPromise = bgMusic.play();
-        if (playPromise !== undefined) {
-          playPromise.then(() => {
-            isMusicPlaying = true;
-            updateMusicUI(true);
-            removeAutoPlayListeners();
-          }).catch(() => {
-            // Trình duyệt chặn autoplay khi chưa chạm màn hình, sẽ kích hoạt ở cử chỉ chạm/lướt đầu tiên
-          });
-        }
-      }
-    }
-
-    const autoEvents = ['touchstart', 'touchend', 'click', 'pointerdown', 'scroll'];
-    function removeAutoPlayListeners() {
-      autoEvents.forEach(evt => {
-        window.removeEventListener(evt, tryAutoPlayAudio, { capture: true });
-        document.removeEventListener(evt, tryAutoPlayAudio, { capture: true });
-      });
-    }
-
-    // Thử phát ngay lập tức khi tải trang
-    tryAutoPlayAudio();
-    document.addEventListener('DOMContentLoaded', tryAutoPlayAudio);
-    window.addEventListener('load', tryAutoPlayAudio);
-
-    // Bắt ngay bất kỳ cử chỉ lướt/chạm đầu tiên nếu trình duyệt chặn autoplay ban đầu
-    autoEvents.forEach(evt => {
-      window.addEventListener(evt, tryAutoPlayAudio, { capture: true, passive: true });
-      document.addEventListener(evt, tryAutoPlayAudio, { capture: true, passive: true });
+    // Kích hoạt ngay khi tải trang
+    tryStartMusic();
+    document.addEventListener('DOMContentLoaded', tryStartMusic);
+    window.addEventListener('load', tryStartMusic);
+    unlockEvents.forEach(evt => {
+      window.addEventListener(evt, unlockAudioHandler, { capture: true, passive: true });
     });
 
-    // Auto-update & Auto-Center Active Tab in Horizontal Scroll Bar on Page Scroll
+    // ====================================================
+    // HORIZONTAL SWIPE TABS & SCROLL SPY
+    // ====================================================
     const tabPills = document.querySelectorAll('.tab-pill');
     const tabsScrollContainer = document.getElementById('tabsScroll');
 
@@ -1654,7 +2085,7 @@
         { id: 'sec-closing', href: '#sec-closing' }
       ];
       
-      const scrollPos = window.scrollY + 160;
+      const scrollPos = window.scrollY + 180;
       sections.forEach(sec => {
         const el = document.getElementById(sec.id);
         if (el) {
@@ -1666,7 +2097,6 @@
                 if (!pill.classList.contains('active')) {
                   tabPills.forEach(p => p.classList.remove('active'));
                   pill.classList.add('active');
-                  // Smoothly scroll the tab into view horizontally
                   pill.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
                 }
               }
@@ -1674,6 +2104,68 @@
           }
         }
       });
+    }, { passive: true });
+
+    // ====================================================
+    // GSAP SCROLLTRIGGER CINEMATIC ANIMATIONS
+    // ====================================================
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Hero Reveal
+      gsap.from('.hero-badge-gold', { opacity: 0, y: -20, duration: 0.8, delay: 0.2 });
+      gsap.from('.hero-title-box', { opacity: 0, scale: 0.9, duration: 1.1, delay: 0.4, ease: 'power2.out' });
+      gsap.from('.hero-subheading', { opacity: 0, y: 20, duration: 0.9, delay: 0.7 });
+      gsap.from('.hero-quote', { opacity: 0, y: 20, duration: 0.9, delay: 0.9 });
+      gsap.from('.hero-cta-group', { opacity: 0, y: 20, duration: 0.8, delay: 1.1 });
+
+      // 2. Timeline Nodes Reveal
+      gsap.utils.toArray('.timeline-node').forEach((node) => {
+        gsap.from(node, {
+          scrollTrigger: {
+            trigger: node,
+            start: 'top 85%',
+            toggleActions: 'play none none none'
+          },
+          opacity: 0,
+          x: -30,
+          duration: 0.8,
+          ease: 'power2.out'
+        });
+      });
+
+      // 3. Grid Cards Stagger Reveal
+      ['.tradition-grid', '.future-steps-list', '.honor-quad', '.emotions-grid'].forEach((gridClass) => {
+        const grid = document.querySelector(gridClass);
+        if (grid) {
+          gsap.from(grid.children, {
+            scrollTrigger: {
+              trigger: grid,
+              start: 'top 80%',
+              toggleActions: 'play none none none'
+            },
+            opacity: 0,
+            y: 35,
+            duration: 0.7,
+            stagger: 0.15,
+            ease: 'power2.out'
+          });
+        }
+      });
+
+      // 4. Poetry Spread Reveal
+      const poetry = document.querySelector('.poetry-container');
+      if (poetry) {
+        gsap.from(poetry, {
+          scrollTrigger: {
+            trigger: poetry,
+            start: 'top 80%',
+            toggleActions: 'play none none none'
+          },
+          opacity: 0,
+          scale: 0.95,
+          duration: 1,
+          ease: 'power2.out'
+        });
+      }
     });
   </script>
 </body>
