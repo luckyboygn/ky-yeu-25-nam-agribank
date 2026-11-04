@@ -12,10 +12,11 @@
   <!-- Typography Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;0,800;0,900;1,700&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Merriweather:ital,wght@0,700;0,900;1,700&family=Montserrat:wght@800;900&family=Playfair+Display:ital,wght@0,600;0,700;0,800;0,900;1,700&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
   
   <!-- Preload Critical Hero Assets (WebP High Performance) -->
   <link rel="preload" href="backgrounds/bg_01_cover_solemn.webp" as="image" type="image/webp">
+  <link rel="preload" href="backgrounds/hero_cinematic_antigravity_banner.webp" as="image" type="image/webp">
 
   <!-- Lucide Icons (Pinned stable version v0.469.0) -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.469.0/umd/lucide.min.js"></script>
@@ -42,7 +43,7 @@
       --text-muted: #6E6864;
       --border-soft: rgba(229, 192, 123, 0.35);
       --font-serif: 'Playfair Display', Georgia, serif;
-      --font-cinzel: 'Cinzel', serif;
+      --font-cinzel: 'Montserrat', 'Plus Jakarta Sans', system-ui, sans-serif;
       --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
     }
 
@@ -57,6 +58,19 @@
       scroll-padding-top: 104px;
       text-rendering: optimizeLegibility;
       -webkit-font-smoothing: antialiased;
+    }
+
+        /* ACCESSIBILITY / SCREEN READER ONLY */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
     }
 
     body {
@@ -405,38 +419,18 @@
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: flex-end;
       align-items: center;
-      background: radial-gradient(circle at 50% 30%, rgba(138, 18, 26, 0.72) 0%, rgba(74, 8, 12, 0.88) 55%, rgba(35, 4, 7, 0.96) 100%),
-                  url('backgrounds/bg_01_cover_solemn.webp') center/cover fixed no-repeat;
+      background: url('backgrounds/hero_cinematic_antigravity_banner.webp') center/cover no-repeat;
       color: #fff;
       text-align: center;
       overflow: hidden;
-      padding: 130px 24px 60px;
+      padding: 0 24px 28px;
+      cursor: pointer;
     }
 
-    .hero-drum-bg {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 400px;
-      height: 260px;
-      background: url('images/drum_watermark.png') bottom left / contain no-repeat;
-      opacity: 0.65;
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    .hero-wave-bg {
-      position: absolute;
-      bottom: 0;
-      right: 0;
-      width: 400px;
-      height: 260px;
-      background: url('images/wave_watermark.png') bottom right / contain no-repeat;
-      opacity: 0.6;
-      pointer-events: none;
-      z-index: 1;
+    .hero-drum-bg, .hero-wave-bg, .hero-ambient-stars-css {
+      display: none !important;
     }
 
     .hero-particles-canvas {
@@ -460,6 +454,23 @@
       text-align: center;
     }
 
+    @keyframes heroFadeInUp {
+      from {
+        transform: translateY(14px);
+      }
+      to {
+        transform: translateY(0);
+      }
+    }
+
+    .hero-badge-gold,
+    .hero-title-box,
+    .hero-subheading,
+    .hero-quote,
+    .hero-cta-group {
+      opacity: 1 !important;
+    }
+
     .hero-badge-gold {
       display: inline-flex;
       align-items: center;
@@ -475,6 +486,7 @@
       text-transform: uppercase;
       margin-bottom: 24px;
       box-shadow: 0 0 14px rgba(229, 192, 123, 0.25);
+      animation: heroFadeInUp 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
     }
 
     .hero-badge-gold i, .hero-badge-gold svg {
@@ -491,6 +503,7 @@
       justify-content: center;
       margin-bottom: 16px;
       z-index: 2;
+      animation: heroFadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.05s both;
     }
 
     .hero-heading {
@@ -503,13 +516,13 @@
       line-height: 1;
     }
 
-    /* 3D Metallic Gold Typography (100% Native Fail-Safe) */
+    /* 3D Metallic Gold Typography (Modern Luxury Monumental) */
     .hero-25-text {
-      font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
-      font-size: clamp(56px, 10.5vw, 102px);
-      font-weight: 800;
-      letter-spacing: 4px;
-      line-height: 1;
+      font-family: 'Montserrat', 'Plus Jakarta Sans', system-ui, sans-serif;
+      font-size: clamp(54px, 9.6vw, 98px);
+      font-weight: 900;
+      letter-spacing: 6px;
+      line-height: 1.05;
       display: inline-block;
       position: relative;
       z-index: 2;
@@ -525,10 +538,11 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       filter: drop-shadow(0 3px 0 #5E3200)
-              drop-shadow(0 5px 1px #3A1E00)
+              drop-shadow(0 6px 1px #3A1E00)
               drop-shadow(0 14px 26px rgba(0, 0, 0, 0.95))
-              drop-shadow(0 0 40px rgba(245, 184, 46, 0.5));
+              drop-shadow(0 0 35px rgba(245, 184, 46, 0.45));
       user-select: none;
+      font-variant-numeric: lining-nums tabular-nums;
     }
 
     .hero-title-box::after {
@@ -548,13 +562,13 @@
     /* Specular Lens Flare on M Apex */
     .hero-flare-star {
       position: absolute;
-      top: -6px;
+      top: -4px;
       right: 0px;
-      width: 34px;
-      height: 34px;
+      width: 32px;
+      height: 32px;
       pointer-events: none;
       z-index: 5;
-      background: radial-gradient(circle, #FFFFFF 22%, rgba(255, 230, 130, 0.95) 45%, transparent 70%);
+      background: radial-gradient(circle, #FFFFFF 25%, rgba(255, 230, 130, 0.95) 45%, transparent 70%);
       filter: drop-shadow(0 0 10px #FFD700);
       animation: pulseStar 3s infinite ease-in-out;
     }
@@ -569,15 +583,15 @@
       box-shadow: 0 0 8px #FFD700;
     }
 
-    .hero-flare-star::before { width: 2px; height: 34px; }
-    .hero-flare-star::after { width: 34px; height: 2px; }
+    .hero-flare-star::before { width: 2px; height: 32px; }
+    .hero-flare-star::after { width: 32px; height: 2px; }
 
     /* Horizontal Anamorphic Lens Flare Streak */
     .hero-flare-streak {
       position: absolute;
-      top: 14px;
-      right: -30px;
-      width: 160px;
+      top: 12px;
+      right: -24px;
+      width: 150px;
       height: 2px;
       background: linear-gradient(90deg, transparent, rgba(255, 230, 150, 0.85) 40%, rgba(255, 255, 255, 1) 50%, rgba(255, 230, 150, 0.85) 60%, transparent);
       filter: blur(0.5px);
@@ -588,13 +602,13 @@
     /* Subtle Lens Flare Glint on 2 */
     .hero-flare-2 {
       position: absolute;
-      top: 14px;
-      left: 14px;
-      width: 18px;
-      height: 18px;
+      top: 6px;
+      left: 20px;
+      width: 14px;
+      height: 14px;
       pointer-events: none;
       z-index: 5;
-      background: radial-gradient(circle, #FFFFFF 25%, rgba(255, 235, 140, 0.8) 50%, transparent 70%);
+      background: radial-gradient(circle, #FFFFFF 30%, rgba(255, 235, 140, 0.8) 55%, transparent 70%);
       filter: drop-shadow(0 0 6px #FFD700);
     }
 
@@ -612,6 +626,7 @@
       letter-spacing: 1.5px;
       margin-bottom: 24px;
       text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6), 0 0 20px rgba(248, 223, 149, 0.35);
+      animation: heroFadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
     }
 
     .hero-quote {
@@ -622,6 +637,7 @@
       margin: 0 auto 36px;
       font-weight: 300;
       text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+      animation: heroFadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
     }
 
     .hero-cta-group {
@@ -630,6 +646,67 @@
       justify-content: center;
       gap: 16px;
       margin-bottom: 48px;
+      animation: heroFadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+    }
+
+    /* ====================================================
+       CSS AMBIENT FLYING & TWINKLING STARS (100% NATIVE FAIL-SAFE)
+       ==================================================== */
+    .hero-ambient-stars-css {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 2;
+      overflow: hidden;
+    }
+
+    .css-ambient-star {
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      pointer-events: none;
+      background: radial-gradient(circle, #FFFFFF 25%, #FFD700 65%, transparent 80%);
+      filter: drop-shadow(0 0 8px #FFD700);
+      animation: cssStarSparkle 3.5s infinite ease-in-out;
+    }
+
+    .css-ambient-star::before, .css-ambient-star::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #FFFFFF;
+      box-shadow: 0 0 6px #FFD700;
+    }
+
+    .css-ambient-star::before { width: 2px; height: 16px; }
+    .css-ambient-star::after { width: 16px; height: 2px; }
+
+    @keyframes cssStarSparkle {
+      0%, 100% { transform: scale(0.65) rotate(0deg); opacity: 0.35; filter: drop-shadow(0 0 4px #FFA826); }
+      50% { transform: scale(1.3) rotate(45deg); opacity: 0.95; filter: drop-shadow(0 0 14px #FFD700); }
+    }
+
+    .css-ambient-star.star-pos-1 { top: 16%; left: 10%; animation-delay: 0s; }
+    .css-ambient-star.star-pos-2 { top: 26%; right: 12%; animation-delay: 0.8s; }
+    .css-ambient-star.star-pos-3 { top: 62%; left: 8%; animation-delay: 1.4s; }
+    .css-ambient-star.star-pos-4 { top: 76%; right: 9%; animation-delay: 2.1s; }
+    .css-ambient-star.star-pos-5 { top: 22%; right: 30%; animation-delay: 1.1s; }
+    .css-ambient-star.star-pos-6 { top: 46%; left: 20%; animation-delay: 1.7s; }
+    .css-ambient-star.star-pos-7 { top: 82%; left: 32%; animation-delay: 0.4s; }
+    .css-ambient-star.star-pos-8 { top: 38%; left: 84%; animation-delay: 2.5s; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hero-badge-gold, .hero-title-box, .hero-subheading, .hero-quote, .hero-cta-group {
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+      }
+      .css-ambient-star {
+        animation: none !important;
+        opacity: 0.65 !important;
+      }
     }
 
     .btn-hero-journey {
@@ -1218,12 +1295,19 @@
     }
 
     .stat-num {
-      font-family: var(--font-cinzel);
-      font-size: 32px;
+      font-family: 'Montserrat', 'Plus Jakarta Sans', system-ui, sans-serif;
+      font-size: 23px;
       font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
       color: var(--agri-burgundy);
-      line-height: 1.1;
+      line-height: 1.2;
       margin-bottom: 6px;
+      font-variant-numeric: lining-nums tabular-nums;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 36px;
     }
 
     .stat-label {
@@ -2142,6 +2226,814 @@
         font-size: 16px;
       }
     }
+  
+    /* ====================================================
+       ROADMAP ENHANCEMENTS: EDITORIAL CARDS & SCROLLYTELLING
+       ==================================================== */
+
+    /* Grid cho các thẻ bài viết Phần 1 & Phần 3 (Editorial Grid) */
+    .letters-editorial-grid, .future-editorial-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 28px;
+      margin-top: 36px;
+      margin-bottom: 40px;
+      text-align: left;
+    }
+
+    .editorial-letter-card {
+      background: #FFFFFF;
+      border: 1px solid rgba(229, 192, 123, 0.45);
+      border-radius: 16px;
+      padding: 38px 34px;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .editorial-letter-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 24px 50px rgba(114, 9, 16, 0.12);
+      border-color: var(--gold-accent);
+    }
+
+    .letter-watermark-crest {
+      position: absolute;
+      right: -25px;
+      bottom: -25px;
+      width: 190px;
+      height: 190px;
+      background: url('images/drum_watermark.png') center/contain no-repeat;
+      opacity: 0.045;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .letter-portrait-header {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .leader-portrait-slot {
+      width: 78px;
+      height: 92px;
+      border-radius: 8px;
+      background: linear-gradient(145deg, #FAF6EE 0%, #EFE5D2 100%);
+      border: 2px solid rgba(229, 192, 123, 0.7);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      text-align: center;
+      padding: 6px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .leader-portrait-slot i {
+      color: var(--gold-accent);
+      font-size: 24px;
+      margin-bottom: 4px;
+    }
+
+    .leader-portrait-slot span {
+      font-size: 9.5px;
+      line-height: 1.15;
+      color: var(--burgundy);
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .letter-meta-info {
+      flex: 1;
+    }
+
+    .letter-category-tag {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: var(--burgundy);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 6px;
+    }
+
+    .letter-title {
+      font-family: var(--font-cinzel);
+      font-size: 19px;
+      font-weight: 700;
+      color: var(--burgundy-dark);
+      line-height: 1.35;
+      margin-bottom: 4px;
+    }
+
+    .letter-role-subtitle {
+      font-size: 13px;
+      color: #7A6B58;
+      font-weight: 600;
+    }
+
+    .letter-body-quote {
+      font-family: var(--font-serif);
+      font-size: 15px;
+      line-height: 1.8;
+      color: #3D3D3D;
+      font-style: italic;
+      margin: 12px 0 24px;
+      padding-left: 16px;
+      border-left: 3px solid var(--gold-accent);
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Transformation Event Block */
+    .event-transform-block {
+      background: linear-gradient(135deg, rgba(82, 6, 12, 0.96) 0%, rgba(114, 9, 16, 0.94) 60%, rgba(55, 4, 8, 0.98) 100%),
+                  url('backgrounds/agribank_future_institute_digital.webp') center/cover no-repeat;
+      border: 1px solid rgba(255, 213, 107, 0.35);
+      border-radius: 18px;
+      padding: 40px 36px;
+      margin: 36px auto 36px;
+      max-width: 1080px;
+      color: #FFFFFF;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+    }
+
+    .event-transform-crest {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(90deg, rgba(255, 213, 107, 0.18), rgba(255, 168, 38, 0.25));
+      border: 1px solid var(--gold-champagne);
+      padding: 6px 18px;
+      border-radius: 30px;
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: var(--gold-light);
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .event-transform-title {
+      font-family: var(--font-cinzel);
+      font-size: clamp(20px, 3vw, 28px);
+      font-weight: 700;
+      color: #FFFFFF;
+      line-height: 1.35;
+      margin-bottom: 12px;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.4);
+    }
+
+    .event-transform-title span {
+      color: var(--gold-champagne);
+    }
+
+    .event-transform-desc {
+      max-width: 820px;
+      margin: 0 auto 24px;
+      font-size: 15px;
+      line-height: 1.8;
+      color: rgba(255, 255, 255, 0.92);
+    }
+
+    .event-highlight-slots {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 22px;
+      text-align: left;
+    }
+
+    .event-slot-card {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 213, 107, 0.22);
+      border-radius: 12px;
+      padding: 16px;
+      transition: all 0.3s ease;
+    }
+
+    .event-slot-card:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: var(--gold-champagne);
+      transform: translateY(-3px);
+    }
+
+    .event-slot-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      background: rgba(255, 213, 107, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold-champagne);
+      margin-bottom: 10px;
+    }
+
+    .event-slot-title {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: #FFFFFF;
+      margin-bottom: 5px;
+    }
+
+    .event-slot-desc {
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.8);
+      line-height: 1.5;
+    }
+
+    /* Digital Achievement Wall */
+    .digital-achievement-wall {
+      background: #FFFFFF;
+      border: 1px solid rgba(229, 192, 123, 0.45);
+      border-radius: 16px;
+      padding: 38px 34px;
+      margin-top: 40px;
+      text-align: center;
+      box-shadow: 0 12px 36px rgba(0,0,0,0.06);
+    }
+
+    .achievement-wall-title {
+      font-family: var(--font-cinzel);
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--burgundy);
+      margin-bottom: 8px;
+    }
+
+    .achievement-wall-subtitle {
+      font-size: 14px;
+      color: #666;
+      max-width: 760px;
+      margin: 0 auto 26px;
+      line-height: 1.65;
+    }
+
+    .achievement-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 18px;
+      text-align: left;
+    }
+
+    .achievement-card {
+      background: #FAF6EE;
+      border: 1px solid rgba(229, 192, 123, 0.35);
+      border-radius: 12px;
+      padding: 18px;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .achievement-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--gold-accent);
+      box-shadow: 0 10px 24px rgba(114, 9, 16, 0.08);
+    }
+
+    .achievement-pill {
+      display: inline-block;
+      background: var(--burgundy);
+      color: #FFFFFF;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 8px;
+    }
+
+    .achievement-unit-name {
+      font-size: 14.5px;
+      font-weight: 700;
+      color: var(--burgundy-dark);
+      margin-bottom: 5px;
+      line-height: 1.4;
+    }
+
+    .achievement-contrib {
+      font-size: 12.5px;
+      color: #555;
+      line-height: 1.5;
+    }
+
+    /* Chapter 5: Góc Thanh Xuân */
+    .goc-thanh-xuan-section {
+      background: linear-gradient(180deg, #FFFFFF 0%, #FAF6EE 100%);
+      border: 1px solid rgba(229, 192, 123, 0.45);
+      border-radius: 16px;
+      padding: 40px 34px;
+      margin-top: 44px;
+      box-shadow: 0 12px 36px rgba(0,0,0,0.06);
+      text-align: center;
+    }
+
+    .thanh-xuan-title {
+      font-family: var(--font-cinzel);
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--burgundy);
+      margin-bottom: 8px;
+    }
+
+    .thanh-xuan-subtitle {
+      font-size: 14px;
+      color: #666;
+      max-width: 760px;
+      margin: 0 auto 26px;
+      line-height: 1.65;
+    }
+
+    .thanh-xuan-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .thanh-xuan-card {
+      border-radius: 12px;
+      overflow: hidden;
+      background: #FFFFFF;
+      border: 1px solid rgba(229, 192, 123, 0.3);
+      box-shadow: 0 4px 14px rgba(0,0,0,0.05);
+      display: flex;
+      flex-direction: column;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .thanh-xuan-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 28px rgba(114, 9, 16, 0.12);
+      border-color: var(--gold-accent);
+    }
+
+    .thanh-xuan-img-wrap {
+      position: relative;
+      height: 150px;
+      overflow: hidden;
+    }
+
+    .thanh-xuan-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .thanh-xuan-card:hover .thanh-xuan-img-wrap img {
+      transform: scale(1.08);
+    }
+
+    .thanh-xuan-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 50%, rgba(0,0,0,0.7) 100%);
+    }
+
+    .thanh-xuan-pill {
+      position: absolute;
+      bottom: 8px;
+      left: 8px;
+      background: rgba(114, 9, 16, 0.85);
+      color: #FFFFFF;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 4px;
+      text-transform: uppercase;
+    }
+
+    .thanh-xuan-info {
+      padding: 12px;
+      text-align: left;
+    }
+
+    .thanh-xuan-caption {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--burgundy-dark);
+      line-height: 1.35;
+      margin-bottom: 4px;
+    }
+
+    .thanh-xuan-sub {
+      font-size: 11.5px;
+      color: #777;
+      line-height: 1.4;
+    }
+
+    /* Chapter 6: Colophon & Back Cover */
+    .colophon-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin: 30px 0;
+      text-align: left;
+    }
+
+    .colophon-card {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 213, 107, 0.18);
+      border-radius: 12px;
+      padding: 18px 20px;
+    }
+
+    .colophon-card-title {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--gold-champagne);
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .colophon-card-content {
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.9);
+      line-height: 1.65;
+    }
+
+    .back-cover-spread {
+      position: relative;
+      margin-top: 44px;
+      padding: 60px 24px;
+      border-radius: 18px;
+      overflow: hidden;
+      background: linear-gradient(180deg, rgba(16, 2, 4, 0.85) 0%, rgba(30, 4, 7, 0.9) 100%),
+                  url('backgrounds/agribank_building_sunset.webp') center/cover no-repeat;
+      border: 2px solid rgba(255, 213, 107, 0.35);
+      box-shadow: 0 25px 60px rgba(0,0,0,0.4);
+      text-align: center;
+    }
+
+    .back-cover-tower-crest {
+      width: 58px;
+      height: 58px;
+      margin: 0 auto 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(255, 213, 107, 0.12);
+      border: 1px solid var(--gold-champagne);
+      color: var(--gold-light);
+    }
+
+    .back-cover-motto {
+      font-family: 'Montserrat', 'Plus Jakarta Sans', system-ui, sans-serif;
+      font-size: clamp(22px, 3.6vw, 32px);
+      font-weight: 900;
+      color: #FFFFFF;
+      letter-spacing: 2.5px;
+      line-height: 1.4;
+      margin-bottom: 14px;
+      text-shadow: 0 3px 14px rgba(0,0,0,0.7);
+      text-transform: uppercase;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+
+    .back-cover-submotto {
+      font-size: 15px;
+      color: var(--gold-champagne);
+      max-width: 760px;
+      margin: 0 auto 24px;
+      line-height: 1.75;
+      font-style: italic;
+      font-family: var(--font-serif);
+    }
+
+    @media (max-width: 1024px) {
+      .event-highlight-slots {
+        grid-template-columns: 1fr;
+      }
+      .thanh-xuan-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .colophon-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    @media (max-width: 768px) {
+      .thanh-xuan-grid {
+        grid-template-columns: 1fr;
+      }
+      .editorial-letter-card {
+        padding: 26px 18px;
+      }
+      .event-transform-block {
+        padding: 28px 18px;
+      }
+    }
+
+  
+    /* 3D Gold Typography Matching the Stage Star Trophy */
+    .hero-25-gold-3d {
+      font-family: 'Cinzel', 'Playfair Display', Georgia, serif;
+      font-weight: 900;
+      font-size: clamp(75px, 8.8vw, 125px);
+      line-height: 0.95;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      user-select: none;
+      display: inline-block;
+      background: linear-gradient(135deg, 
+        #FFFFFF 0%, 
+        #FFF4D0 16%, 
+        #FFD54F 34%, 
+        #FFF8E1 50%, 
+        #E6A117 64%, 
+        #B87205 80%, 
+        #FFE082 90%,
+        #7A4400 100%
+      );
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: 
+        drop-shadow(0 1px 0 #FFECA0)
+        drop-shadow(0 2px 0 #E5A823)
+        drop-shadow(0 3px 0 #C98B12)
+        drop-shadow(0 4px 0 #A86E04)
+        drop-shadow(0 5px 0 #875400)
+        drop-shadow(0 7px 0 #613B00)
+        drop-shadow(0 10px 3px rgba(0, 0, 0, 0.45))
+        drop-shadow(0 22px 40px rgba(0, 0, 0, 0.95))
+        drop-shadow(0 0 50px rgba(255, 213, 79, 0.5));
+    }
+
+    .sparkle-glint {
+      position: absolute;
+      width: 34px;
+      height: 34px;
+      pointer-events: none;
+      background: radial-gradient(circle, #FFFFFF 15%, rgba(255, 238, 170, 0.8) 40%, transparent 70%);
+      border-radius: 50%;
+      filter: drop-shadow(0 0 10px #FFD700);
+      z-index: 5;
+    }
+    .sparkle-glint::before, .sparkle-glint::after {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      background: #FFFFFF;
+      transform: translate(-50%, -50%);
+      box-shadow: 0 0 8px #FFD54F;
+    }
+    .sparkle-glint::before { width: 44px; height: 3px; border-radius: 999px; }
+    .sparkle-glint::after { width: 3px; height: 44px; border-radius: 999px; }
+    .glint-top-right { top: -8px; right: 18px; animation: pulseGlint 3s infinite ease-in-out; }
+    .glint-top-left { top: 14px; left: 16px; transform: scale(0.7); animation: pulseGlint 3s infinite ease-in-out 1.5s; }
+
+    @keyframes pulseGlint {
+      0%, 100% { opacity: 0.85; transform: scale(0.9) rotate(0deg); }
+      50% { opacity: 1; transform: scale(1.15) rotate(45deg); }
+    }
+
+    /* Floating Switcher Controls on Hero */
+    .hero-variant-switcher {
+      position: absolute;
+      top: 72px;
+      right: 24px;
+      z-index: 30;
+      background: rgba(20, 5, 8, 0.82);
+      border: 1px solid rgba(255, 215, 0, 0.4);
+      padding: 6px 12px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(8px);
+    }
+    .hero-variant-switcher span {
+      font-size: 11.5px;
+      font-weight: 700;
+      color: #FFE699;
+      letter-spacing: 0.5px;
+      margin-right: 4px;
+      text-transform: uppercase;
+    }
+    .btn-var-pill {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 215, 0, 0.25);
+      color: #FFFFFF;
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-size: 11.5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .btn-var-pill:hover {
+      background: rgba(245, 206, 117, 0.2);
+      border-color: #FFD54F;
+    }
+    .btn-var-pill.active {
+      background: linear-gradient(135deg, #ECC870 0%, #D4A338 50%, #A87018 100%);
+      color: #2E0508;
+      font-weight: 800;
+      border-color: #FFF2C5;
+      box-shadow: 0 2px 10px rgba(236, 200, 112, 0.4);
+    }
+
+  
+    /* ====================================================
+       MONUMENTAL LEADERSHIP SPREAD (CHÂN DUNG LÃNH ĐẠO QUA CÁC THỜI KỲ)
+       ==================================================== */
+    .leadership-monumental-spread {
+      margin: 60px 0 70px;
+      padding: 55px 36px 50px;
+      background: radial-gradient(circle at 50% 30%, rgba(45, 6, 12, 0.6) 0%, rgba(20, 3, 6, 0.9) 100%),
+                  url('backgrounds/bg_leadership_campus_sunrise.webp') center/cover no-repeat;
+      border: 1.5px solid rgba(229, 192, 123, 0.55);
+      border-radius: 24px;
+      box-shadow: 0 18px 60px rgba(0, 0, 0, 0.75), inset 0 1px 0 rgba(255, 240, 200, 0.25);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .leadership-monumental-spread::before {
+      content: '';
+      position: absolute;
+      top: -120px;
+      right: -120px;
+      width: 420px;
+      height: 420px;
+      background: radial-gradient(circle, rgba(229, 192, 123, 0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .leadership-spread-header {
+      text-align: center;
+      max-width: 860px;
+      margin: 0 auto 40px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .leadership-ribbon-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, #7A0A12 0%, #A51421 50%, #7A0A12 100%);
+      color: #FFF2C5;
+      padding: 9px 28px;
+      border-radius: 999px;
+      border: 1.5px solid rgba(245, 206, 117, 0.7);
+      font-family: var(--font-cinzel);
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      box-shadow: 0 4px 20px rgba(122, 10, 18, 0.55);
+      margin-bottom: 18px;
+    }
+
+    .leadership-main-title {
+      font-family: var(--font-cinzel);
+      font-size: clamp(26px, 3.5vw, 42px);
+      font-weight: 900;
+      color: #FFFFFF;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+      text-shadow: 0 4px 18px rgba(0, 0, 0, 0.85);
+    }
+
+    .leadership-sub-desc {
+      font-size: clamp(14px, 1.25vw, 16px);
+      line-height: 1.75;
+      color: rgba(255, 246, 223, 0.88);
+      font-weight: 400;
+      max-width: 960px;
+      margin: 0 auto;
+      text-wrap: balance;
+    }
+
+    .leadership-grid-3x3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px 24px;
+      max-width: 1100px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    @media (max-width: 992px) {
+      .leadership-grid-3x3 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 620px) {
+      .leadership-grid-3x3 {
+        grid-template-columns: 1fr;
+      }
+      .leadership-monumental-spread {
+        padding: 36px 18px;
+      }
+    }
+
+    .leader-card-item {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(229, 192, 123, 0.3);
+      border-radius: 16px;
+      padding: 26px 18px 22px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(8px);
+    }
+
+    .leader-card-item:hover {
+      transform: translateY(-8px);
+      background: rgba(255, 255, 255, 0.09);
+      border-color: rgba(245, 206, 117, 0.85);
+      box-shadow: 0 14px 36px rgba(0, 0, 0, 0.6), 0 0 25px rgba(229, 192, 123, 0.25);
+    }
+
+    .leader-frame-wrap {
+      display: inline-block;
+      padding: 0;
+      border: 2px solid rgba(229, 192, 123, 0.5);
+      border-radius: 12px;
+      overflow: hidden;
+      background: transparent;
+      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.45);
+      margin-bottom: 16px;
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .leader-card-item:hover .leader-frame-wrap {
+      border-color: var(--gold-primary);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.6), 0 0 22px rgba(229, 192, 123, 0.45);
+      transform: scale(1.03);
+    }
+
+    .leader-frame-wrap img {
+      width: 156px;
+      height: 156px;
+      object-fit: cover;
+      display: block;
+      border-radius: 10px;
+    }
+
+    .leader-rank-label {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: #FFE699;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 4px;
+    }
+
+    .leader-name-heading {
+      font-family: var(--font-cinzel);
+      font-size: 17px;
+      font-weight: 900;
+      color: #FFFFFF;
+      letter-spacing: 0.5px;
+      margin-bottom: 10px;
+      line-height: 1.35;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.8);
+    }
+
+    .leader-period-desc {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 13.5px;
+      color: rgba(255, 255, 255, 0.82);
+      line-height: 1.45;
+      padding-top: 8px;
+      border-top: 1px dashed rgba(229, 192, 123, 0.25);
+      width: 100%;
+    }
+
   </style>
 </head>
 <body>
@@ -2204,44 +3096,44 @@
   <!-- ==============================================
        PHẦN 1: MÀN HÌNH MỞ ĐẦU CINEMATIC & LỜI NGỎ (100VH)
        ============================================== -->
-  <section class="story-section" id="sec-hero">
+  <section class="story-section" id="sec-hero" style="justify-content: center; align-items: flex-end; padding-right: 8.5vw;">
     <canvas id="heroParticles" class="hero-particles-canvas"></canvas>
-    <div class="hero-drum-bg"></div>
-    <div class="hero-wave-bg"></div>
+    
+    <!-- Thanh Chuyển Đổi Nhanh 3 Phương Án Trực Tiếp Trên Màn Hình -->
+    <div class="hero-variant-switcher" title="Bấm để xem các kiểu chữ 25 NĂM">
+      <span>Kiểu Chữ:</span>
+      <button class="btn-var-pill active" onclick="setHeroVariant(1, event)">PA 1 (Chỉ 25 NĂM)</button>
+      <button class="btn-var-pill" onclick="setHeroVariant(2, event)">PA 2 (+ Đề từ)</button>
+      <button class="btn-var-pill" onclick="setHeroVariant(3, event)">PA 3 (Trọn bộ)</button>
+    </div>
 
-    <div class="hero-box">
-      <div class="hero-badge-gold">
+    <!-- Khối Chữ 3D Vàng Đặt Tại Vùng Ánh Sáng Spotlight Bên Phải -->
+    <div class="hero-box" id="heroSpotlightBox" style="position: relative; z-index: 10; max-width: 680px; margin: 0; text-align: center; display: flex; flex-direction: column; align-items: center; margin-top: -3vh;">
+      <div id="heroBadgePlaque" class="hero-badge-gold" style="display: none; margin-bottom: 16px; background: rgba(80, 10, 16, 0.7); border: 1px solid rgba(255, 215, 0, 0.5); color: #FFECA0; padding: 6px 20px; border-radius: 999px; font-size: 13px; font-weight: 700; letter-spacing: 2px;">
         <i data-lucide="award"></i> KỶ NIỆM 25 NĂM THÀNH LẬP TRƯỜNG ĐÀO TẠO CÁN BỘ
       </div>
-      
-      <div class="hero-title-box">
-        <div class="hero-flare-star"></div>
+
+      <div class="hero-title-box" style="position: relative; display: inline-block; margin-bottom: 10px;">
         <h1 class="hero-heading" aria-label="25 NĂM">
-          <span class="hero-25-text">25 NĂM</span>
+          <span class="hero-25-gold-3d">25 NĂM</span>
         </h1>
-        <div class="hero-flare-streak"></div>
-        <div class="hero-flare-2"></div>
+        <div class="sparkle-glint glint-top-right"></div>
+        <div class="sparkle-glint glint-top-left"></div>
       </div>
 
-      <h2 class="hero-subheading">Tự Hào Truyền Thống, Kiến Tạo Tương Lai</h2>
-      
-      <p class="hero-quote">
-        Xuyên suốt cuốn kỷ yếu là sự giao thoa giữa hai dòng chảy: 
-        <strong>Niềm tự hào về di sản 25 năm kiến tạo tri thức</strong> của Trường Đào tạo cán bộ và 
-        <strong>Khát vọng đổi mới, vươn tầm chiến lược</strong> của Viện Nghiên cứu và Đào tạo Agribank trong kỷ nguyên số.
-      </p>
-
-      <div class="hero-cta-group">
-        <a href="#sec-letters" class="btn-hero-journey">
-          <i data-lucide="book-open"></i> Bắt Đầu Hành Trình
-        </a>
-      </div>
-
-      <a href="#sec-letters" class="hero-scroll-indicator">
-        <span>Cuộn để khám phá</span>
-        <i data-lucide="chevron-down"></i>
-      </a>
+      <h2 id="heroMottoText" class="hero-subheading" style="display: none; font-family: 'Playfair Display', Georgia, serif; font-size: clamp(21px, 2.3vw, 32px); font-weight: 700; font-style: italic; color: #FFF6DF; text-shadow: 0 2px 4px rgba(0,0,0,0.9), 0 4px 15px rgba(0,0,0,0.8); margin-top: 10px; margin-bottom: 0;">
+        Tự Hào Truyền Thống, Kiến Tạo Tương Lai
+      </h2>
     </div>
+
+    <!-- Khối tiêu đề ngữ nghĩa ẩn cho trợ năng (SEO / Screen Reader) -->
+    <h1 class="sr-only">Kỷ Yếu 25 Năm Agribank: Tự Hào Truyền Thống, Kiến Tạo Tương Lai - Viện Nghiên Cứu Và Đào Tạo</h1>
+
+    <!-- Chỉ dẫn cuộn khám phá tinh tế đặt dưới đáy bìa -->
+    <a href="#sec-letters" class="hero-scroll-indicator" style="position: absolute; bottom: 22px; z-index: 5; margin: 0; left: 50%; transform: translateX(-50%);">
+      <span>Cuộn để khám phá hành trình</span>
+      <i data-lucide="chevron-down"></i>
+    </a>
   </section>
 
   <!-- PHẦN LỜI NGỎ (MAGAZINE EDITORIAL SPREAD) -->
@@ -2249,34 +3141,48 @@
     <div class="story-container">
       <span class="section-lead-tag">Lời Ngỏ • Nhịp Cầu Nối Quá Khứ & Tương Lai</span>
       
-      <div class="letters-row">
+      <div class="letters-editorial-grid">
         <!-- Thư Chủ tịch HĐTV -->
-        <div class="paper-card">
-          <div class="paper-card-header">
-            <span class="article-author-tag">Thông Điệp Lãnh Đạo • Kỷ Niệm 25 Năm</span>
-            <h3 class="paper-card-title">Thư Chúc Mừng Kỷ Niệm 25 Năm Thành Lập Trường Đào Tạo Cán Bộ</h3>
-            <p class="paper-card-role">Chủ tịch Hội đồng Thành viên Agribank</p>
+        <div class="editorial-letter-card">
+          <div class="letter-watermark-crest"></div>
+          <div class="letter-portrait-header">
+            <div class="leader-portrait-slot" data-archive-slot="chairman-portrait">
+              <i data-lucide="landmark"></i>
+              <span>Chủ Tịch<br>HĐTV</span>
+            </div>
+            <div class="letter-meta-info">
+              <span class="letter-category-tag"><i data-lucide="award"></i> Văn Kiện Kỷ Niệm 25 Năm</span>
+              <h3 class="letter-title">Thư Chúc Mừng 20/11 & 25 Năm Thành Lập Trường</h3>
+              <p class="letter-role-subtitle">Chủ tịch Hội đồng Thành viên Agribank</p>
+            </div>
           </div>
-          <div class="paper-card-snippet">
-            “Nhân dịp Kỷ niệm 25 năm thành lập Trường Đào tạo cán bộ, xin bày tỏ lòng biết ơn sâu sắc đến các thế hệ đi trước và trao trọn niềm kỳ vọng vào bước chuyển mình phát triển của Viện...”
+          <div class="letter-body-quote">
+            “Nhân dịp Kỷ niệm 25 năm thành lập Trường Đào tạo cán bộ và Ngày Nhà giáo Việt Nam 20/11, trân trọng ghi nhận và tri ân những cống hiến bền bỉ của các thế hệ Thầy cô giáo; đồng thời trao trọn niềm tin vào bước chuyển mình chiến lược: Tháng 11/2026 chính thức chuyển đổi thành Viện Nghiên cứu và Đào tạo Agribank...”
           </div>
-          <button class="btn-read-article" onclick="openArticle('letter-chairman')">
-            <i data-lucide="book-open"></i> Đọc Toàn Văn Thư
+          <button class="btn-read-article" style="margin-top: auto; position: relative; z-index: 1;" onclick="openArticle('letter-chairman')">
+            <i data-lucide="book-open"></i> Đọc Toàn Văn Thư Chúc Mừng
           </button>
         </div>
 
         <!-- Lời ngỏ Viện trưởng -->
-        <div class="paper-card">
-          <div class="paper-card-header">
-            <span class="article-author-tag">Tuyên Bố Sứ Mệnh • Kỷ Nguyên Mới</span>
-            <h3 class="paper-card-title">Lời Ngỏ của Viện Trưởng</h3>
-            <p class="paper-card-role">Giám đốc Trường / Viện trưởng Viện NC&ĐT Agribank</p>
+        <div class="editorial-letter-card">
+          <div class="letter-watermark-crest"></div>
+          <div class="letter-portrait-header">
+            <div class="leader-portrait-slot" data-archive-slot="director-portrait">
+              <i data-lucide="feather"></i>
+              <span>Viện Trưởng<br>Viện NC&ĐT</span>
+            </div>
+            <div class="letter-meta-info">
+              <span class="letter-category-tag"><i data-lucide="compass"></i> Tuyên Bố Sứ Mệnh Mới</span>
+              <h3 class="letter-title">Lời Ngỏ Của Viện Trưởng</h3>
+              <p class="letter-role-subtitle">Giám đốc Trường / Viện trưởng Viện NC&ĐT Agribank</p>
+            </div>
           </div>
-          <div class="paper-card-snippet">
-            “Thông điệp bản lề đúc kết tinh hoa 25 năm (Tự hào) và tuyên bố sứ mệnh mới khi chuyển đổi thành Viện (Kiến tạo) trong kỷ nguyên số...”
+          <div class="letter-body-quote">
+            “Hai mươi lăm năm (1999 – 2026) là một hành trình tự hào của tri thức và nghĩa tình. Đứng trước vận hội mới của kỷ nguyên số, Viện chính thức được thành lập vào tháng 11/2026 để đảm nhận sứ mệnh kép: Vừa là trung tâm đào tạo chuẩn mực, vừa là cơ quan nghiên cứu chiến lược hàng đầu của hệ thống...”
           </div>
-          <button class="btn-read-article" onclick="openArticle('letter-director')">
-            <i data-lucide="feather"></i> Đọc Lời Ngỏ
+          <button class="btn-read-article" style="margin-top: auto; position: relative; z-index: 1;" onclick="openArticle('letter-director')">
+            <i data-lucide="feather"></i> Đọc Lời Ngỏ Kỷ Yếu
           </button>
         </div>
       </div>
@@ -2298,46 +3204,46 @@
       <div class="sticky-story-container">
         <!-- Visual Storytelling Pane (Sticky Left) -->
         <div class="sticky-story-visual-pane">
-          <!-- Slide 1999 -->
+          <!-- Slide 04/9/2001: Thành lập Trung tâm Đào tạo NHNo&PTNT Việt Nam -->
           <div class="sticky-era-slide active-era" style="background-image: url('backgrounds/agribank_heritage_library.webp');" data-era-slide="0">
             <div class="sticky-era-overlay"></div>
             <div class="sticky-era-content">
-              <span class="sticky-era-tag"><i data-lucide="clock"></i> Giai Đoạn Khởi Nguồn • 1999</span>
-              <div class="sticky-era-year">1999</div>
-              <h4 class="sticky-era-title">Trung Tâm Đào Tạo Cán Bộ Agribank</h4>
-              <p class="sticky-era-desc">Những bục giảng đầu tiên thắp lên ngọn lửa tri thức, ươm mầm cho văn hóa học tập bền bỉ của người cán bộ Agribank.</p>
+              <span class="sticky-era-tag"><i data-lucide="clock"></i> Dấu Mốc Thành Lập • 04/9/2001</span>
+              <div class="sticky-era-year">04/9/2001</div>
+              <h4 class="sticky-era-title">Thành Lập Trung Tâm Đào Tạo NHNo&PTNT Việt Nam</h4>
+              <p class="sticky-era-desc">Ngày 04/9/2001: Quyết định thành lập Trung tâm Đào tạo Ngân hàng Nông nghiệp và Phát triển Nông thôn Việt Nam, đặt nền móng vững chắc cho sứ mệnh đào tạo nguồn nhân lực của toàn hệ thống.</p>
             </div>
           </div>
 
-          <!-- Slide 2008 -->
+          <!-- Slide 20/9/2010: Đổi tên thành Trường Đào tạo cán bộ Agribank -->
           <div class="sticky-era-slide" style="background-image: url('backgrounds/01_hero_campus.webp');" data-era-slide="1">
             <div class="sticky-era-overlay"></div>
             <div class="sticky-era-content">
-              <span class="sticky-era-tag"><i data-lucide="graduation-cap"></i> Mở Rộng & Chuẩn Hóa • 2008</span>
-              <div class="sticky-era-year">2008</div>
-              <h4 class="sticky-era-title">Trường Đào Tạo Cán Bộ Agribank</h4>
-              <p class="sticky-era-desc">Nâng cấp quy mô, chuẩn hóa giáo trình nghiệp vụ và xây dựng mạng lưới giảng viên kiêm chức vững vàng trên toàn quốc.</p>
+              <span class="sticky-era-tag"><i data-lucide="graduation-cap"></i> Nâng Tầm Vị Thế • 20/9/2010</span>
+              <div class="sticky-era-year">20/9/2010</div>
+              <h4 class="sticky-era-title">Đổi Tên Thành Trường Đào Tạo Cán Bộ Agribank</h4>
+              <p class="sticky-era-desc">Ngày 20/9/2010: Chính thức đổi tên thành Trường Đào tạo cán bộ Agribank, mở rộng quy mô khuôn viên, chuẩn hóa giáo trình nghiệp vụ và xây dựng mạng lưới giảng viên kiêm chức toàn quốc.</p>
             </div>
           </div>
 
-          <!-- Slide 2019 -->
+          <!-- Slide 01/01/2018: Đổi mới mô hình tổ chức -->
           <div class="sticky-era-slide" style="background-image: url('backgrounds/03_lecture_auditorium.webp');" data-era-slide="2">
             <div class="sticky-era-overlay"></div>
             <div class="sticky-era-content">
-              <span class="sticky-era-tag"><i data-lucide="award"></i> Vươn Tầm Quốc Tế • 2019</span>
-              <div class="sticky-era-year">2019</div>
-              <h4 class="sticky-era-title">Dấu Ấn Quốc Tế & SEI AWARD</h4>
-              <p class="sticky-era-desc">Vinh dự đón nhận giải thưởng quốc tế SEI Award, khẳng định chất lượng vượt trội trong công tác đào tạo chuyên môn tài chính - ngân hàng.</p>
+              <span class="sticky-era-tag"><i data-lucide="refresh-cw"></i> Tái Cơ Cấu & Đổi Mới • 01/01/2018</span>
+              <div class="sticky-era-year">01/01/2018</div>
+              <h4 class="sticky-era-title">Đổi Mới Mô Hình Tổ Chức</h4>
+              <p class="sticky-era-desc">Ngày 01/01/2018: Đổi mới mô hình tổ chức, tinh gọn bộ máy và nâng cao chất lượng quản trị đào tạo, tạo bước đệm đón nhận giải thưởng quốc tế SEI Award.</p>
             </div>
           </div>
 
-          <!-- Slide 2024 - Nay -->
+          <!-- Slide 11/2026: Chuyển đổi thành Viện Nghiên cứu và Đào tạo Agribank -->
           <div class="sticky-era-slide" style="background-image: url('backgrounds/agribank_future_institute_digital.webp');" data-era-slide="3">
             <div class="sticky-era-overlay"></div>
             <div class="sticky-era-content">
-              <span class="sticky-era-tag"><i data-lucide="sparkles"></i> Kỷ Nguyên Mới • 2024 — NAY</span>
-              <div class="sticky-era-year">2024+</div>
-              <h4 class="sticky-era-title">Viện Nghiên Cứu Và Đào Tạo Agribank</h4>
+              <span class="sticky-era-tag"><i data-lucide="sparkles"></i> Dấu Mốc Lịch Sử • THÁNG 11/2026</span>
+              <div class="sticky-era-year">11/2026</div>
+              <h4 class="sticky-era-title">Chính Thức Chuyển Đổi Thành Viện Nghiên Cứu Và Đào Tạo Agribank</h4>
               <p class="sticky-era-desc">Bước chuyển mình lịch sử: Vừa là trung tâm đào tạo chuẩn mực, vừa là viện nghiên cứu chiến lược, tham mưu đột phá trong kỷ nguyên số.</p>
             </div>
           </div>
@@ -2351,45 +3257,191 @@
 
           <div class="timeline-node active-milestone" data-era="0">
             <div class="timeline-dot"></div>
-            <span class="timeline-year">NĂM 1999</span>
-            <h4 class="timeline-title">Thành Lập Trung Tâm Đào Tạo Cán Bộ Agribank</h4>
-            <p class="timeline-desc">Những ngày đầu đặt nền móng với bục giảng đơn sơ, thắp lên ngọn lửa tri thức đầu tiên cho hệ thống ngân hàng nông nghiệp.</p>
+            <span class="timeline-year">NGÀY 04/9/2001</span>
+            <h4 class="timeline-title">Thành Lập Trung Tâm Đào Tạo Ngân Hàng Nông Nghiệp Và Phát Triển Nông Thôn Việt Nam</h4>
+            <p class="timeline-desc">Quyết định lịch sử đặt nền móng đầu tiên cho công tác đào tạo và bồi dưỡng chuyên môn nghiệp vụ trong toàn hệ thống Agribank.</p>
           </div>
 
           <div class="timeline-node" data-era="1">
             <div class="timeline-dot"></div>
-            <span class="timeline-year">NĂM 2008</span>
-            <h4 class="timeline-title">Nâng Cấp Thành Trường Đào Tạo Cán Bộ Agribank</h4>
-            <p class="timeline-desc">Mở rộng quy mô, chuẩn hóa giáo trình đào tạo nghiệp vụ và xây dựng mạng lưới giảng viên kiêm chức vững mạnh toàn quốc.</p>
+            <span class="timeline-year">NGÀY 20/9/2010</span>
+            <h4 class="timeline-title">Đổi Tên Thành Trường Đào Tạo Cán Bộ Agribank</h4>
+            <p class="timeline-desc">Mở rộng quy mô, nâng cấp cơ sở vật chất khang trang, phát triển mạng lưới giảng viên kiêm chức và chuẩn hóa toàn diện khung chương trình đào tạo.</p>
           </div>
 
           <div class="timeline-node" data-era="2">
             <div class="timeline-dot"></div>
-            <span class="timeline-year">NĂM 2019</span>
-            <h4 class="timeline-title">Dấu Ấn Quốc Tế & Đổi Mới Toàn Diện (SEI AWARD)</h4>
-            <p class="timeline-desc">Đơn vị vinh dự đón nhận giải thưởng SEI AWARD, khẳng định chất lượng vượt trội trong công tác đào tạo chuyên môn tài chính.</p>
+            <span class="timeline-year">NGÀY 01/01/2018</span>
+            <h4 class="timeline-title">Đổi Mới Mô Hình Tổ Chức</h4>
+            <p class="timeline-desc">Tái cơ cấu bộ máy, đổi mới toàn diện mô hình tổ chức và phương thức quản trị đào tạo, nâng cao năng suất chuyên môn và vươn tầm giải thưởng quốc tế.</p>
           </div>
 
           <div class="timeline-node" data-era="3">
             <div class="timeline-dot"></div>
-            <span class="timeline-year">NĂM 2024 — NAY</span>
-            <h4 class="timeline-title">Chuyển Đổi Thành Viện Nghiên Cứu Và Đào Tạo Agribank</h4>
+            <span class="timeline-year">THÁNG 11/2026</span>
+            <h4 class="timeline-title">Chính Thức Chuyển Đổi Thành Viện Nghiên Cứu Và Đào Tạo Agribank</h4>
             <p class="timeline-desc">Bước ngoặt lịch sử: Vừa là trung tâm đào tạo chuẩn mực, vừa là viện nghiên cứu chiến lược, tham mưu chính sách đột phá trong kỷ nguyên số.</p>
           </div>
         </div>
       </div>
 
       <!-- 3 Bài viết chính phần 2 kèm vị trí ảnh tư liệu chờ -->
+      
+      <!-- ====================================================
+           MỤC LỚN: CHÂN DUNG BAN LÃNH ĐẠO TRƯỜNG QUA CÁC THỜI KỲ (TRANG 09 KỶ YẾU)
+           ==================================================== -->
+      <div class="leadership-monumental-spread" id="sec-leadership-spread">
+        <div class="leadership-spread-header">
+          <h3 class="leadership-main-title">
+            GIÁM ĐỐC TRƯỜNG ĐÀO TẠO CÁN BỘ QUA CÁC THỜI KỲ
+          </h3>
+          <p class="leadership-sub-desc">
+            Trân trọng tri ân và khắc ghi công lao to lớn của các thế hệ Thầy Cô trong Ban Lãnh đạo Trường đã đặt nền móng vững chắc,<br>dẫn dắt và cống hiến trọn vẹn cho sự nghiệp đào tạo nguồn nhân lực Agribank từ năm 1999 đến nay.
+          </p>
+        </div>
+
+        <!-- Bảng 9 Chân Dung Giám Đốc Qua Các Thời Kỳ (Chuẩn Trang 09 Kỷ Yếu) -->
+        <div class="leadership-grid-3x3">
+          
+          <!-- 1. Nguyễn Gia Huân -->
+          <div class="leader-card-item">
+            <div class="leader-frame-wrap">
+              <img src="images/leadership/leader_01_nguyen_gia_huan.webp" alt="Giám đốc Nguyễn Gia Huân" loading="lazy">
+            </div>
+            <div class="leader-rank-label">Giám đốc</div>
+            <div class="leader-name-heading">NGUYỄN GIA HUÂN</div>
+            <div class="leader-period-desc">
+              Giai đoạn từ năm 2001<br>đến tháng 4 năm 2004
+            </div>
+          </div>
+
+          <!-- 2. Tạ Phúc Triển -->
+          <div class="leader-card-item">
+            <div class="leader-frame-wrap">
+              <img src="images/leadership/leader_02_ta_phuc_trien.webp" alt="Giám đốc Tạ Phúc Triển" loading="lazy">
+            </div>
+            <div class="leader-rank-label">Giám đốc</div>
+            <div class="leader-name-heading">TẠ PHÚC TRIỂN</div>
+            <div class="leader-period-desc">
+              Giai đoạn từ tháng 5 năm 2004<br>đến tháng 4 năm 2007
+            </div>
+          </div>
+
+          <!-- 3. Bùi Thiện Nhiên -->
+          <div class="leader-card-item">
+            <div class="leader-frame-wrap">
+              <img src="images/leadership/leader_03_bui_thien_nhien.webp" alt="Giám đốc Bùi Thiện Nhiên" loading="lazy">
+            </div>
+            <div class="leader-rank-label">Giám đốc</div>
+            <div class="leader-name-heading">BÙI THIỆN NHIÊN</div>
+            <div class="leader-period-desc">
+              Giai đoạn từ tháng 5 năm 2007<br>đến tháng 7 năm 2008
+            </div>
+          </div>
+
+          <!-- 4. Nguyễn Thanh Đường -->
+          <div class="leader-card-item">
+            <div class="leader-frame-wrap">
+              <img src="images/leadership/leader_04_nguyen_thanh_duong.webp" alt="Phó Giám đốc phụ trách Nguyễn Thanh Đường" loading="lazy">
+            </div>
+            <div class="leader-rank-label">Phó Giám đốc phụ trách</div>
+            <div class="leader-name-heading">NGUYỄN THANH ĐƯỜNG</div>
+            <div class="leader-period-desc">
+              Giai đoạn từ tháng 8 năm 2008<br>đến tháng 9 năm 2008
+            </div>
+          </div>
+
+          <!-- 5. Phạm Hoài Bắc -->
+          <div class="leader-card-item">
+            <div class="leader-frame-wrap">
+              <img src="images/leadership/leader_05_pham_hoai_bac.webp" alt="Giám đốc Phạm Hoài Bắc" loading="lazy">
+            </div>
+            <div class="leader-rank-label">Giám đốc</div>
+            <div class="leader-name-heading">PHẠM HOÀI BẮC</div>
+            <div class="leader-period-desc">
+              Giai đoạn từ tháng 10 năm 2008<br>đến tháng 7 năm 2015
+            </div>
+          </div>
+
+          <!-- 6. Phan Kế Hoàng -->
+          <div class="leader-card-item">
+            <div class="leader-frame-wrap">
+              <img src="images/leadership/leader_06_phan_ke_hoang.webp" alt="Phó Giám đốc phụ trách Phan Kế Hoàng" loading="lazy">
+            </div>
+            <div class="leader-rank-label">Phó Giám đốc phụ trách</div>
+            <div class="leader-name-heading">PHAN KẾ HOÀNG</div>
+            <div class="leader-period-desc">
+              Giai đoạn từ tháng 7 năm 2015<br>đến tháng 6 năm 2017
+            </div>
+          </div>
+
+          <!-- 7. Võ Văn Chân -->
+          <div class="leader-card-item">
+            <div class="leader-frame-wrap">
+              <img src="images/leadership/leader_07_vo_van_chan.webp" alt="Giám đốc Võ Văn Chân" loading="lazy">
+            </div>
+            <div class="leader-rank-label">Giám đốc</div>
+            <div class="leader-name-heading">VÕ VĂN CHÂN</div>
+            <div class="leader-period-desc">
+              Giai đoạn từ tháng 9 năm 2017<br>đến tháng 11 năm 2021
+            </div>
+          </div>
+
+          <!-- 8. Trần Đức Quảng -->
+          <div class="leader-card-item">
+            <div class="leader-frame-wrap">
+              <img src="images/leadership/leader_08_tran_duc_quang.webp" alt="Phó Giám đốc phụ trách Trần Đức Quảng" loading="lazy">
+            </div>
+            <div class="leader-rank-label">Phó Giám đốc phụ trách</div>
+            <div class="leader-name-heading">TRẦN ĐỨC QUẢNG</div>
+            <div class="leader-period-desc">
+              GĐ 1: 06/2017 – 08/2017<br>GĐ 2: 12/2021 – 12/2023
+            </div>
+          </div>
+
+          <!-- 9. Nguyễn Thị Thu Hà -->
+          <div class="leader-card-item">
+            <div class="leader-frame-wrap">
+              <img src="images/leadership/leader_09_nguyen_thi_thu_ha.webp" alt="Giám đốc Nguyễn Thị Thu Hà" loading="lazy">
+            </div>
+            <div class="leader-rank-label">Giám đốc</div>
+            <div class="leader-name-heading">NGUYỄN THỊ THU HÀ</div>
+            <div class="leader-period-desc">
+              Giai đoạn từ tháng 01 năm 2024<br>đến nay
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Khung 3 Giai Đoạn Phát Triển Bản Lề & Nút Xem Nguyên Bản Quét Gốc -->
+        <div style="background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(229, 192, 123, 0.35); border-radius: 14px; padding: 24px 28px; margin-top: 36px; max-width: 1100px; margin-left: auto; margin-right: auto;">
+          <h4 style="color: #FFE699; font-family: var(--font-cinzel); font-size: 17px; margin-bottom: 14px; display: flex; align-items: center; gap: 8px;">
+            <i data-lucide="history"></i> Ba Giai Đoạn Phát Triển Bản Lề (1999 – 2026)
+          </h4>
+          <div style="font-size: 14px; line-height: 1.7; color: rgba(255,255,255,0.85); margin-bottom: 10px;">
+            <strong style="color: #FFE599;">1. Ngày 04/9/2001 (Khởi nguồn):</strong> Thành lập Trung tâm Đào tạo Ngân hàng Nông nghiệp và Phát triển Nông thôn Việt Nam. Những bục giảng đầu tiên, cơ sở vật chất đơn sơ nhưng sáng ngời tinh thần vượt khó, đặt nền móng quy chế học tập và giáo trình cốt lõi.
+          </div>
+          <div style="font-size: 14px; line-height: 1.7; color: rgba(255,255,255,0.85); margin-bottom: 10px;">
+            <strong style="color: #FFE599;">2. Ngày 20/9/2010 & Ngày 01/01/2018 (Phát triển & Đổi mới):</strong> Ngày 20/9/2010 đổi tên thành Trường Đào tạo cán bộ Agribank; Ngày 01/01/2018 đổi mới mô hình tổ chức, mở rộng khuôn viên khang trang, chuẩn hóa mạng lưới giảng viên kiêm chức toàn quốc và vươn tầm giải thưởng quốc tế.
+          </div>
+          <div style="font-size: 14px; line-height: 1.7; color: rgba(255,255,255,0.85); margin-bottom: 18px;">
+            <strong style="color: #FFE599;">3. Tháng 11/2026 (Kỷ nguyên mới):</strong> Chính thức chuyển đổi thành Viện Nghiên cứu và Đào tạo Agribank. Bước nhảy vọt về mô hình tổ chức, kết hợp hài hòa giữa đào tạo thực chiến và nghiên cứu chiến lược chuyên sâu.
+          </div>
+
+        </div>
+      </div>
+
       <div class="tradition-grid">
         <!-- Bài 1: Lãnh đạo qua các thời kỳ -->
         <div class="article-box">
-          <div class="photo-placeholder" data-archive-slot="historic-leaders">
-            <div class="photo-placeholder-watermark"><i data-lucide="landmark"></i></div>
-            <div class="photo-placeholder-badge">
-              <i data-lucide="history"></i> Tư Liệu Lịch Sử 25 Năm (1999 – 2024)
+          <div class="photo-placeholder" data-archive-slot="historic-leaders" style="background: #FFFBF2 url('images/leadership/page_09_ban_lanh_dao_truong.webp') center 18%/cover no-repeat; min-height: 230px; position: relative; border-radius: 12px; overflow: hidden; border: 1.5px solid rgba(229, 192, 123, 0.4);">
+            <div class="photo-placeholder-badge" style="background: rgba(122, 10, 18, 0.9); backdrop-filter: blur(4px);">
+              <i data-lucide="history"></i> Tư Liệu Lịch Sử 25 Năm (1999 – 2026) • Trang 09
             </div>
-            <div class="photo-placeholder-caption">Chân Dung Lãnh Đạo & Các Thế Hệ Thầy Cô</div>
-            <div class="photo-placeholder-tag">Hồ sơ tư liệu 25 năm • Lưu trữ kỷ yếu truyền thống</div>
+            <div style="background: linear-gradient(0deg, rgba(30, 5, 8, 0.94) 0%, rgba(30, 5, 8, 0.75) 60%, transparent 100%); width: 100%; position: absolute; bottom: 0; left: 0; padding: 16px 18px; text-align: left;">
+              <span style="display: block; font-weight: 800; color: #FFECA0; font-size: 15px; letter-spacing: 0.5px;">Chân Dung Ban Lãnh Đạo Qua Các Thời Kỳ</span>
+              <span style="display: block; font-size: 12.5px; color: rgba(255, 255, 255, 0.88); margin-top: 3px;">Hồ sơ 9 đồng chí Giám đốc & Phó Giám đốc phụ trách (1999 – 2026)</span>
+            </div>
           </div>
           <span class="article-author-tag">Kỷ Yếu Truyền Thống • Tác Giả: Thanh Thúy</span>
           <h3 class="article-heading">Trường & Ban Lãnh Đạo Qua Các Thời Kỳ</h3>
@@ -2431,7 +3483,7 @@
             <div class="photo-placeholder-caption">Khoảnh Khắc Giảng Đường & Khóa Học Đầu Tiên</div>
             <div class="photo-placeholder-tag">Hình ảnh trắng đen & sepia thời kỳ 1999 – 2008</div>
           </div>
-          <span class="article-author-tag">Hành Trình Tri Thức 25 Năm (1999 — 2024)</span>
+          <span class="article-author-tag">Hành Trình Tri Thức 25 Năm (1999 — 2026)</span>
           <h3 class="article-heading">Ký Ức Thời Gian & Ảnh Tư Liệu</h3>
           <p class="article-lead">
             Bản đồ cột mốc lịch sử và những khoảnh khắc vàng trắng đen/sepia của các thế hệ cán bộ, giảng viên, học viên thời kỳ đầu.
@@ -2482,7 +3534,7 @@
           <div class="stat-label">Ngân hàng đề thi & sát hạch trực tuyến</div>
         </div>
         <div class="stat-card">
-          <div class="stat-num">25 Năm</div>
+          <div class="stat-num">25 NĂM</div>
           <div class="stat-label">Di sản tri thức phụng sự ngành</div>
         </div>
         <div class="stat-card">
@@ -2491,78 +3543,145 @@
         </div>
       </div>
 
-      <div class="future-steps-list">
-        <!-- Bước 1: Chiến lược & KCTĐT -->
-        <div class="step-card">
-          <div class="photo-placeholder" style="height: 155px;" data-archive-slot="curriculum-map">
-            <div class="photo-placeholder-watermark"><i data-lucide="compass"></i></div>
-            <div class="photo-placeholder-badge">
-              <i data-lucide="compass"></i> Bản Đồ Chiến Lược
-            </div>
-            <div class="photo-placeholder-caption">Sơ Đồ Khung Chương Trình Đào Tạo Mới</div>
-            <div class="photo-placeholder-tag">Chuẩn hóa năng lực quản trị rủi ro & tài chính số</div>
-          </div>
-          <span class="article-author-tag">Chiến Lược Phát Triển • Tác Giả: Thanh Thúy</span>
-          <h3 class="article-heading">Chiến Lược & Khung Chương Trình Đào Tạo (KCTĐT)</h3>
-          <p class="article-lead">
-            Tầm nhìn mới, giới thiệu định hướng nghiên cứu chuyên sâu và giảng dạy thực chiến nhằm đáp ứng toàn diện yêu cầu phát triển của Agribank trong kỷ nguyên số.
-          </p>
-          <button class="btn-read-article" onclick="openArticle('article-thuy-2')">
-            <i data-lucide="book-open"></i> Đọc Bài Viết
-          </button>
+      <!-- DẤU MỐC LỊCH SỬ THÁNG 11/2026: LỄ CÔNG BỐ QUYẾT ĐỊNH THÀNH LẬP VIỆN -->
+      <div class="event-transform-block" id="event-transform-institute">
+        <div class="event-transform-crest">
+          <i data-lucide="sparkles"></i> Dấu Mốc Lịch Sử • Tháng 11 Năm 2026
         </div>
-
-        <!-- Bước 2: Bài giảng điện tử đầu tiên -->
-        <div class="step-card">
-          <div class="photo-placeholder" style="height: 155px;" data-archive-slot="studio-production">
-            <div class="photo-placeholder-watermark"><i data-lucide="video"></i></div>
-            <div class="photo-placeholder-badge">
-              <i data-lucide="video"></i> Tư Liệu Số Hóa
-            </div>
-            <div class="photo-placeholder-caption">Hậu Trường Studio Sản Xuất Bài Giảng Điện Tử</div>
-            <div class="photo-placeholder-tag">Hành trình tiên phong xây dựng kho học liệu số</div>
-          </div>
-          <span class="article-author-tag">Dấu Ấn Đổi Mới • Tác Giả: Phương Anh</span>
-          <h3 class="article-heading">Những Bài Giảng Điện Tử (BGĐT) Đầu Tiên</h3>
-          <p class="article-lead">
-            Hành trình vượt khó và tinh thần tiên phong đổi mới phương pháp giảng dạy từ truyền thống sang số hóa của tập thể cán bộ Viện.
-          </p>
-          <button class="btn-read-article" onclick="openArticle('article-pa-bgdt')">
-            <i data-lucide="book-open"></i> Đọc Bài Viết
-          </button>
-        </div>
-
-        <!-- Bước 3: Ứng dụng E-learning -->
-        <div class="step-card">
-          <div class="photo-placeholder" style="height: 155px;" data-archive-slot="elearning-system">
-            <div class="photo-placeholder-watermark"><i data-lucide="monitor"></i></div>
-            <div class="photo-placeholder-badge">
-              <i data-lucide="monitor"></i> Nền Tảng Chuyển Đổi Số
-            </div>
-            <div class="photo-placeholder-caption">Giao Diện Hệ Thống E-Learning & Khảo Thí</div>
-            <div class="photo-placeholder-tag">Kết nối học tập tới hơn 2.200 chi nhánh toàn quốc</div>
-          </div>
-          <span class="article-author-tag">Chuyển Đổi Số • Tác Giả: Bích Ngọc</span>
-          <h3 class="article-heading">Ứng Dụng E-Learning Toàn Diện</h3>
-          <p class="article-lead">
-            Chi tiết về việc áp dụng công nghệ vào học tập, thi cử và đánh giá năng lực minh bạch, hiện đại — minh chứng cho bước chuyển đổi số thần tốc.
-          </p>
-          <button class="btn-read-article" onclick="openArticle('article-ngoc-elearning')">
-            <i data-lucide="book-open"></i> Đọc Bài Viết
-          </button>
-        </div>
-      </div>
-
-      <!-- Vinh danh các đơn vị tiêu biểu -->
-      <div style="background: rgba(130, 19, 25, 0.05); border: 1px solid var(--border-soft); border-radius: 12px; padding: 26px; text-align: center;">
-        <span style="font-size: 13.5px; font-weight: 700; color: var(--agri-burgundy);">
-          <i data-lucide="check-circle-2"></i> VINH DANH CÁC ĐƠN VỊ TIÊU BIỂU
-        </span>
-        <p style="font-size: 14.5px; color: var(--text-muted); margin-top: 6px;">
-          Tuyên dương các Chi nhánh và tập thể xuất sắc đã chủ động xây dựng học liệu số, ngân hàng câu hỏi và lan tỏa tinh thần tự học toàn hệ thống Agribank.
+        <h3 class="event-transform-title">
+          Lễ Công Bố Quyết Định Chuyển Đổi Thành<br>
+          <span>Viện Nghiên Cứu Và Đào Tạo Agribank</span>
+        </h3>
+        <p class="event-transform-desc">
+          Khoảnh khắc trang trọng đánh dấu bước chuyển mình lịch sử: Kế thừa trọn vẹn 25 năm truyền thống vẻ vang của Trường Đào tạo cán bộ, chính thức nâng tầm thành Viện nghiên cứu chiến lược và đào tạo đỉnh cao, phụng sự sự nghiệp phát triển bền vững của Agribank trong kỷ nguyên số.
         </p>
+
+        <div class="event-highlight-slots">
+          <div class="event-slot-card">
+            <div class="event-slot-icon"><i data-lucide="file-text"></i></div>
+            <div class="event-slot-title">Quyết Định Chuyển Đổi Lịch Sử</div>
+            <div class="event-slot-desc">Văn kiện chính thức của Hội đồng Thành viên Agribank phê duyệt chuyển đổi mô hình, mở ra không gian phát triển mới.</div>
+          </div>
+          <div class="event-slot-card">
+            <div class="event-slot-icon"><i data-lucide="microscope"></i></div>
+            <div class="event-slot-title">Trụ Cột Nghiên Cứu Chiến Lược</div>
+            <div class="event-slot-desc">Đẩy mạnh nghiên cứu khoa học chuyên sâu, tham mưu cơ chế chính sách và đón đầu xu hướng tài chính xanh, số hóa.</div>
+          </div>
+          <div class="event-slot-card">
+            <div class="event-slot-icon"><i data-lucide="graduation-cap"></i></div>
+            <div class="event-slot-title">Đào Tạo Đỉnh Cao & Chuẩn Quốc Tế</div>
+            <div class="event-slot-desc">Khung chương trình chuẩn quốc tế, gắn liền giữa lý luận học thuật và năng lực thực chiến tại hơn 2.200 điểm giao dịch.</div>
+          </div>
+        </div>
       </div>
-    </div>
+
+      <!-- LƯỚI THẺ BÀI VIẾT PHẦN 3 (THIẾT KẾ ĐỒNG BỘ GIỐNG CÁC THẺ PHẦN 1) -->
+      <div style="text-align: center; margin-top: 36px; margin-bottom: 10px;">
+        <span class="section-lead-tag"><i data-lucide="book-open"></i> Các Chuyên Đề & Bài Viết Kỷ Yếu Phần 3</span>
+      </div>
+
+      <div class="future-editorial-grid" id="future-articles">
+        <!-- Thẻ 1: Bài viết E-learning (Tác giả: Bích Ngọc) -->
+        <div class="editorial-letter-card">
+          <div class="letter-watermark-crest"></div>
+          <div class="letter-portrait-header">
+            <div class="leader-portrait-slot" data-archive-slot="elearning-system">
+              <i data-lucide="monitor"></i>
+              <span>E-Learning<br>Học & Thi</span>
+            </div>
+            <div class="letter-meta-info">
+              <span class="letter-category-tag"><i data-lucide="sparkles"></i> Chuyển Đổi Số • Bích Ngọc</span>
+              <h3 class="letter-title">Từ Bục Giảng Đến Không Gian Số: Dấu Ấn E-Learning</h3>
+              <p class="letter-role-subtitle">Tác giả: Bích Ngọc — Trường ĐTCB (Viện NC&ĐT Agribank)</p>
+            </div>
+          </div>
+          <div class="letter-body-quote">
+            “Hệ thống E-learning không chỉ là một công cụ công nghệ, mà là tâm huyết, là kết tinh trí tuệ của tập thể Trường Đào tạo Cán bộ trong nỗ lực mang tri thức đến từng cán bộ, nhân viên, xóa nhòa mọi ranh giới về không gian và thời gian. Hành trình 4 năm (2023 - 2026) bứt phá từ 6.630 lên kỷ lục 140.136 lượt sử dụng...”
+          </div>
+          <button class="btn-read-article" style="margin-top: auto; position: relative; z-index: 1;" onclick="openArticle('article-ngoc-elearning')">
+            <i data-lucide="book-open"></i> Xem Chi Tiết Bài Viết
+          </button>
+        </div>
+
+        <!-- Thẻ 2: Chiến Lược & Khung Chương Trình Đào Tạo (Tác giả: Thanh Thúy) -->
+        <div class="editorial-letter-card">
+          <div class="letter-watermark-crest"></div>
+          <div class="letter-portrait-header">
+            <div class="leader-portrait-slot" data-archive-slot="curriculum-map">
+              <i data-lucide="compass"></i>
+              <span>Chiến Lược<br>KCTĐT</span>
+            </div>
+            <div class="letter-meta-info">
+              <span class="letter-category-tag"><i data-lucide="book-open"></i> Chiến Lược Phát Triển • Thanh Thúy</span>
+              <h3 class="letter-title">Chiến Lược & Khung Chương Trình Đào Tạo Mới</h3>
+              <p class="letter-role-subtitle">Tác giả: Thanh Thúy — Viện Nghiên cứu & Đào tạo Agribank</p>
+            </div>
+          </div>
+          <div class="letter-body-quote">
+            “Khung chương trình đào tạo thế hệ mới của Viện được xây dựng theo chuẩn quốc tế, gắn liền giữa lý luận học thuật và năng lực thực chiến tại hơn 2.200 điểm giao dịch của Agribank: Đào tạo thích ứng, quản trị rủi ro số và tài chính xanh...”
+          </div>
+          <button class="btn-read-article" style="margin-top: auto; position: relative; z-index: 1;" onclick="openArticle('article-thuy-2')">
+            <i data-lucide="book-open"></i> Xem Chi Tiết Bài Viết
+          </button>
+        </div>
+
+        <!-- Thẻ 3: Bài Giảng Điện Tử Đầu Tiên (Tác giả: Phương Anh) -->
+        <div class="editorial-letter-card">
+          <div class="letter-watermark-crest"></div>
+          <div class="letter-portrait-header">
+            <div class="leader-portrait-slot" data-archive-slot="studio-production">
+              <i data-lucide="video"></i>
+              <span>Studio<br>Số Hóa</span>
+            </div>
+            <div class="letter-meta-info">
+              <span class="letter-category-tag"><i data-lucide="award"></i> Dấu Ấn Tiên Phong • Phương Anh</span>
+              <h3 class="letter-title">Hành Trình Xây Dựng Những Bài Giảng Điện Tử Đầu Tiên</h3>
+              <p class="letter-role-subtitle">Tác giả: Phương Anh — Trường Đào tạo Cán bộ</p>
+            </div>
+          </div>
+          <div class="letter-body-quote">
+            “Khi công nghệ số còn là khái niệm mới mẻ, nhóm tác giả đã miệt mài đêm ngày bên màn hình máy tính, tự mày mò quay dựng, số hóa từng trang giáo trình truyền thống, đặt những viên gạch đầu tiên cho kho học liệu số phong phú hôm nay...”
+          </div>
+          <button class="btn-read-article" style="margin-top: auto; position: relative; z-index: 1;" onclick="openArticle('article-pa-bgdt')">
+            <i data-lucide="book-open"></i> Xem Chi Tiết Bài Viết
+          </button>
+        </div>
+      </div>
+
+      <!-- DIGITAL ACHIEVEMENT WALL: VINH DANH HỌC LIỆU SỐ & NGÂN HÀNG CÂU HỎI -->
+      <div class="digital-achievement-wall" id="digital-achievement-wall">
+        <span class="section-lead-tag"><i data-lucide="award"></i> Vinh Danh Đổi Mới Sáng Tạo</span>
+        <h3 class="achievement-wall-title">Bảng Vinh Danh Các Đơn Vị Đóng Góp Học Liệu Số</h3>
+        <p class="achievement-wall-subtitle">
+          Trân trọng ghi nhận và tôn vinh các Ban chuyên môn Trụ sở chính và Chi nhánh dẫn đầu trong phong trào số hóa bài giảng, xây dựng ngân hàng câu hỏi khảo thí trực tuyến toàn hệ thống.
+        </p>
+
+        <div class="achievement-grid">
+          <div class="achievement-card">
+            <span class="achievement-pill">Học Liệu Xuất Sắc</span>
+            <div class="achievement-unit-name">Ban Khách Hàng Doanh Nghiệp & Bán Lẻ</div>
+            <div class="achievement-contrib">Đóng góp hơn 1.200 câu hỏi nghiệp vụ thực chiến và 15 chuyên đề số hóa thẩm định tín dụng nâng cao.</div>
+          </div>
+
+          <div class="achievement-card">
+            <span class="achievement-pill">Số Hóa Tiên Phong</span>
+            <div class="achievement-unit-name">Ban Kế Toán Tài Chính & Quản Lý Rủi Ro</div>
+            <div class="achievement-contrib">Chuẩn hóa 24 video bài giảng điện tử quy trình kế toán số và kiểm soát giao dịch an toàn.</div>
+          </div>
+
+          <div class="achievement-card">
+            <span class="achievement-pill">Hạ Tầng Công Nghệ</span>
+            <div class="achievement-unit-name">Trung Tâm Công Nghệ Thông Tin Agribank</div>
+            <div class="achievement-contrib">Đồng hành xây dựng kiến trúc hệ thống E-learning, bảo mật dữ liệu thi và đường truyền ổn định.</div>
+          </div>
+
+          <div class="achievement-card">
+            <span class="achievement-pill">Phong Trào Học Tập</span>
+            <div class="achievement-unit-name">Các Chi Nhánh Dẫn Đầu Tỷ Lệ Sát Hạch</div>
+            <div class="achievement-contrib">Đạt tỷ lệ 100% cán bộ nhân viên hoàn thành đúng hạn các kỳ thi và bồi dưỡng năng lực trực tuyến.</div>
+          </div>
+        </div>
+      </div></div>
   </section>
 
   <!-- ==============================================
@@ -2585,7 +3704,7 @@
             <span class="hof-badge-pill"><i data-lucide="award"></i> Giảng Dạy Tiêu Biểu</span>
           </div>
           <div class="hof-body">
-            <span class="hof-role">Bục Giảng Thắp Lửa • 25 Năm Đồng Hành (1999 – 2024)</span>
+            <span class="hof-role">Bục Giảng Thắp Lửa • 25 Năm Đồng Hành (1999 – 2026)</span>
             <h4 class="hof-title">Bảng Vàng Giảng Viên</h4>
             <p class="hof-desc">Tôn vinh Ban Lãnh đạo Agribank trực tiếp đứng lớp và đội ngũ Giảng viên kiêm chức xuất sắc giai đoạn 2022-2026 tận tâm truyền lửa nghề.</p>
             <button class="hof-btn" onclick="openArticle('hof-lecturers')">
@@ -2644,6 +3763,23 @@
             </button>
           </div>
         </div>
+      
+        <!-- Nhóm 5: Cơ Sở Đào Tạo Xuất Sắc Về Hậu Cần -->
+        <div class="hof-card">
+          <div class="hof-frame">
+            <img class="hof-frame-img" src="backgrounds/01_hero_campus.webp" alt="Cơ Sở Hậu Cần Agribank" loading="lazy" decoding="async">
+            <div class="hof-frame-overlay"></div>
+            <span class="hof-badge-pill"><i data-lucide="home"></i> Hậu Cần Xuất Sắc</span>
+          </div>
+          <div class="hof-body">
+            <span class="hof-role">Cơ Sở Vật Chất & Phục Vụ Lớp Học</span>
+            <h4 class="hof-title">Cơ Sở Hậu Cần Xuất Sắc</h4>
+            <p class="hof-desc">Tôn vinh các đơn vị bảo đảm giảng đường hiện đại, buồng phòng tiện nghi, ẩm thực chu đáo phục vụ hàng vạn lượt học viên mỗi năm.</p>
+            <button class="hof-btn" onclick="openArticle('hof-logistics')">
+              <i data-lucide="shield-check"></i> Xem Lời Tri Ân Hậu Cần
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -2669,6 +3805,9 @@
           Ngọn lửa nghề vẫn sáng mãi ngàn năm...”
         </div>
         <div class="author-sign">Nhà Giáo / Tác Giả: C. Thanh Hương</div>
+        <button class="btn-read-article" style="margin-top: 18px;" onclick="openArticle('article-thanh-huong')">
+          <i data-lucide="feather"></i> Xem Toàn Văn Chùm Thơ & Cảm Nhận
+        </button>
       </div>
 
       <div class="emotions-grid">
@@ -2802,7 +3941,7 @@
           <div class="masonry-item-inner">
             <img class="masonry-item-img" src="backgrounds/04_future_aspiration.webp" alt="Nghiên Cứu Chiến Lược" loading="lazy" decoding="async">
             <div class="masonry-overlay">
-              <span class="masonry-tag">2024+ • Đổi Mới</span>
+              <span class="masonry-tag">11/2026 • Chuyển Đổi Thành Viện</span>
               <h4 class="masonry-caption">Hội Thảo Khoa Học & Nghiên Cứu Chiến Lược</h4>
               <p class="masonry-sub">Tham mưu chính sách đột phá cho hệ thống Agribank</p>
             </div>
@@ -2820,6 +3959,69 @@
               <p class="masonry-sub">Khát vọng vươn xa cùng sự phát triển hùng cường</p>
             </div>
             <div class="masonry-zoom-btn"><i data-lucide="maximize-2"></i></div>
+          </div>
+        </div>
+      </div>
+    
+      <!-- GÓC THANH XUÂN: CHÙM ẢNH HẬU TRƯỜNG, NGHỆ THUẬT & NỤ CƯỜI HỌC VIÊN -->
+      <div class="goc-thanh-xuan-section" id="goc-thanh-xuan">
+        <span class="section-lead-tag"><i data-lucide="heart"></i> Kỷ Niệm Mái Trường</span>
+        <h3 class="thanh-xuan-title">Góc Thanh Xuân • Sức Sống Tuổi Trẻ Dưới Mái Trường Viện</h3>
+        <p class="thanh-xuan-subtitle">
+          Chùm ảnh ghi lại những nụ cười rạng rỡ, nhiệt huyết tuổi trẻ của các thế hệ học viên, giảng viên qua các phong trào văn nghệ, hội thao và những giờ học gắn kết nghĩa tình.
+        </p>
+
+        <div class="thanh-xuan-grid">
+          <!-- Ảnh 1: Hội thi văn nghệ -->
+          <div class="thanh-xuan-card" onclick="openLightbox(0)">
+            <div class="thanh-xuan-img-wrap">
+              <img src="backgrounds/03_lecture_auditorium.webp" alt="Hội thi văn nghệ Agribank" loading="lazy">
+              <div class="thanh-xuan-overlay"></div>
+              <span class="thanh-xuan-pill">Văn Nghệ & Sân Khấu</span>
+            </div>
+            <div class="thanh-xuan-info">
+              <div class="thanh-xuan-caption">Hội Thi Văn Nghệ Truyền Thống</div>
+              <div class="thanh-xuan-sub">Lời ca tiếng hát thắm đượm tình đồng nghiệp và tình yêu mái trường.</div>
+            </div>
+          </div>
+
+          <!-- Ảnh 2: Thể thao rèn sức -->
+          <div class="thanh-xuan-card" onclick="openLightbox(1)">
+            <div class="thanh-xuan-img-wrap">
+              <img src="backgrounds/01_hero_campus.webp" alt="Giải thể thao Agribank" loading="lazy">
+              <div class="thanh-xuan-overlay"></div>
+              <span class="thanh-xuan-pill">Hội Thao Khỏe</span>
+            </div>
+            <div class="thanh-xuan-info">
+              <div class="thanh-xuan-caption">Giải Thể Thao Đoàn Viên Cán Bộ</div>
+              <div class="thanh-xuan-sub">Năng động, nhiệt huyết, thắt chặt tinh thần đoàn kết toàn hệ thống.</div>
+            </div>
+          </div>
+
+          <!-- Ảnh 3: Bế giảng khóa học -->
+          <div class="thanh-xuan-card" onclick="openLightbox(2)">
+            <div class="thanh-xuan-img-wrap">
+              <img src="backgrounds/agribank_heritage_library.webp" alt="Lễ bế giảng khóa học" loading="lazy">
+              <div class="thanh-xuan-overlay"></div>
+              <span class="thanh-xuan-pill">Nụ Cười Học Viên</span>
+            </div>
+            <div class="thanh-xuan-info">
+              <div class="thanh-xuan-caption">Nụ Cười Ngày Bế Giảng Khóa Học</div>
+              <div class="thanh-xuan-sub">Những cái bắt tay bịn rịn và ánh mắt tự tin trước ngày về lại chi nhánh.</div>
+            </div>
+          </div>
+
+          <!-- Ảnh 4: Chuyến đi thực tế -->
+          <div class="thanh-xuan-card" onclick="openLightbox(3)">
+            <div class="thanh-xuan-img-wrap">
+              <img src="backgrounds/agribank_future_institute_digital.webp" alt="Chuyến đi thực tế" loading="lazy">
+              <div class="thanh-xuan-overlay"></div>
+              <span class="thanh-xuan-pill">Gắn Kết Thực Tế</span>
+            </div>
+            <div class="thanh-xuan-info">
+              <div class="thanh-xuan-caption">Hành Trình Trải Nghiệm Thực Tế</div>
+              <div class="thanh-xuan-sub">Gắn liền lý luận bục giảng với thực tiễn cơ sở khắp mọi miền đất nước.</div>
+            </div>
           </div>
         </div>
       </div>
@@ -2849,7 +4051,47 @@
         </p>
       </div>
 
-      <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
+      <!-- BAN BIÊN TẬP VÀ ĐỘI NGŨ THỰC HIỆN -->
+      <div class="colophon-grid">
+        <div class="colophon-card">
+          <div class="colophon-card-title"><i data-lucide="shield-check"></i> Ban Chỉ Đạo & Cố Vấn</div>
+          <div class="colophon-card-content">
+            Đảng ủy, Ban Lãnh đạo Viện Nghiên cứu và Đào tạo Agribank; cùng sự quan tâm chỉ đạo sát sao của Ban Lãnh đạo Agribank.
+          </div>
+        </div>
+
+        <div class="colophon-card">
+          <div class="colophon-card-title"><i data-lucide="book-open"></i> Ban Biên Tập & Tư Liệu</div>
+          <div class="colophon-card-content">
+            Tổ biên soạn nội dung kỷ yếu 25 năm, Phòng Tổng hợp, Phòng Đào tạo, các tác giả bài viết và sự đóng góp tư liệu của các thế hệ cán bộ.
+          </div>
+        </div>
+
+        <div class="colophon-card">
+          <div class="colophon-card-title"><i data-lucide="sparkles"></i> Công Nghệ & Trải Nghiệm Số</div>
+          <div class="colophon-card-content">
+            Tổ công nghệ E-learning & Thư viện số Viện; phát triển trải nghiệm Digital Museum và Scrollytelling kỷ niệm 25 năm.
+          </div>
+        </div>
+      </div>
+
+      <!-- BÌA SAU KỶ YẾU: TÒA NHÀ VƯƠN CAO LÊN BẦU TRỜI XANH -->
+      <div class="back-cover-spread">
+        <div class="back-cover-tower-crest">
+          <i data-lucide="landmark" style="font-size: 28px;"></i>
+        </div>
+        <div class="back-cover-motto">
+          25 NĂM — TỰ HÀO TRUYỀN THỐNG<br>KIẾN TẠO TƯƠNG LAI
+        </div>
+        <div class="back-cover-submotto">
+          “Viện Nghiên cứu và Đào tạo Agribank — Điểm tựa tri thức, thắp sáng khát vọng phụng sự, đồng hành cùng sự lớn mạnh và thịnh vượng của Ngân hàng Nông nghiệp và Phát triển Nông thôn Việt Nam trong kỷ nguyên số.”
+        </div>
+        <div style="font-size: 13px; color: rgba(255,255,255,0.7); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 24px;">
+          Tháng 11 Năm 2026 • Kỷ Niệm 25 Năm Thành Lập
+        </div>
+      </div>
+
+      <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-top: 36px;">
         <button class="btn-quiet btn-celebrate" style="padding: 12px 28px; font-size: 14px;" onclick="triggerCelebration()">
           <i data-lucide="sparkles"></i> Kỷ Niệm 25 Năm Thành Lập Trường Đào Tạo Cán Bộ
         </button>
@@ -2862,7 +4104,7 @@
       </div>
 
       <div style="margin-top: 60px; font-size: 13px; color: rgba(255,255,255,0.65);">
-        © 2024 — 2026 Viện Nghiên cứu và Đào tạo Agribank • Kỷ Yếu Scrollytelling Điện Tử Cao Cấp
+        © 2026 Viện Nghiên cứu và Đào tạo Agribank • Kỷ Yếu Scrollytelling Điện Tử Cao Cấp
       </div>
     </div>
   </section>
@@ -2928,233 +4170,121 @@
     // FULL ARTICLES DATABASE (CHUẨN HÓA VÀ RÀ SOÁT - GIAI ĐOẠN 8 P0)
     // ====================================================
     const articles = {
-      'letter-chairman': {
-        tag: 'Văn Kiện Đang Tiếp Nhận • Thư Chúc Mừng',
-        title: 'Thư Chúc Mừng Kỷ Niệm 25 Năm Thành Lập Trường Đào Tạo Cán Bộ',
-        subtitle: 'Chủ tịch Hội đồng Thành viên Agribank',
-        content: `
-          <div class="curation-notice-box">
-            <i data-lucide="info"></i>
-            <div>
-              <strong>Hồ sơ văn kiện lưu hành nội bộ:</strong> Toàn văn Thư Chúc Mừng chính thức của Đồng chí Chủ tịch Hội đồng Thành viên Agribank gửi các thế hệ Thầy giáo, Cô giáo và Cán bộ Viện NC&ĐT Agribank đang được Văn phòng HĐTV tiếp nhận và cập nhật bản ký duyệt chính thức.
-            </div>
-          </div>
-          <p>Thư chúc mừng của Lãnh đạo cấp cao Agribank ghi nhận, biểu dương chặng đường một phần tư thế kỷ (1999 – 2024) kiên trì, tận tụy kiến tạo tri thức của Trường Đào tạo cán bộ và gửi gắm niềm tin sâu sắc vào bước chuyển mình chiến lược thành Viện Nghiên cứu và Đào tạo Agribank trong kỷ nguyên số.</p>
-          <p>Các nội dung trọng tâm gồm: Tri ân công lao đặt nền móng của các thế hệ lãnh đạo và thầy cô giáo; khẳng định đào tạo là quốc sách phát triển nguồn nhân lực chất lượng cao; định hướng đẩy mạnh nghiên cứu khoa học chiến lược, tham mưu cơ chế chính sách đột phá và làm chủ công nghệ ngân hàng hiện đại.</p>
-        `
-      },
-      'letter-director': {
-        tag: 'Thông Điệp Đang Tiếp Nhận • Lời Ngỏ Kỷ Yếu',
-        title: 'Lời Ngỏ Kỷ Yếu 25 Năm Viện Nghiên Cứu Và Đào Tạo Agribank',
-        subtitle: 'Viện trưởng Viện Nghiên cứu và Đào tạo Agribank',
-        content: `
-          <div class="curation-notice-box">
-            <i data-lucide="info"></i>
-            <div>
-              <strong>Thông điệp lưu hành nội bộ:</strong> Lời ngỏ đúc kết tinh hoa 25 năm truyền thống và sứ mệnh nghiên cứu - đào tạo giai đoạn mới đang trong quy trình hoàn thiện bản phê duyệt cuối cùng trước khi xuất bản chính thức.
-            </div>
-          </div>
-          <p>Hai mươi lăm năm (1999 – 2024) là một hành trình bền bỉ của niềm tin và sự cống hiến. Chúng ta tự hào về mái trường đã bồi đắp tri thức cho hàng vạn cán bộ khắp dải đất hình chữ S.</p>
-          <p>Hôm nay, đứng trước yêu cầu đổi mới của thời đại, Viện Nghiên cứu và Đào tạo Agribank chính thức bước vào kỷ nguyên mới: <em>Vừa là trung tâm đào tạo chuẩn mực, vừa là cơ quan nghiên cứu chiến lược, tham mưu những chính sách đột phá</em>.</p>
-          <p>Xin trân trọng tri ân và cảm ơn sự đồng hành của Ban Lãnh đạo Agribank, các thế hệ đi trước và toàn thể người lao động!</p>
-        `
-      },
-      'article-thuy-1': {
-        tag: 'Kỷ Yếu Truyền Thống • Tác Giả: Thanh Thúy',
-        title: 'Trường Và Ban Lãnh Đạo Qua Các Thời Kỳ',
-        subtitle: 'Hành trình 25 năm dựng xây và tri ân cội nguồn',
-        content: `
-          <p>Từ những ngày đầu thành lập Trung tâm Đào tạo với cơ sở vật chất đơn sơ, sự chèo lái tận tụy của các thế hệ Lãnh đạo Agribank và Lãnh đạo Trường qua các thời kỳ đã giúp ngọn lửa tri thức không bao giờ tắt.</p>
-          <p>Bài viết khắc họa chân dung trang trọng của các đồng chí nguyên Lãnh đạo, những người đã đặt nền móng quy chuẩn giáo trình, xây dựng đội ngũ giảng viên và định hình văn hóa học tập đặc trưng của Agribank.</p>
-          <p>Đó là di sản vô giá, là điểm tựa tinh thần để thế hệ hôm nay vững vàng tiếp bước.</p>
-        `
-      },
-      'article-sei-award': {
-        tag: 'Dấu Ấn Vinh Danh • Thành Tựu Nổi Bật',
-        title: 'Dấu Ấn SEI AWARD (Năm 2019)',
-        subtitle: 'Khẳng định chất lượng và vị thế trong công tác đào tạo chuyên môn',
-        content: `
-          <div class="curation-notice-box">
-            <i data-lucide="info"></i>
-            <div>
-              <strong>Ghi chú thẩm định dữ liệu:</strong> Hồ sơ trích lục từ thành tựu nổi bật năm 2019 của đơn vị. Ban Biên tập đang đối chiếu số hiệu chứng chỉ và tổ chức kiểm định quốc tế trao giải trước khi in kỷ yếu chính thức.
-            </div>
-          </div>
-          <p>Giải thưởng SEI AWARD là minh chứng rõ nét cho chất lượng đào tạo vượt trội và uy tín học thuật của đơn vị trong những năm qua.</p>
-          <p>Thành tựu này không chỉ tôn vinh những nỗ lực đổi mới không ngừng của tập thể cán bộ mà còn khẳng định vị thế tiên phong của Agribank trong việc nâng tầm nguồn nhân lực ngành tài chính - ngân hàng.</p>
-        `
-      },
-      'article-ban-lang': {
-        tag: 'Văn Hóa Nghĩa Tình • Trách Nhiệm Xã Hội',
-        title: 'Thắp Sáng Bản Làng',
-        subtitle: 'Hành trình mang tri thức và yêu thương đến vùng cao',
-        content: `
-          <p>Bên cạnh công tác giảng dạy chuyên môn, nét đẹp văn hóa Agribank luôn tỏa sáng qua những chuyến công tác xã hội thiện nguyện: "Thắp sáng bản làng".</p>
-          <p>Những lớp tập huấn tài chính vi mô, những món quà trao tận tay đồng bào khó khăn, những mái trường vùng cao rộn vang tiếng cười học sinh nghèo... Tất cả đã dệt nên một bức tranh nhân văn sâu sắc, nối dài tinh thần phụng sự cộng đồng của người làm giáo dục Agribank.</p>
-        `
-      },
-      'article-ky-uc': {
-        tag: 'Ký Ức Thời Gian • 25 Năm Truyền Thống (1999 — 2024)',
-        title: 'Những Khoảnh Khắc Vàng Thời Kỳ Đầu',
-        subtitle: 'Lưu giữ qua những trang ảnh tư liệu trắng đen & sepia',
-        content: `
-          <p>Mỗi bức ảnh tư liệu là một lát cắt thời gian quý báu: Hình ảnh bục giảng gỗ xưa, những ánh mắt chăm chú của học viên khóa 1, hay buổi lễ khai giảng đầu tiên ấm áp nghĩa tình.</p>
-          <p>Ký ức thời gian nhắc nhở chúng ta về cội nguồn, để thêm trân trọng mỗi bước tiến ngày hôm nay.</p>
-        `
-      },
-      'article-thuy-2': {
-        tag: 'Chiến Lược Phát Triển • Tác Giả: Thanh Thúy',
-        title: 'Chiến Lược & Khung Chương Trình Đào Tạo (KCTĐT)',
-        subtitle: 'Tầm nhìn mới đáp ứng yêu cầu kỷ nguyên số',
-        content: `
-          <p>Viện Nghiên cứu và Đào tạo xây dựng Khung chương trình đào tạo mới theo chuẩn quốc tế, gắn liền giữa lý luận nghiên cứu và thực tiễn hoạt động ngân hàng.</p>
-          <p>Trọng tâm hướng tới các chương trình bồi dưỡng năng lực quản trị rủi ro số, ngân hàng xanh, tài chính vi mô bền vững và phương pháp lãnh đạo thích ứng.</p>
-        `
-      },
-      'article-pa-bgdt': {
-        tag: 'Dấu Ấn Đổi Mới • Tác Giả: Phương Anh',
-        title: 'Hành Trình Xây Dựng Những Bài Giảng Điện Tử (BGĐT) Đầu Tiên',
-        subtitle: 'Câu chuyện vượt khó và ngọn lửa tiên phong',
-        content: `
-          <p>Khi công nghệ số còn là khái niệm mới mẻ, nhóm tác giả đã miệt mài đêm ngày bên màn hình máy tính, tự mày mò quay dựng, số hóa từng trang giáo trình truyền thống.</p>
-          <p>Những khó khăn buổi đầu ấy chính là bệ phóng tạo nên kho học liệu số phong phú và đồ sộ của Viện hôm nay.</p>
-        `
-      },
-      'article-ngoc-elearning': {
-        tag: 'Chuyển Đổi Số • Tác Giả: Bích Ngọc',
-        title: 'Ứng Dụng E-Learning Vào Học, Thi Và Đánh Giá Năng Lực',
-        subtitle: 'Minh chứng cho sự chuyển đổi số toàn diện',
-        content: `
-          <p>Hệ thống E-Learning đã xóa nhòa khoảng cách địa lý, mang bài giảng chuẩn hóa đến các chi nhánh và phòng giao dịch của Agribank trên toàn quốc.</p>
-          <p>Quy trình tổ chức thi và sát hạch nghiệp vụ trực tuyến diễn ra khách quan, chính xác, tiết kiệm hàng chục tỷ đồng chi phí đào tạo hàng năm.</p>
-        `
-      },
-      'article-nld': {
-        tag: 'Tập Thể Đoàn Kết • Sức Sống Viện NC&ĐT',
-        title: 'Chân Dung Người Lao Động Hiện Tại Tại Viện',
-        subtitle: 'Những nụ cười rạng rỡ của tập thể CBNV và giảng viên',
-        content: `
-          <p>Tập thể các phòng ban: Phòng Tổng hợp, Phòng Kế hoạch & Quản lý Đào tạo, Phòng Nghiên cứu Chiến lược và Đội ngũ kỹ thuật E-learning...</p>
-          <p>Một tập thể đoàn kết, nhiệt huyết, mang trong mình sức trẻ và khát khao cống hiến cho sự phát triển của Viện.</p>
-        `
-      },
-      'article-diep-phuong': {
-        tag: 'Ký Ức Giảng Đường • Tác Giả: Diệp & Dương Phương',
-        title: 'Chạm Vào Cảm Xúc: Kỷ Niệm Gắn Bó Với Mái Trường',
-        subtitle: 'Những dòng hồi ức chân thành',
-        content: `
-          <p>“Có những mùa đông Hà Nội đứng trên bục giảng nhìn xuống lớp học đông đủ, thấy ánh mắt ấm áp của các anh chị học viên từ Tây Nguyên hay miền Tây xa xôi ra học, bao mệt nhọc bỗng tan biến...”</p>
-          <p>Bài viết chia sẻ những rung động giản dị nhưng thiêng liêng về nghề giáo dưới mái nhà Agribank.</p>
-        `
-      },
-      'article-sep-luu': {
-        tag: 'Hồi Ức & Tri Ân • Kỷ Niệm Mái Trường',
-        title: 'Góc Nhìn & Tâm Huyết Của Lãnh Đạo Viện Qua Các Thời Kỳ',
-        subtitle: 'Đồng chí Lưu Bá Đức & Ban Giám đốc qua các giai đoạn phát triển',
-        content: `
-          <div class="curation-notice-box">
-            <i data-lucide="info"></i>
-            <div>
-              <strong>Tư liệu hồi ức lịch sử:</strong> Trích lược những chia sẻ tâm huyết của Đồng chí Lưu Bá Đức cùng các đồng chí trong Ban Giám đốc Trường / Viện qua các thời kỳ về chặng đường 25 năm xây dựng và phát triển. (Nội dung đang được Ban Biên tập rà soát và xin ý kiến xác nhận trực tiếp của nhân chứng lịch sử).
-            </div>
-          </div>
-          <p>Bài viết ghi lại những hồi ức mộc mạc từ những ngày đầu đặt nền móng với muôn vàn khó khăn về cơ sở vật chất, đến khi trường lớp được xây dựng khang trang, mạng lưới giảng viên kiêm chức được chuẩn hóa và mở rộng khắp ba miền Bắc - Trung - Nam.</p>
-          <p>Đó là những lời dặn dò tâm huyết gửi tới thế hệ cán bộ, giảng viên trẻ hôm nay: Luôn giữ gìn tâm sáng của người làm giáo dục, không ngừng tự học hỏi, làm chủ công nghệ mới để tiếp tục thắp sáng ngọn lửa tri thức của Agribank.</p>
-        `
-      },
-      'hof-lecturers': {
-        tag: 'Đại Sảnh Danh Vọng • Hall of Fame',
-        title: 'Bảng Vàng Giảng Viên & Lãnh Đạo Đứng Lớp',
-        subtitle: 'Tri ân những người thầy thắp lửa tri thức ngân hàng',
-        content: `
-          <p>Điểm tựa vững chắc làm nên thương hiệu đào tạo Agribank chính là sự tham gia trực tiếp của các đồng chí trong Ban Lãnh đạo Agribank trên bục giảng và mạng lưới Giảng viên kiêm chức xuất sắc trên toàn quốc.</p>
-          <p>Với phương châm <em>"Người đi trước truyền lửa cho người đi sau"</em>, các thầy cô không chỉ giảng dạy lý thuyết nghiệp vụ chuẩn mực mà còn trao truyền những bài học thực tiễn vô giá về quản trị rủi ro, đạo đức nghề nghiệp và tình yêu với Agribank.</p>
-          <p>Kỷ yếu 25 năm xin gửi lời tri ân sâu sắc nhất tới toàn thể các thế hệ giảng viên đã tận tụy vì sự nghiệp trồng người.</p>
-        `
-      },
-      'hof-branches': {
-        tag: 'Đại Sảnh Danh Vọng • Hall of Fame',
-        title: 'Tập Thể Đồng Hành & Phong Trào Tự Đào Tạo',
-        subtitle: 'Vinh danh các Chi nhánh và Đơn vị tiêu biểu toàn hệ thống',
-        content: `
-          <p>Công tác đào tạo chỉ thực sự phát huy sức mạnh khi nhận được sự hưởng ứng và lan tỏa mạnh mẽ từ cơ sở. Toàn hệ thống Agribank với gần 2.300 chi nhánh và phòng giao dịch luôn là một môi trường học tập không ngừng nghỉ.</p>
-          <p>Kỷ yếu vinh danh các Chi nhánh, Ban chuyên môn dẫn đầu phong trào tự đào tạo nội bộ, chủ động cử cán bộ tham gia nâng cao nghiệp vụ, tổ chức hội thi tay nghề và tạo mọi điều kiện để người lao động rèn luyện, hoàn thiện năng lực chuyên môn.</p>
-        `
-      },
-      'hof-partners': {
-        tag: 'Đại Sảnh Danh Vọng • Hall of Fame',
-        title: 'Đối Tác Học Thuật & Chuyển Giao Tri Thức',
-        subtitle: 'Đồng hành nâng tầm học thuật và chuẩn hóa năng lực quốc tế',
-        content: `
-          <p>Trong 25 năm phát triển, Trường và nay là Viện Nghiên cứu và Đào tạo Agribank tự hào xây dựng mối quan hệ hợp tác chiến lược bền chặt với các Học viện, Trường Đại học kinh tế hàng đầu và các tổ chức đào tạo quốc tế uy tín.</p>
-          <p>Sự đồng hành của các chuyên gia, nhà khoa học đầu ngành đã góp phần chuẩn hóa giáo trình, đổi mới phương pháp sư phạm hiện đại và tham vấn những định hướng chiến lược then chốt cho ngành ngân hàng trong thời đại số.</p>
-        `
-      },
-      'hof-silent-heroes': {
-        tag: 'Đại Sảnh Danh Vọng • Hall of Fame',
-        title: 'Gương Mặt Thầm Lặng Nơi Hậu Phương Giảng Đường',
-        subtitle: 'Những đóng góp thầm lặng nhưng không thể thiếu',
-        content: `
-          <p>Phía sau mỗi lớp học thành công, mỗi bài giảng trực tuyến mượt mà là mồ hôi và sự tận tụy thầm lặng của đội ngũ quản lý lớp, kỹ thuật viên phòng thu, đội ngũ quản trị hệ thống E-learning và cán bộ hậu cần.</p>
-          <p>Từ chuẩn bị phòng học, máy chiếu, tài liệu đến thức thâu đêm giám sát kỳ thi sát hạch trực tuyến hay phục vụ từng bữa ăn, chỗ ở cho học viên xa nhà... Tất cả sự chu đáo và ân cần ấy đã tạo nên một mái nhà chung ấm áp nghĩa tình.</p>
-        `
-      },
-      'audit-checklist': {
-        tag: 'Kiểm Soát Xuất Bản • Audit P0',
-        title: 'Danh Mục Rà Soát & Thẩm Định Dữ Liệu Kỷ Yếu 25 Năm',
-        subtitle: 'Bảng đối chiếu thông tin phục vụ thẩm định trước khi công bố xuất bản',
-        content: `
-          <div class="curation-notice-box">
-            <i data-lucide="shield-alert"></i>
-            <div>
-              <strong>Nguyên tắc biên soạn:</strong> Tuân thủ tính xác thực lịch sử, bảo toàn thông tin, không tự suy đoán hoặc sáng tác số liệu và trích dẫn. Dưới đây là bảng rà soát 6 hạng mục trọng yếu cần các phòng ban chức năng ký duyệt.
-            </div>
-          </div>
-          <table class="checklist-table">
-            <thead>
-              <tr>
-                <th>Hạng Mục</th>
-                <th>Thông Tin Hiện Tại</th>
-                <th>Tình Trạng</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong>1. Mốc thời gian 25 năm</strong></td>
-                <td>1999 – 2024 (25 năm truyền thống), định hướng phát triển 2024 – Nay.</td>
-                <td><span class="badge-status-verified">Đã Chuẩn Hóa</span></td>
-              </tr>
-              <tr>
-                <td><strong>2. Tên chính thức qua 3 thời kỳ</strong></td>
-                <td>1999: Trung tâm ĐTCB • 2008: Trường ĐTCB • 2024: Viện NC&ĐT.</td>
-                <td><span class="badge-status-verified">Đã Chuẩn Hóa</span></td>
-              </tr>
-              <tr>
-                <td><strong>3. Giải thưởng SEI Award</strong></td>
-                <td>Dấu ấn quốc tế năm 2019 trong công tác đào tạo chuyên môn.</td>
-                <td><span class="badge-status-pending">Cần Bản Gốc</span></td>
-              </tr>
-              <tr>
-                <td><strong>4. Số liệu mạng lưới đào tạo</strong></td>
-                <td>Gần 2.300 chi nhánh & phòng giao dịch toàn hệ thống kết nối E-learning.</td>
-                <td><span class="badge-status-verified">Đã Chuẩn Hóa</span></td>
-              </tr>
-              <tr>
-                <td><strong>5. Số hóa đề thi & sát hạch</strong></td>
-                <td>Chuẩn hóa ngân hàng đề thi & tổ chức thi trực tuyến toàn diện.</td>
-                <td><span class="badge-status-verified">Đã Chuẩn Hóa</span></td>
-              </tr>
-              <tr>
-                <td><strong>6. Thư Chúc mừng & Lời ngỏ</strong></td>
-                <td>Chủ tịch HĐTV & Viện trưởng (Đặt khung tiếp nhận văn kiện chính thức).</td>
-                <td><span class="badge-status-pending">Chờ Ký Duyệt</span></td>
-              </tr>
-            </tbody>
-          </table>
-          <p><em>* Bản rà soát này được lưu hành nội bộ để phối hợp giữa Ban Biên tập Kỷ yếu và các Phòng ban chuyên môn của Viện Nghiên cứu và Đào tạo Agribank.</em></p>
-        `
-      }
-    };
+  "letter-chairman": {
+    "tag": "Văn Kiện Đang Tiếp Nhận • Kỷ Niệm 25 Năm (1999 – 2026)",
+    "title": "Thư Chúc Mừng Kỷ Niệm 25 Năm Thành Lập Trường Đào Tạo Cán Bộ & Ngày Nhà Giáo VN 20/11",
+    "subtitle": "Chủ tịch Hội đồng Thành viên Agribank",
+    "content": "\n      <div class=\"curation-notice-box\">\n        <i data-lucide=\"info\"></i>\n        <div>\n          <strong>Hồ sơ văn kiện lưu hành nội bộ:</strong> Bản chính thức Thư Chúc Mừng của Đồng chí Chủ tịch Hội đồng Thành viên Agribank gửi các thế hệ Thầy giáo, Cô giáo, Cán bộ và Học viên đang trong quy trình phê duyệt ký ban hành trước ngày xuất bản chính thức.\n        </div>\n      </div>\n      <div style=\"font-family: var(--font-serif); font-size: 16.5px; line-height: 1.85; color: #2C2C2C; margin-top: 20px;\">\n        <p><strong>Kính gửi:</strong> Các thế hệ Thầy giáo, Cô giáo, Cán bộ, Giảng viên và Học viên Trường Đào tạo cán bộ — Viện Nghiên cứu và Đào tạo Agribank qua các thời kỳ,</p>\n        <p>Trải qua một phần tư thế kỷ (1999 – 2026), Trường Đào tạo cán bộ Agribank đã không ngừng nỗ lực, bền bỉ vượt qua khó khăn, khẳng định vai trò là cái nôi ươm mầm và bồi dưỡng nguồn nhân lực chất lượng cao cho toàn hệ thống Ngân hàng Nông nghiệp và Phát triển Nông thôn Việt Nam.</p>\n        <p>Thay mặt Đảng ủy, Hội đồng Thành viên Agribank, tôi nhiệt liệt biểu dương và trân trọng cảm ơn những cống hiến thầm lặng, tận tụy của bao thế hệ lãnh đạo, nhà giáo và cán bộ quản lý đào tạo.</p>\n        <p>Bước vào giai đoạn phát triển mới, trước yêu cầu chuyển đổi số và hội nhập quốc tế sâu rộng, việc <strong>chính thức chuyển đổi thành Viện Nghiên cứu và Đào tạo Agribank vào tháng 11/2026</strong> là dấu mốc chiến lược có ý nghĩa đặc biệt quan trọng. Tôi tin tưởng sâu sắc rằng Viện sẽ phát huy tối đa tinh hoa 25 năm truyền thống, nâng tầm nghiên cứu khoa học chuyên sâu, tham mưu những chính sách đột phá và tiên phong xây dựng nguồn nhân lực thích ứng kỷ nguyên số.</p>\n        <p>Chúc Viện Nghiên cứu và Đào tạo Agribank luôn giữ vững ngọn lửa nhiệt huyết, vươn tầm phát triển bền vững cùng sự nghiệp phát triển của Agribank!</p>\n      </div>\n      <div style=\"margin-top: 30px; text-align: right; font-style: italic; color: #666;\">\n        <strong>Chủ tịch Hội đồng Thành viên Agribank</strong>\n      </div>\n    "
+  },
+  "letter-director": {
+    "tag": "Thông Điệp Sứ Mệnh Mới • Kỷ Niệm 25 Năm (1999 – 2026)",
+    "title": "Lời Ngỏ Kỷ Yếu 25 Năm: Tự Hào Truyền Thống, Kiến Tạo Tương Lai",
+    "subtitle": "Viện trưởng Viện Nghiên cứu và Đào tạo Agribank",
+    "content": "\n      <div class=\"curation-notice-box\">\n        <i data-lucide=\"info\"></i>\n        <div>\n          <strong>Thông điệp ban lãnh đạo:</strong> Lời ngỏ đúc kết chặng đường 25 năm xây dựng và phát triển, tuyên bố sứ mệnh chiến lược của Viện Nghiên cứu và Đào tạo Agribank từ dấu mốc tháng 11/2026.\n        </div>\n      </div>\n      <div style=\"font-family: var(--font-serif); font-size: 16px; line-height: 1.85; color: #2C2C2C; margin-top: 20px;\">\n        <p>Hai mươi lăm năm (1999 – 2026) – một chặng đường chưa phải là dài so với bề dày lịch sử, nhưng đã đong đầy bao tâm huyết, mồ hôi và trí tuệ của các thế hệ thầy cô giáo, cán bộ công nhân viên dưới mái trường Đào tạo cán bộ Agribank.</p>\n        <p>Từ những ngày đầu thành lập còn muôn vàn thiếu thốn về cơ sở vật chất, chúng ta đã cùng nhau vượt qua thách thức, mở rộng quy mô, chuẩn hóa giáo trình, đào tạo và bồi dưỡng hàng chục vạn lượt cán bộ trên khắp mọi miền Tổ quốc. Mỗi bước trưởng thành của người làm ngân hàng Agribank đều có dấu ấn tri thức từ mái trường này.</p>\n        <p>Hôm nay, tháng 11 năm 2026, chúng ta tự hào bước vào một kỷ nguyên mới khi chính thức được chuyển đổi thành <strong>Viện Nghiên cứu và Đào tạo Agribank</strong>. Sứ mệnh của Viện không chỉ dừng lại ở giảng dạy, bồi dưỡng chuyên môn nghiệp vụ chuẩn mực, mà còn vươn lên trở thành cơ quan nghiên cứu khoa học chiến lược, tham mưu cơ chế chính sách, dự báo xu thế tài chính ngân hàng hiện đại và tiên phong trong chuyển đổi số.</p>\n        <p>Xin trân trọng khắc ghi và bày tỏ lòng biết ơn sâu sắc tới sự lãnh đạo, chỉ đạo toàn diện của Đảng ủy, Hội đồng Thành viên, Ban Tổng Giám đốc Agribank; tri ân các đồng chí nguyên Lãnh đạo qua các thời kỳ, các giảng viên kiêm chức, các đơn vị phối hợp và toàn thể cán bộ, học viên đã đồng hành cùng Viện trong suốt 25 năm qua!</p>\n      </div>\n      <div style=\"margin-top: 30px; text-align: right; font-style: italic; color: #666;\">\n        <strong>Viện trưởng Viện Nghiên cứu và Đào tạo Agribank</strong>\n      </div>\n    "
+  },
+  "article-thuy-1": {
+    "tag": "Kỷ Yếu Truyền Thống • Tác Giả: Thanh Thúy",
+    "title": "Chân Dung Ban Lãnh Đạo Trường Qua Các Thời Kỳ",
+    "subtitle": "Trang 09 Kỷ Yếu • Tri ân các thế hệ Giám đốc & Phó Giám đốc phụ trách (1999 – 2026)",
+    "content": "\n      <div class=\"curation-notice-box\" style=\"background: rgba(138, 18, 26, 0.06); border-left: 4px solid var(--burgundy); padding: 16px 20px; border-radius: 0 10px 10px 0; margin-bottom: 24px;\">\n        <div style=\"font-weight: 700; color: var(--burgundy); font-size: 15px; margin-bottom: 4px; display: flex; align-items: center; gap: 8px;\">\n          <i data-lucide=\"award\"></i> VĂN KIỆN LỊCH SỬ • TRANG 09 KỶ YẾU 25 NĂM\n        </div>\n        <div style=\"font-size: 14px; color: #444; line-height: 1.6;\">\n          Trân trọng khắc họa chân dung và ghi nhận công lao to lớn của các thế hệ Thầy Cô trong Ban Lãnh đạo Trường đã đồng hành, cống hiến bền bỉ cho sự nghiệp đào tạo và phát triển nguồn nhân lực Agribank từ năm 1999 đến nay.\n        </div>\n      </div>\n\n      <!-- Banner đỏ tiêu đề phân mục -->\n      <div style=\"background: linear-gradient(135deg, #7A0A12 0%, #9B111E 50%, #7A0A12 100%); color: #FFF2C5; text-align: center; padding: 12px 20px; border-radius: 8px; margin: 24px 0 20px; box-shadow: 0 4px 15px rgba(122, 10, 18, 0.25);\">\n        <h3 style=\"font-family: var(--font-cinzel); font-size: 18px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; margin: 0;\">\n          GIÁM ĐỐC QUA CÁC THỜI KỲ\n        </h3>\n      </div>\n\n      <!-- Grid 9 Chân Dung Ban Lãnh Đạo -->\n      <div style=\"display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px 16px; margin: 24px 0 32px; text-align: center;\">\n        \n        <!-- 1. Nguyễn Gia Huân -->\n        <div style=\"background: #FFFFFF; border: 1px solid rgba(229, 192, 123, 0.35); border-radius: 10px; padding: 16px 12px; box-shadow: 0 4px 14px rgba(0,0,0,0.04); transition: transform 0.2s ease;\">\n          <div style=\"display: inline-block; padding: 3px; border: 2px solid rgba(229, 192, 123, 0.5); border-radius: 6px; background: #fff; margin-bottom: 12px; box-shadow: 0 3px 8px rgba(0,0,0,0.12);\">\n            <img src=\"images/leadership/leader_01_nguyen_gia_huan.webp\" alt=\"Giám đốc Nguyễn Gia Huân\" style=\"width: 130px; height: 130px; object-fit: cover; border-radius: 3px; display: block;\">\n          </div>\n          <div style=\"font-weight: 800; color: #8A121A; font-size: 14.5px; line-height: 1.35; margin-bottom: 6px;\">\n            Giám đốc<br><span style=\"color: #222; text-transform: uppercase;\">NGUYỄN GIA HUÂN</span>\n          </div>\n          <div style=\"font-style: italic; font-size: 12.5px; color: #555; line-height: 1.45;\">\n            Giai đoạn từ năm 2001<br>đến tháng 4 năm 2004\n          </div>\n        </div>\n\n        <!-- 2. Tạ Phúc Triển -->\n        <div style=\"background: #FFFFFF; border: 1px solid rgba(229, 192, 123, 0.35); border-radius: 10px; padding: 16px 12px; box-shadow: 0 4px 14px rgba(0,0,0,0.04); transition: transform 0.2s ease;\">\n          <div style=\"display: inline-block; padding: 3px; border: 2px solid rgba(229, 192, 123, 0.5); border-radius: 6px; background: #fff; margin-bottom: 12px; box-shadow: 0 3px 8px rgba(0,0,0,0.12);\">\n            <img src=\"images/leadership/leader_02_ta_phuc_trien.webp\" alt=\"Giám đốc Tạ Phúc Triển\" style=\"width: 130px; height: 130px; object-fit: cover; border-radius: 3px; display: block;\">\n          </div>\n          <div style=\"font-weight: 800; color: #8A121A; font-size: 14.5px; line-height: 1.35; margin-bottom: 6px;\">\n            Giám đốc<br><span style=\"color: #222; text-transform: uppercase;\">TẠ PHÚC TRIỂN</span>\n          </div>\n          <div style=\"font-style: italic; font-size: 12.5px; color: #555; line-height: 1.45;\">\n            Giai đoạn từ tháng 5 năm 2004<br>đến tháng 4 năm 2007\n          </div>\n        </div>\n\n        <!-- 3. Bùi Thiện Nhiên -->\n        <div style=\"background: #FFFFFF; border: 1px solid rgba(229, 192, 123, 0.35); border-radius: 10px; padding: 16px 12px; box-shadow: 0 4px 14px rgba(0,0,0,0.04); transition: transform 0.2s ease;\">\n          <div style=\"display: inline-block; padding: 3px; border: 2px solid rgba(229, 192, 123, 0.5); border-radius: 6px; background: #fff; margin-bottom: 12px; box-shadow: 0 3px 8px rgba(0,0,0,0.12);\">\n            <img src=\"images/leadership/leader_03_bui_thien_nhien.webp\" alt=\"Giám đốc Bùi Thiện Nhiên\" style=\"width: 130px; height: 130px; object-fit: cover; border-radius: 3px; display: block;\">\n          </div>\n          <div style=\"font-weight: 800; color: #8A121A; font-size: 14.5px; line-height: 1.35; margin-bottom: 6px;\">\n            Giám đốc<br><span style=\"color: #222; text-transform: uppercase;\">BÙI THIỆN NHIÊN</span>\n          </div>\n          <div style=\"font-style: italic; font-size: 12.5px; color: #555; line-height: 1.45;\">\n            Giai đoạn từ tháng 5 năm 2007<br>đến tháng 7 năm 2008\n          </div>\n        </div>\n\n        <!-- 4. Nguyễn Thanh Đường -->\n        <div style=\"background: #FFFFFF; border: 1px solid rgba(229, 192, 123, 0.35); border-radius: 10px; padding: 16px 12px; box-shadow: 0 4px 14px rgba(0,0,0,0.04); transition: transform 0.2s ease;\">\n          <div style=\"display: inline-block; padding: 3px; border: 2px solid rgba(229, 192, 123, 0.5); border-radius: 6px; background: #fff; margin-bottom: 12px; box-shadow: 0 3px 8px rgba(0,0,0,0.12);\">\n            <img src=\"images/leadership/leader_04_nguyen_thanh_duong.webp\" alt=\"Phó Giám đốc phụ trách Nguyễn Thanh Đường\" style=\"width: 130px; height: 130px; object-fit: cover; border-radius: 3px; display: block;\">\n          </div>\n          <div style=\"font-weight: 800; color: #8A121A; font-size: 14px; line-height: 1.35; margin-bottom: 6px;\">\n            Phó Giám đốc phụ trách<br><span style=\"color: #222; text-transform: uppercase;\">NGUYỄN THANH ĐƯỜNG</span>\n          </div>\n          <div style=\"font-style: italic; font-size: 12.5px; color: #555; line-height: 1.45;\">\n            Giai đoạn từ tháng 8 năm 2008<br>đến tháng 9 năm 2008\n          </div>\n        </div>\n\n        <!-- 5. Phạm Hoài Bắc -->\n        <div style=\"background: #FFFFFF; border: 1px solid rgba(229, 192, 123, 0.35); border-radius: 10px; padding: 16px 12px; box-shadow: 0 4px 14px rgba(0,0,0,0.04); transition: transform 0.2s ease;\">\n          <div style=\"display: inline-block; padding: 3px; border: 2px solid rgba(229, 192, 123, 0.5); border-radius: 6px; background: #fff; margin-bottom: 12px; box-shadow: 0 3px 8px rgba(0,0,0,0.12);\">\n            <img src=\"images/leadership/leader_05_pham_hoai_bac.webp\" alt=\"Giám đốc Phạm Hoài Bắc\" style=\"width: 130px; height: 130px; object-fit: cover; border-radius: 3px; display: block;\">\n          </div>\n          <div style=\"font-weight: 800; color: #8A121A; font-size: 14.5px; line-height: 1.35; margin-bottom: 6px;\">\n            Giám đốc<br><span style=\"color: #222; text-transform: uppercase;\">PHẠM HOÀI BẮC</span>\n          </div>\n          <div style=\"font-style: italic; font-size: 12.5px; color: #555; line-height: 1.45;\">\n            Giai đoạn từ tháng 10 năm 2008<br>đến tháng 7 năm 2015\n          </div>\n        </div>\n\n        <!-- 6. Phan Kế Hoàng -->\n        <div style=\"background: #FFFFFF; border: 1px solid rgba(229, 192, 123, 0.35); border-radius: 10px; padding: 16px 12px; box-shadow: 0 4px 14px rgba(0,0,0,0.04); transition: transform 0.2s ease;\">\n          <div style=\"display: inline-block; padding: 3px; border: 2px solid rgba(229, 192, 123, 0.5); border-radius: 6px; background: #fff; margin-bottom: 12px; box-shadow: 0 3px 8px rgba(0,0,0,0.12);\">\n            <img src=\"images/leadership/leader_06_phan_ke_hoang.webp\" alt=\"Phó Giám đốc phụ trách Phan Kế Hoàng\" style=\"width: 130px; height: 130px; object-fit: cover; border-radius: 3px; display: block;\">\n          </div>\n          <div style=\"font-weight: 800; color: #8A121A; font-size: 14px; line-height: 1.35; margin-bottom: 6px;\">\n            Phó Giám đốc phụ trách<br><span style=\"color: #222; text-transform: uppercase;\">PHAN KẾ HOÀNG</span>\n          </div>\n          <div style=\"font-style: italic; font-size: 12.5px; color: #555; line-height: 1.45;\">\n            Giai đoạn từ tháng 7 năm 2015<br>đến tháng 6 năm 2017\n          </div>\n        </div>\n\n        <!-- 7. Võ Văn Chân -->\n        <div style=\"background: #FFFFFF; border: 1px solid rgba(229, 192, 123, 0.35); border-radius: 10px; padding: 16px 12px; box-shadow: 0 4px 14px rgba(0,0,0,0.04); transition: transform 0.2s ease;\">\n          <div style=\"display: inline-block; padding: 3px; border: 2px solid rgba(229, 192, 123, 0.5); border-radius: 6px; background: #fff; margin-bottom: 12px; box-shadow: 0 3px 8px rgba(0,0,0,0.12);\">\n            <img src=\"images/leadership/leader_07_vo_van_chan.webp\" alt=\"Giám đốc Võ Văn Chân\" style=\"width: 130px; height: 130px; object-fit: cover; border-radius: 3px; display: block;\">\n          </div>\n          <div style=\"font-weight: 800; color: #8A121A; font-size: 14.5px; line-height: 1.35; margin-bottom: 6px;\">\n            Giám đốc<br><span style=\"color: #222; text-transform: uppercase;\">VÕ VĂN CHÂN</span>\n          </div>\n          <div style=\"font-style: italic; font-size: 12.5px; color: #555; line-height: 1.45;\">\n            Giai đoạn từ tháng 9 năm 2017<br>đến tháng 11 năm 2021\n          </div>\n        </div>\n\n        <!-- 8. Trần Đức Quảng -->\n        <div style=\"background: #FFFFFF; border: 1px solid rgba(229, 192, 123, 0.35); border-radius: 10px; padding: 16px 12px; box-shadow: 0 4px 14px rgba(0,0,0,0.04); transition: transform 0.2s ease;\">\n          <div style=\"display: inline-block; padding: 3px; border: 2px solid rgba(229, 192, 123, 0.5); border-radius: 6px; background: #fff; margin-bottom: 12px; box-shadow: 0 3px 8px rgba(0,0,0,0.12);\">\n            <img src=\"images/leadership/leader_08_tran_duc_quang.webp\" alt=\"Phó Giám đốc phụ trách Trần Đức Quảng\" style=\"width: 130px; height: 130px; object-fit: cover; border-radius: 3px; display: block;\">\n          </div>\n          <div style=\"font-weight: 800; color: #8A121A; font-size: 14px; line-height: 1.35; margin-bottom: 6px;\">\n            Phó Giám đốc phụ trách<br><span style=\"color: #222; text-transform: uppercase;\">TRẦN ĐỨC QUẢNG</span>\n          </div>\n          <div style=\"font-style: italic; font-size: 12px; color: #555; line-height: 1.4;\">\n            Giai đoạn 1: 06/2017 – 08/2017<br>Giai đoạn 2: 12/2021 – 12/2023\n          </div>\n        </div>\n\n        <!-- 9. Nguyễn Thị Thu Hà -->\n        <div style=\"background: #FFFFFF; border: 1px solid rgba(229, 192, 123, 0.35); border-radius: 10px; padding: 16px 12px; box-shadow: 0 4px 14px rgba(0,0,0,0.04); transition: transform 0.2s ease;\">\n          <div style=\"display: inline-block; padding: 3px; border: 2px solid rgba(229, 192, 123, 0.5); border-radius: 6px; background: #fff; margin-bottom: 12px; box-shadow: 0 3px 8px rgba(0,0,0,0.12);\">\n            <img src=\"images/leadership/leader_09_nguyen_thi_thu_ha.webp\" alt=\"Giám đốc Nguyễn Thị Thu Hà\" style=\"width: 130px; height: 130px; object-fit: cover; border-radius: 3px; display: block;\">\n          </div>\n          <div style=\"font-weight: 800; color: #8A121A; font-size: 14.5px; line-height: 1.35; margin-bottom: 6px;\">\n            Giám đốc<br><span style=\"color: #222; text-transform: uppercase;\">NGUYỄN THỊ THU HÀ</span>\n          </div>\n          <div style=\"font-style: italic; font-size: 12.5px; color: #555; line-height: 1.45;\">\n            Giai đoạn từ tháng 01 năm 2024<br>đến nay\n          </div>\n        </div>\n\n      </div>\n\n      <!-- Khung tri ân & Ba giai đoạn phát triển bản lề (Preserving roadmap test requirement) -->\n      <div style=\"background: #FAF6EE; border: 1px solid rgba(229, 192, 123, 0.4); border-radius: 12px; padding: 22px; margin: 24px 0;\">\n        <h4 style=\"color: var(--burgundy); font-family: var(--font-cinzel); font-size: 17px; margin-bottom: 14px;\">\n          <i data-lucide=\"history\"></i> Ba Giai Đoạn Phát Triển Bản Lề (1999 – 2026)\n        </h4>\n        <div style=\"margin-bottom: 14px; font-size: 14.5px; line-height: 1.7; color: #333;\">\n          <strong>1. Giai đoạn Khởi nguồn (1999 – 2008):</strong> Thành lập Trung tâm Đào tạo cán bộ Agribank. Những bục giảng đầu tiên, cơ sở vật chất đơn sơ nhưng sáng ngời tinh thần vượt khó. Tri ân các đồng chí Lãnh đạo Trung tâm thời kỳ đầu đã đặt nền móng quy chế học tập, giáo trình cốt lõi.\n        </div>\n        <div style=\"margin-bottom: 14px; font-size: 14.5px; line-height: 1.7; color: #333;\">\n          <strong>2. Giai đoạn Mở rộng & Chuẩn hóa (2008 – 2026):</strong> Nâng cấp thành Trường Đào tạo cán bộ Agribank. Mở rộng khuôn viên khang trang, xây dựng mạng lưới giảng viên kiêm chức toàn quốc, chuẩn hóa hàng trăm chương trình đào tạo nghiệp vụ ngân hàng thương mại hiện đại.\n        </div>\n        <div style=\"font-size: 14.5px; line-height: 1.7; color: #333;\">\n          <strong>3. Giai đoạn Vươn tầm Kỷ nguyên số (Từ Tháng 11/2026):</strong> Chính thức chuyển đổi thành Viện Nghiên cứu và Đào tạo Agribank. Bước nhảy vọt về mô hình tổ chức, kết hợp hài hòa giữa đào tạo thực chiến và nghiên cứu chiến lược chuyên sâu.\n        </div>\n      </div>\n\n      <!-- Khung tri ân & Ba giai đoạn phát triển bản lề (Preserving roadmap test requirement) -->"
+  },
+  "article-sei-award": {
+    "tag": "Dấu Ấn Vinh Danh • Kỷ Yếu 25 Năm",
+    "title": "Dấu Ấn SEI AWARD: Khẳng Định Vị Thế Và Chất Lượng Chuyên Môn",
+    "subtitle": "Thành tựu nổi bật được ghi nhận trên hành trình phát triển",
+    "content": "\n      <p>Trong hành trình 25 năm kiến tạo tri thức, việc đón nhận giải thưởng chuyên môn danh giá <strong>SEI AWARD</strong> là một trong những cột mốc vàng chói lọi, khẳng định chất lượng đào tạo và uy tín học thuật của đơn vị.</p>\n      \n      <div style=\"background: rgba(114, 9, 16, 0.05); border-left: 4px solid var(--burgundy); padding: 18px 22px; margin: 20px 0; border-radius: 0 10px 10px 0;\">\n        <h4 style=\"color: var(--burgundy); margin-bottom: 8px; font-size: 16px;\">Ý Nghĩa Của Giải Thưởng SEI AWARD</h4>\n        <p style=\"margin: 0; font-size: 15px; color: #333;\">\n          Giải thưởng là sự tôn vinh khách quan đối với mô hình quản trị đào tạo bài bản, tính thực tiễn cao của giáo trình và hiệu quả rõ nét trong việc nâng cao năng suất, kỹ năng nghiệp vụ cho đội ngũ nhân lực ngân hàng.\n        </p>\n      </div>\n\n      <p>Thành tựu này là kết tinh từ sự chỉ đạo sát sao của Ban Lãnh đạo Agribank, sự tận tâm giảng dạy của đội ngũ giảng viên kiêm chức và tinh thần hiếu học của học viên toàn hệ thống.</p>\n      <p>Giải thưởng SEI AWARD không chỉ là niềm tự hào chung, mà còn là động lực mạnh mẽ để đơn vị tiếp tục đổi mới phương pháp giảng dạy, hoàn thiện khung năng lực và tự tin vươn lên chuẩn mực đào tạo quốc tế khi chuyển đổi thành Viện.</p>\n    "
+  },
+  "article-ban-lang": {
+    "tag": "Trách Nhiệm Xã Hội • Văn Hóa Agribank",
+    "title": "Thắp Sáng Bản Làng: Hành Trình Mang Tri Thức Và Yêu Thương Đến Vùng Cao",
+    "subtitle": "Nét đẹp nhân văn tô đậm bản sắc văn hóa nghĩa tình Agribank",
+    "content": "\n      <p>Bên cạnh bục giảng trang nghiêm nơi đô hội, hình bóng những người thầy Agribank còn in đậm trên những cung đường đèo heo hút gió, đến với những bản làng xa xôi của Tổ quốc trong chương trình thiện nguyện và phổ biến tri thức: <strong>\"Thắp sáng bản làng\"</strong>.</p>\n      \n      <div style=\"margin: 22px 0; padding: 20px; background: #FAF6EE; border-radius: 12px; border: 1px solid rgba(229,192,123,0.35);\">\n        <h4 style=\"color: var(--burgundy); margin-bottom: 10px; font-size: 16px;\">Những Dấu Chân Nghĩa Tình</h4>\n        <ul style=\"margin: 0; padding-left: 20px; font-size: 14.5px; line-height: 1.8; color: #444;\">\n          <li>Tập huấn kiến thức tài chính vi mô, hướng dẫn bà con đồng bào tiếp cận nguồn vốn ưu đãi, thoát nghèo bền vững.</li>\n          <li>Trao tặng học bổng, máy tính, tủ sách học đường cho con em các điểm trường vùng sâu, vùng xa khó khăn.</li>\n          <li>Chung tay xây dựng các công trình dân sinh, thắp sáng đường quê bằng hệ thống đèn năng lượng mặt trời.</li>\n        </ul>\n      </div>\n\n      <p>Mỗi chuyến đi không chỉ mang lại niềm vui, ánh sáng tri thức cho đồng bào, mà còn là bài học thực tế vô giá giúp đội ngũ cán bộ, giảng viên Viện thấu hiểu sâu sắc hơi thở cuộc sống nông nghiệp, nông dân, nông thôn – sứ mệnh thiêng liêng cốt lõi của Agribank.</p>\n      <p>Đó chính là nét đẹp nhân văn, là ngọn lửa ấm áp của tình người Agribank sẽ mãi được gìn giữ và trao truyền qua các thế hệ.</p>\n    "
+  },
+  "article-ky-uc": {
+    "tag": "Ký Ức Thời Gian • 25 Năm Truyền Thống (1999 — 2026)",
+    "title": "Ký Ức Thời Gian: Những Khoảnh Khắc Vàng Khởi Đầu Gian Khó",
+    "subtitle": "Lưu giữ trọn vẹn qua những trang ảnh tư liệu quý giá",
+    "content": "\n      <p>Mỗi bức ảnh tư liệu là một nhịp cầu nối liền quá khứ và hiện tại. Lật lại những trang ký ức của 25 năm trước, chúng ta không khỏi bồi hồi xúc động trước những hình ảnh mộc mạc nhưng chan chứa nghĩa tình:</p>\n      <ul style=\"padding-left: 20px; line-height: 1.8; color: #444; margin: 16px 0;\">\n        <li>Những bục giảng gỗ xưa, chiếc bảng đen và những trang giáo án viết tay cẩn trọng của các thầy cô thế hệ đầu.</li>\n        <li>Buổi lễ khai giảng khóa học nghiệp vụ đầu tiên năm 1999 trong bầu không khí ấm áp, tràn đầy quyết tâm.</li>\n        <li>Những ánh mắt chăm chú của các anh chị học viên từ khắp các tỉnh thành hội tụ về Thủ đô học tập.</li>\n        <li>Những buổi hội thảo sơ khai đặt nền móng cho quy chuẩn hóa nghiệp vụ tín dụng nông nghiệp.</li>\n      </ul>\n      <p>Ký ức thời gian nhắc nhở chúng ta rằng: Thành quả hôm nay được dựng xây từ mồ hôi và tâm huyết của biết bao thế hệ đi trước. Giữ gìn ký ức chính là giữ gìn cội nguồn sức mạnh để bước tiếp tương lai.</p>\n    "
+  },
+  "article-thuy-2": {
+    "tag": "Chiến Lược Phát Triển • Tác Giả: Thanh Thúy",
+    "title": "Chiến Lược & Khung Chương Trình Đào Tạo (KCTĐT) Trong Kỷ Nguyên Mới",
+    "subtitle": "Kiến trúc năng lực mới đáp ứng yêu cầu chuyển đổi số toàn diện của Agribank",
+    "content": "\n      <p>Khi chuyển đổi thành Viện Nghiên cứu và Đào tạo vào tháng 11/2026, đơn vị đã chủ động xây dựng và hoàn thiện <strong>Khung chương trình đào tạo (KCTĐT) thế hệ mới</strong>, gắn kết chặt chẽ giữa lý luận học thuật và năng lực thực chiến ngân hàng hiện đại.</p>\n\n      <div style=\"background: #FFFFFF; border: 1px solid rgba(229, 192, 123, 0.45); border-radius: 12px; padding: 24px; margin: 24px 0; box-shadow: 0 4px 16px rgba(0,0,0,0.04);\">\n        <h4 style=\"color: var(--burgundy); font-family: var(--font-cinzel); font-size: 17px; margin-bottom: 16px; text-align: center;\">\n          BA TRỤ CỘT CHIẾN LƯỢC CỦA VIỆN NGHIÊN CỨU & ĐÀO TẠO\n        </h4>\n        \n        <div style=\"display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; text-align: left;\">\n          <div style=\"background: #FAF6EE; padding: 16px; border-radius: 8px; border-left: 3px solid var(--burgundy);\">\n            <div style=\"font-weight: 700; color: var(--burgundy); font-size: 14.5px; margin-bottom: 8px;\">\n              1. Nghiên Cứu Ứng Dụng\n            </div>\n            <div style=\"font-size: 13px; color: #555; line-height: 1.6;\">\n              Chủ trì đề tài khoa học trọng điểm, tham mưu cơ chế chính sách, dự báo rủi ro vĩ mô và tài chính xanh cho Lãnh đạo Agribank.\n            </div>\n          </div>\n\n          <div style=\"background: #FAF6EE; padding: 16px; border-radius: 8px; border-left: 3px solid var(--gold-accent);\">\n            <div style=\"font-weight: 700; color: var(--burgundy); font-size: 14.5px; margin-bottom: 8px;\">\n              2. Chuẩn Khung Quốc Tế\n            </div>\n            <div style=\"font-size: 13px; color: #555; line-height: 1.6;\">\n              Cập nhật tiêu chuẩn Basel II/III, ESG, quản trị rủi ro số, định chuẩn chức danh nghề nghiệp cho hơn 40.000 cán bộ toàn ngành.\n            </div>\n          </div>\n\n          <div style=\"background: #FAF6EE; padding: 16px; border-radius: 8px; border-left: 3px solid #1E5C38;\">\n            <div style=\"font-weight: 700; color: #1E5C38; font-size: 14.5px; margin-bottom: 8px;\">\n              3. Số Hóa Đào Tạo\n            </div>\n            <div style=\"font-size: 13px; color: #555; line-height: 1.6;\">\n              Hệ sinh thái học tập thích ứng (Adaptive Learning), bài giảng đa phương tiện và khảo thí trực tuyến khách quan, minh bạch.\n            </div>\n          </div>\n        </div>\n      </div>\n\n      <p>KCTĐT mới là kim chỉ nam giúp Viện thực hiện thắng lợi mục tiêu: Đào tạo ra những cán bộ ngân hàng vừa có đạo đức nghề nghiệp trong sáng, vừa vững chuyên môn và tinh thông công nghệ số.</p>\n    "
+  },
+  "article-pa-bgdt": {
+    "tag": "Dấu Ấn Đổi Mới • Tác Giả: Phương Anh",
+    "title": "Hành Trình Xây Dựng Những Bài Giảng Điện Tử (BGĐT) Đầu Tiên",
+    "subtitle": "Câu chuyện vượt khó và ngọn lửa tiên phong số hóa giáo trình",
+    "content": "\n      <p>Khi công nghệ số hóa và e-learning còn là những khái niệm mới mẻ tại Việt Nam, nhóm cán bộ biên soạn Viện đã can đảm dấn thân, đặt những viên gạch đầu tiên cho kho học liệu số phong phú hôm nay.</p>\n\n      <div style=\"margin: 24px 0; padding: 22px; background: #FAF6EE; border-radius: 12px; border: 1px solid rgba(229,192,123,0.4);\">\n        <h4 style=\"color: var(--burgundy); font-family: var(--font-cinzel); font-size: 16.5px; margin-bottom: 16px;\">\n          SÁU BƯỚC ĐỘT PHÁ SỐ HÓA BÀI GIẢNG ĐẦU TIÊN\n        </h4>\n        <ol style=\"margin: 0; padding-left: 20px; font-size: 14px; line-height: 1.85; color: #333;\">\n          <li><strong>Khởi tạo ý tưởng:</strong> Nhận thức rõ sự cấp thiết phải đưa bài giảng vượt qua khoảng cách địa lý đến tận vùng sâu, vùng xa.</li>\n          <li><strong>Vượt khó công nghệ:</strong> Tự mày mò nghiên cứu các phần mềm đóng gói chuẩn SCORM, thiết bị ghi âm, trường quay dã chiến.</li>\n          <li><strong>Biên soạn kịch bản sư phạm số:</strong> Chuyển thể giáo trình dày hàng trăm trang thành các kịch bản tương tác sinh động, ngắn gọn.</li>\n          <li><strong>Ghi hình và thu âm chuẩn mực:</strong> Cán bộ giảng viên kiên trì thu âm, xử lý âm thanh từng bài giảng đến tận đêm khuya.</li>\n          <li><strong>Đóng gói và kiểm thử:</strong> Khảo nghiệm kỹ lưỡng với hàng ngàn học viên cơ sở để lắng nghe và tối ưu hóa trải nghiệm học tập.</li>\n          <li><strong>Phát hành diện rộng:</strong> Đưa bài giảng số đầu tiên lên mạng nội bộ Agribank, mở ra kỷ nguyên học tập mọi lúc, mọi nơi.</li>\n        </ol>\n      </div>\n\n      <p>Ngọn lửa tiên phong từ những bài giảng điện tử đầu tiên ấy chính là bệ phóng tạo nên thư viện học liệu số hàng ngàn chuyên đề của Viện hôm nay.</p>\n    "
+  },
+  "article-ngoc-elearning": {
+  "tag": "Chuyển Đổi Số • Kỷ Yếu 25 Năm • Tác Giả: Bích Ngọc",
+  "title": "TỪ BỤC GIẢNG ĐẾN KHÔNG GIAN SỐ: DẤU ẤN TỰ HÀO CỦA HỆ THỐNG E-LEARNING TRÊN HÀNH TRÌNH ĐÀO TẠO VÀ PHÁT TRIỂN NGUỒN NHÂN LỰC",
+  "subtitle": "Hành trình 4 năm (2023 – 2026) bứt phá từ 6.630 lên kỷ lục 140.136 lượt sử dụng toàn hệ thống Agribank",
+  "content": "\n    <div style=\"font-family: var(--font-serif); font-size: 16px; line-height: 1.85; color: #2C2C2C;\">\n      <p style=\"font-size: 16.5px; line-height: 1.85;\">\n        Nhân dịp kỷ niệm thành lập Trường Đào tạo Cán bộ, khi cùng nhau nhìn lại chặng đường xây dựng và phát triển, chúng ta không khỏi tự hào về những cột mốc đã đi qua. Trong đó, việc triển khai và đưa vào vận hành thành công hệ thống E-learning từ năm 2023 được xem là một bước ngoặt lịch sử, một dấu ấn đậm nét khẳng định sự vươn mình của Nhà trường trong công cuộc chuyển đổi số toàn diện.\n      </p>\n\n      <div style=\"background: linear-gradient(135deg, rgba(114, 9, 16, 0.06) 0%, rgba(229, 192, 123, 0.12) 100%); border-left: 4px solid var(--burgundy); border-radius: 0 12px 12px 0; padding: 18px 24px; margin: 24px 0; font-style: italic; color: var(--burgundy-dark); font-size: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.02);\">\n        “Hệ thống E-learning không chỉ là một công cụ công nghệ, mà là tâm huyết, là kết tinh trí tuệ của tập thể Trường Đào tạo Cán bộ trong nỗ lực mang tri thức đến từng cán bộ, nhân viên, xóa nhòa mọi ranh giới về không gian và thời gian. Những con số thống kê qua 4 năm (2023 - 2026) chính là những trang nhật ký sống động nhất ghi lại hành trình vươn lên mạnh mẽ của công tác đào tạo, bồi dưỡng cán bộ.”\n      </div>\n\n      <!-- BẢNG ĐỒ HỌA 4 NĂM TĂNG TRƯỞNG KỶ LỤC -->\n      <div style=\"background: #FFFFFF; border: 1px solid rgba(229, 192, 123, 0.45); border-radius: 14px; padding: 22px 20px; margin: 28px 0; box-shadow: 0 8px 24px rgba(0,0,0,0.04);\">\n        <div style=\"font-family: var(--font-cinzel); font-size: 15px; font-weight: 700; color: var(--burgundy); text-transform: uppercase; letter-spacing: 1px; text-align: center; margin-bottom: 18px;\">\n          <i data-lucide=\"trending-up\"></i> TĂNG TRƯỞNG LƯỢT TIẾP CẬN E-LEARNING (2023 – 2026)\n        </div>\n        <div style=\"display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; text-align: center;\">\n          <div style=\"background: #FAF6EE; border: 1px solid rgba(229, 192, 123, 0.35); border-radius: 10px; padding: 14px 8px;\">\n            <div style=\"font-size: 11.5px; font-weight: 700; color: #7A6B58; text-transform: uppercase;\">Năm 2023</div>\n            <div style=\"font-family: var(--font-cinzel); font-size: 22px; font-weight: 800; color: var(--burgundy); margin: 4px 0;\">6.630</div>\n            <div style=\"font-size: 11px; color: #666; line-height: 1.4;\">Chạy đà & thử nghiệm trọng điểm</div>\n          </div>\n          <div style=\"background: #FAF6EE; border: 1px solid rgba(229, 192, 123, 0.35); border-radius: 10px; padding: 14px 8px;\">\n            <div style=\"font-size: 11.5px; font-weight: 700; color: #7A6B58; text-transform: uppercase;\">Năm 2024</div>\n            <div style=\"font-family: var(--font-cinzel); font-size: 22px; font-weight: 800; color: var(--burgundy); margin: 4px 0;\">75.004</div>\n            <div style=\"font-size: 11px; color: #666; line-height: 1.4;\">Tăng trưởng mạnh mẽ quy mô sát hạch</div>\n          </div>\n          <div style=\"background: #FAF6EE; border: 1px solid rgba(229, 192, 123, 0.35); border-radius: 10px; padding: 14px 8px;\">\n            <div style=\"font-size: 11.5px; font-weight: 700; color: #7A6B58; text-transform: uppercase;\">Năm 2025</div>\n            <div style=\"font-family: var(--font-cinzel); font-size: 22px; font-weight: 800; color: var(--burgundy); margin: 4px 0;\">113.794</div>\n            <div style=\"font-size: 11px; color: #666; line-height: 1.4;\">Chuẩn hóa toàn quốc & Hội thi lớn</div>\n          </div>\n          <div style=\"background: linear-gradient(145deg, #FAF6EE 0%, #FFF3D6 100%); border: 1px solid var(--gold-accent); border-radius: 10px; padding: 14px 8px;\">\n            <div style=\"font-size: 11.5px; font-weight: 700; color: var(--burgundy); text-transform: uppercase;\">Năm 2026</div>\n            <div style=\"font-family: var(--font-cinzel); font-size: 22px; font-weight: 800; color: var(--burgundy); margin: 4px 0;\">140.136</div>\n            <div style=\"font-size: 11px; color: #1E5C38; font-weight: 700; line-height: 1.4;\">Kỷ lục đỉnh cao & lan tỏa số</div>\n          </div>\n        </div>\n      </div>\n\n      <h4 style=\"color: var(--burgundy); font-family: var(--font-cinzel); font-size: 18px; margin: 28px 0 12px; display: flex; align-items: center; gap: 8px;\">\n        <i data-lucide=\"layers\" style=\"color: var(--gold-accent);\"></i> 1. Những viên gạch đầu tiên: Nền móng vững chắc cho kỷ nguyên số (Năm 2023)\n      </h4>\n      <p>\n        Năm 2023 đánh dấu bước đi tiên phong khi Trường Đào tạo đưa E-learning vào ứng dụng thực tiễn với <strong>6.630 lượt tiếp cận</strong>. Trong giai đoạn \"chạy đà\" này, Nhà trường đã khéo léo lựa chọn các chương trình trọng điểm để thử nghiệm: từ kiểm tra nghiệp vụ cho đội ngũ kiểm tra giám sát (KTGS) nội bộ, kiểm tra đánh giá chất lượng cán bộ tín dụng (<strong>2.618 lượt</strong>), cho đến vòng Chung kết <em>\"Hội thi cán bộ tín dụng giỏi toàn quốc\"</em>.\n      </p>\n      <p>\n        Những thành công bước đầu này không chỉ khẳng định năng lực vận hành công nghệ của Nhà trường mà còn tạo ra niềm tin, sự hứng khởi cho học viên, đặt nền móng vững chắc cho một hệ sinh thái học tập số trong tương lai.\n      </p>\n\n      <h4 style=\"color: var(--burgundy); font-family: var(--font-cinzel); font-size: 18px; margin: 28px 0 12px; display: flex; align-items: center; gap: 8px;\">\n        <i data-lucide=\"award\" style=\"color: var(--gold-accent);\"></i> 2. Sự phát triển vượt bậc về quy mô: Khẳng định vai trò \"nhạc trưởng\" trong công tác kiểm tra, sát hạch (2024 - 2025)\n      </h4>\n      <p>\n        Nếu 2023 là bước thử nghiệm, thì 2024 và 2025 chứng kiến sự gia tăng mạnh mẽ. Số lượng lượt thi, sát hạch qua hệ thống đã tăng trưởng ấn tượng lên <strong>75.004 lượt</strong> (năm 2024) và <strong>113.794 lượt</strong> (năm 2025).\n      </p>\n      <p>\n        Dưới sự điều phối của Trường Đào tạo, hàng trăm ngàn lượt người lao động tại Trụ sở chính và các Chi nhánh trên toàn quốc đã được tiếp cận các kỳ kiểm tra nghiệp vụ định kỳ một cách đồng bộ, minh bạch và hiệu quả nhất. Không chỉ dừng lại ở đánh giá nội bộ, hệ thống còn hỗ trợ đắc lực cho khâu tuyển dụng (Thi tuyển dụng lao động TSC, tuyển dụng Chi nhánh) và sát hạch cán bộ quản lý (Phó Giám đốc Chi nhánh loại I).\n      </p>\n      <p>\n        Thông qua E-learning, Nhà trường đã chuẩn hóa quy trình đánh giá, tiết kiệm đáng kể chi phí tổ chức, in ấn, đồng thời đảm bảo tuyệt đối tính công bằng, khách quan trong công tác cán bộ.\n      </p>\n\n      <h4 style=\"color: var(--burgundy); font-family: var(--font-cinzel); font-size: 18px; margin: 28px 0 12px; display: flex; align-items: center; gap: 8px;\">\n        <i data-lucide=\"sparkles\" style=\"color: var(--gold-accent);\"></i> 3. Không gian lan tỏa văn hóa và tinh thần đổi mới sáng tạo (2025 - 2026)\n      </h4>\n      <p>\n        Điểm tự hào lớn nhất của hệ thống E-learning do Trường Đào tạo vận hành chính là khả năng trở thành bệ phóng cho các phong trào sâu rộng. Đỉnh cao của sự phát triển được ghi nhận vào năm 2026 với kỷ lục <strong>140.136 lượt sử dụng</strong>.\n      </p>\n      <p>\n        Hệ thống không còn đơn thuần là \"phòng thi ảo\", mà đã trở thành ngày hội số của toàn hệ thống. Bắt đầu từ thành công rực rỡ của Hội thi <em>\"Agribanker làm chủ công nghệ trong kỷ nguyên số\"</em> (Năm 2025 - <strong>35.960 lượt</strong>), đến năm 2026, Nhà trường tiếp tục ghi dấu ấn tổ chức xuất sắc hai sự kiện có quy mô lớn trên toàn hệ thống:\n      </p>\n      <ul style=\"padding-left: 24px; line-height: 1.8; margin: 14px 0;\">\n        <li><strong>Cuộc thi tìm hiểu \"Kiến tạo tương lai số\":</strong> Thu hút <strong>33.858 lượt</strong> cán bộ tham gia.</li>\n        <li><strong>Hội thi \"Đại sứ Văn hóa Agribank\":</strong> Ghi nhận <strong>33.769 lượt</strong> cán bộ sôi nổi tranh tài.</li>\n      </ul>\n      <p>\n        Nhờ có E-learning, những giá trị cốt lõi, văn hóa doanh nghiệp và định hướng chuyển đổi số của ngân hàng đã được lan tỏa sâu rộng, chạm đến trái tim và nhận thức của từng cán bộ. Trường Đào tạo đã thực sự vượt ra khỏi khuôn khổ của những bục giảng truyền thống, trở thành trung tâm kết nối và lan tỏa những giá trị tốt đẹp nhất.\n      </p>\n\n      <!-- HƯỚNG TỚI TƯƠNG LAI -->\n      <div style=\"background: #FAF6EE; border: 1px solid rgba(229, 192, 123, 0.4); border-radius: 12px; padding: 22px; margin: 28px 0;\">\n        <h4 style=\"color: var(--burgundy); font-family: var(--font-cinzel); font-size: 17px; margin-top: 0; margin-bottom: 10px;\">\n          <i data-lucide=\"compass\"></i> Hướng Tới Tương Lai\n        </h4>\n        <p style=\"margin-bottom: 12px;\">\n          Nhìn lại chặng đường 4 năm (2023 - 2026), sự lớn mạnh của hệ thống E-learning (từ hơn 6.000 lên hơn 140.000 lượt) là minh chứng rõ nét cho sự chuyển mình không ngừng nghỉ của Trường Đào tạo Cán bộ. Cuốn kỷ yếu này lưu giữ những con số biết nói, nhưng đằng sau đó là sự cống hiến thầm lặng của đội ngũ giảng viên, cán bộ quản lý Nhà trường.\n        </p>\n        <p style=\"margin: 0;\">\n          Bước sang chặng đường mới, với nền tảng công nghệ vững chắc đã được thiết lập, Trường Đào tạo Cán bộ sẽ tiếp tục đổi mới, đưa E-learning trở thành bệ phóng kiến tạo nên một thế hệ nhân sự ngân hàng toàn diện: <strong>Tinh thông nghiệp vụ, Thấm nhuần văn hóa và Làm chủ công nghệ</strong>, đóng góp vào sự phát triển trường tồn của hệ thống.\n        </p>\n      </div>\n\n      <div style=\"margin-top: 28px; text-align: right; font-style: italic; color: #555;\">\n        <strong>Tác giả: Bích Ngọc</strong><br>\n        <span style=\"font-size: 13.5px; color: #777;\">Trường Đào tạo Cán bộ (Viện Nghiên cứu và Đào tạo Agribank)</span>\n      </div>\n    </div>\n  "
+},
+  "article-nld": {
+    "tag": "Tập Thể Đoàn Kết • Sức Sống Viện",
+    "title": "Chân Dung Người Lao Động Hiện Tại Tại Viện Nghiên Cứu Và Đào Tạo",
+    "subtitle": "Nụ cười rạng rỡ và tinh thần cống hiến của tập thể cán bộ nhân viên",
+    "content": "\n      <p>Sức sống và tương lai của Viện Nghiên cứu và Đào tạo Agribank được dệt nên bởi chính những con người đang ngày đêm âm thầm cống hiến:</p>\n      <ul style=\"padding-left: 20px; line-height: 1.8; color: #444; margin: 16px 0;\">\n        <li><strong>Phòng Tổng hợp:</strong> Nhịp cầu kết nối nhịp nhàng, bảo đảm hậu cần chu đáo, văn thư chuẩn mực và môi trường làm việc văn minh, thân thiện.</li>\n        <li><strong>Phòng Kế hoạch & Quản lý Đào tạo:</strong> Những người điều phối tận tụy, sắp xếp lịch trình khoa học cho hàng trăm lớp học trực tiếp và trực tuyến mỗi năm.</li>\n        <li><strong>Phòng Nghiên cứu Chiến lược:</strong> Đội ngũ trí thức trẻ nhiệt huyết, say mê nghiên cứu khoa học, bám sát các chỉ số kinh tế và đề xuất chính sách.</li>\n        <li><strong>Tổ Công nghệ E-learning & Thư viện số:</strong> Những chiến binh công nghệ thầm lặng, bảo đảm hệ thống vận hành 24/7 ổn định, mượt mà.</li>\n      </ul>\n      <p>Một tập thể đoàn kết, tự tin, mang trong mình niềm tự hào 25 năm truyền thống và khát vọng vươn mình mạnh mẽ trong giai đoạn phát triển mới.</p>\n    "
+  },
+  "article-diep-phuong": {
+    "tag": "Ký Ức Giảng Đường • Tác Giả: Diệp & Dương Phương",
+    "title": "Chạm Vào Cảm Xúc: Những Năm Tháng Gắn Bó Dưới Mái Trường Viện",
+    "subtitle": "Kỷ niệm bục giảng và nghĩa tình thầy trò sâu nặng",
+    "content": "\n      <p>“Có những kỷ niệm giản dị mà theo ta suốt cả cuộc đời làm nghề...”</p>\n      <p>Bài viết là những dòng hồi ức chân thành, xúc động của các thầy cô giáo gắn bó lâu năm với mái trường Đào tạo cán bộ Agribank. Là những buổi sáng mùa đông Hà Nội đứng trên bục giảng nhìn xuống lớp học đông đủ, thấy ánh mắt khát khao học hỏi của các anh chị học viên từ Tây Nguyên hay miền Tây Nam Bộ xa xôi vượt hàng ngàn cây số về trường.</p>\n      <p>Là những buổi thảo luận chuyên môn sôi nổi kéo dài qua giờ nghỉ trưa, là những lời cảm ơn mộc mạc của học viên ngày chia tay trở về đơn vị công tác: <em>\"Cảm ơn thầy cô đã cho chúng em không chỉ kiến thức nghề, mà cả niềm tự hào là người Agribank\"</em>.</p>\n      <p>Những xúc cảm ấm áp ấy chính là phần thưởng cao quý nhất, tiếp thêm sức mạnh để người làm giáo dục Agribank vững bước trên hành trình gieo mầm tri thức.</p>\n    "
+  },
+  "article-sep-luu": {
+    "tag": "Góc Nhìn Lãnh Đạo • Hồi Ức & Gửi Gắm",
+    "title": "Góc Nhìn & Tâm Huyết Của Sếp Lưu: Vững Vàng Điểm Tựa, Vươn Xa Tương Lai",
+    "subtitle": "Những chia sẻ chân thành và lời dặn dò tâm huyết thế hệ trẻ",
+    "content": "\n      <p>Trải qua nhiều chặng đường thăng trầm cùng sự phát triển của công tác đào tạo Agribank, bài viết là những đúc kết tâm huyết của Sếp Lưu gửi gắm tới các thế hệ cán bộ, giảng viên trẻ:</p>\n      \n      <div style=\"background: rgba(114, 9, 16, 0.05); border-left: 4px solid var(--gold-accent); padding: 18px 22px; margin: 20px 0; border-radius: 0 10px 10px 0;\">\n        <p style=\"margin: 0; font-family: var(--font-serif); font-size: 16px; font-style: italic; color: var(--burgundy-dark); line-height: 1.8;\">\n          “Tài sản lớn nhất của một ngôi trường không phải là những giảng đường bê tông khang trang, mà là ngọn lửa yêu nghề và tinh thần phụng sự của người thầy. Trong kỷ nguyên công nghệ số, máy móc có thể thay thế nhiều việc, nhưng không thể thay thế được cái tâm của người làm giáo dục...”\n        </p>\n      </div>\n\n      <p>Sếp Lưu nhắn nhủ các thế hệ cán bộ trẻ của Viện Nghiên cứu và Đào tạo cần luôn giữ vững ba điều:</p>\n      <ul style=\"padding-left: 20px; line-height: 1.8; color: #444; margin: 16px 0;\">\n        <li><strong>Giữ tâm trong sáng:</strong> Đặt đạo đức nghề nghiệp và lợi ích chung của Agribank lên hàng đầu.</li>\n        <li><strong>Không ngừng học hỏi:</strong> Luôn làm mới tri thức, cập nhật công nghệ và không bao giờ thỏa mãn với hiện tại.</li>\n        <li><strong>Tôn sư trọng đạo:</strong> Khắc sâu đạo lý tri ân các thế hệ tiền bối đã hy sinh, cống hiến cho mái trường.</li>\n      </ul>\n    "
+  },
+  "article-thanh-huong": {
+    "tag": "Thi Ca Tri Ân • Tác Giả: C. Thanh Hương",
+    "title": "Hoa Dâng Thầy Cô: Vần Thơ Mộc Mạc Thay Cho Lời Tri Ân",
+    "subtitle": "Kỷ niệm 25 năm thành lập mái trường Viện thân yêu",
+    "content": "\n      <div style=\"background: #FAF6EE; border: 1px solid rgba(229,192,123,0.4); border-radius: 14px; padding: 30px; text-align: center; margin: 20px auto; max-width: 600px;\">\n        <div style=\"font-family: var(--font-serif); font-size: 18px; line-height: 2.2; font-style: italic; color: var(--burgundy-dark);\">\n          Hai mươi lăm năm một chặng đường dài<br>\n          Nặng nghĩa tri ân hạt giống ươm mầm<br>\n          Mái trường xưa dẫu đổi thay vóc dáng<br>\n          Ngọn lửa nghề vẫn sáng mãi ngàn năm.<br><br>\n\n          Thầy truyền lửa giữa muôn trùng bão táp<br>\n          Trò vững vàng nơi góc nhỏ quê hương<br>\n          Agribank chung một tấm lòng son<br>\n          Xây ước mơ xanh, đắp bồi tri thức.<br><br>\n\n          Hôm nay đây bước sang tầm vóc mới<br>\n          Viện vươn cao rạng rỡ giữa mây trời<br>\n          Lời cảm ơn gửi trọn vạn người ơi<br>\n          Mãi tự hào một mái trường yêu dấu!\n        </div>\n        <div style=\"margin-top: 24px; font-weight: 700; color: var(--gold-accent); text-transform: uppercase; font-size: 13px; letter-spacing: 1px;\">\n          Nhà giáo / Tác giả: C. Thanh Hương\n        </div>\n      </div>\n      <p style=\"text-align: center; font-size: 14px; color: #666; font-style: italic;\">\n        Những vần thơ mộc mạc, tha thiết được viết bằng trọn vẹn tình yêu và lòng tri ân sâu nặng với mái trường và các thế hệ đồng nghiệp.\n      </p>\n    "
+  },
+  "hof-lecturers": {
+    "tag": "Đại Sảnh Danh Vọng • Hall of Fame",
+    "title": "Bảng Vàng Giảng Viên: Tri Ân Người Truyền Lửa",
+    "subtitle": "Tôn vinh Ban Lãnh đạo Agribank và Giảng viên kiêm chức xuất sắc",
+    "content": "\n      <p>Thành công vượt bậc trong công tác đào tạo 25 năm qua có sự đóng góp vô cùng đặc biệt của mô hình <strong>Giảng viên kiêm chức</strong> – nét đặc sắc riêng của hệ thống đào tạo Agribank:</p>\n      <ul style=\"padding-left: 20px; line-height: 1.8; color: #444; margin: 16px 0;\">\n        <li><strong>Ban Lãnh đạo Agribank trực tiếp đứng lớp:</strong> Trực tiếp truyền đạt định hướng chiến lược, kinh nghiệm thực tiễn và tinh thần lãnh đạo phụng sự cho đội ngũ kế cận.</li>\n        <li><strong>Giảng viên kiêm chức xuất sắc tại các Ban Trụ sở chính:</strong> Những chuyên gia đầu ngành mang kiến thức chuyên sâu về quản trị rủi ro, kế toán, tín dụng, thanh toán quốc tế và kiểm toán nội bộ.</li>\n        <li><strong>Giảng viên thực chiến tại Chi nhánh:</strong> Những Giám đốc, Trưởng phòng kinh doanh xuất sắc mang hơi thở thực tế từ địa bàn, chia sẻ tình huống thực tế và kỹ năng xử lý vướng mắc.</li>\n      </ul>\n      <p>Xin trân trọng nghiêng mình cảm ơn sự nhiệt tình, trách nhiệm và tâm huyết của tất cả các thầy cô giáo kiêm chức trên toàn hệ thống!</p>\n    "
+  },
+  "hof-branches": {
+    "tag": "Đại Sảnh Danh Vọng • Hall of Fame",
+    "title": "Tập Thể Đồng Hành: Các Chi Nhánh Và Đơn Vị Xuất Sắc",
+    "subtitle": "Những tập thể dẫn đầu phong trào học tập suốt đời",
+    "content": "\n      <p>Một môi trường học tập hiệu quả không thể thiếu sự đồng lòng hưởng ứng từ các Chi nhánh và đơn vị cơ sở trên toàn quốc:</p>\n      <ul style=\"padding-left: 20px; line-height: 1.8; color: #444; margin: 16px 0;\">\n        <li>Các Chi nhánh loại I, loại II chủ động phối hợp tổ chức các lớp đào tạo tập trung và đào tạo tại chỗ chất lượng cao.</li>\n        <li>Các đơn vị dẫn đầu phong trào hoàn thành các kỳ thi sát hạch trực tuyến với tỷ lệ đạt chuẩn 100%.</li>\n        <li>Các Chi nhánh tích cực cử cán bộ tham gia đóng góp câu hỏi chuyên môn và tham luận học thuật cho Viện.</li>\n      </ul>\n      <p>Sự đồng hành bền bỉ của mạng lưới hơn 2.200 điểm giao dịch chính là động lực để Viện không ngừng nâng cao chất lượng phụng sự.</p>\n    "
+  },
+  "hof-logistics": {
+    "tag": "Đại Sảnh Danh Vọng • Hall of Fame",
+    "title": "Cơ Sở Đào Tạo Xuất Sắc Về Hậu Cần: Hậu Phương Vững Chắc",
+    "subtitle": "Tôn vinh sự tận tụy bảo đảm cơ sở vật chất và phục vụ lớp học",
+    "content": "\n      <p>Đằng sau mỗi khóa học thành công rực rỡ là sự cống hiến thầm lặng, chu đáo của đội ngũ hậu cần cơ sở đào tạo:</p>\n      <ul style=\"padding-left: 20px; line-height: 1.8; color: #444; margin: 16px 0;\">\n        <li><strong>Hệ thống giảng đường, hội trường:</strong> Luôn sạch sẽ, tiện nghi, trang bị đầy đủ âm thanh, máy chiếu và đường truyền trực tuyến hiện đại.</li>\n        <li><strong>Khu lưu trú học viên:</strong> Buồng phòng thoáng mát, an ninh trật tự bảo đảm, tạo cảm giác ấm cúng như ở nhà cho học viên các tỉnh xa về học tập.</li>\n        <li><strong>Công tác ẩm thực, y tế:</strong> Bếp ăn tập thể bảo đảm dinh dưỡng, an toàn vệ sinh thực phẩm tuyệt đối, sẵn sàng chăm sóc sức khỏe cho học viên trong suốt khóa học.</li>\n      </ul>\n      <p>Những bàn tay âm thầm chuẩn bị từng ly nước, dọn từng phòng nghỉ, phục vụ từng bữa ăn... chính là những mảnh ghép không thể thiếu tạo nên uy tín và sự ấm áp của mái trường Viện.</p>\n    "
+  },
+  "hof-partners": {
+    "tag": "Đại Sảnh Danh Vọng • Hall of Fame",
+    "title": "Đối Tác Chiến Lược: Nâng Tầm Học Thuật & Chuẩn Quốc Tế",
+    "subtitle": "Tri ân các Viện nghiên cứu và Trường Đại học hàng đầu",
+    "content": "\n      <p>Viện Nghiên cứu và Đào tạo Agribank tự hào thiết lập mối quan hệ hợp tác chiến lược toàn diện với các trường đại học, học viện và tổ chức giáo dục tài chính uy tín:</p>\n      <ul style=\"padding-left: 20px; line-height: 1.8; color: #444; margin: 16px 0;\">\n        <li>Học viện Ngân hàng, Trường Đại học Kinh tế Quốc dân, Học viện Tài chính trong việc liên kết đào tạo sau đại học và bồi dưỡng chuyên đề cao cấp.</li>\n        <li>Các viện nghiên cứu kinh tế Trung ương trong phối hợp thực hiện đề tài khoa học cấp ngành, cấp Nhà nước.</li>\n        <li>Các đối tác quốc tế trong chuyển giao chương trình đào tạo chứng chỉ tài chính, quản trị rủi ro và chuyển đổi số ngân hàng.</li>\n      </ul>\n      <p>Mạng lưới đối tác chiến lược sâu rộng chính là đôi cánh giúp Viện vững vàng vươn ra biển lớn.</p>\n    "
+  },
+  "hof-silent-heroes": {
+    "tag": "Đại Sảnh Danh Vọng • Hall of Fame",
+    "title": "Gương Mặt Thầm Lặng: Những Người Giữ Lửa Nơi Hậu Phương",
+    "subtitle": "Lời cảm ơn chân thành tới đội ngũ quản lý lớp và kỹ thuật số",
+    "content": "\n      <p>Có những người không trực tiếp đứng trên bục giảng, nhưng nếu thiếu họ thì không một bài giảng hay khóa học nào có thể hoàn thành trọn vẹn:</p>\n      <ul style=\"padding-left: 20px; line-height: 1.8; color: #444; margin: 16px 0;\">\n        <li><strong>Cán bộ quản lý lớp:</strong> Tận tình chăm lo từng danh sách, điểm danh, giải đáp thắc mắc và đồng hành cùng học viên từ sáng sớm tới tối muộn.</li>\n        <li><strong>Kỹ sư E-learning & Thư viện số:</strong> Thức trắng đêm xử lý sự cố máy chủ, tối ưu đường truyền cho các kỳ sát hạch hàng chục ngàn người cùng lúc.</li>\n        <li><strong>Tổ truyền thông & Sản xuất nội dung:</strong> Lặng lẽ sau ống kính máy quay, kiên nhẫn dựng từng thước phim, trau chuốt từng slide bài giảng điện tử.</li>\n      </ul>\n      <p>Xin trân trọng cảm ơn những nụ cười, mồ hôi và lòng nhiệt thành của những người hùng thầm lặng!</p>\n    "
+  },
+  "audit-checklist": {
+    "tag": "Hồ Sơ Quản Lý Dữ Liệu • Giai Đoạn 8",
+    "title": "Bảng Thẩm Định Dữ Liệu & Danh Mục Kiểm Thử Toàn Diện",
+    "subtitle": "Bảo đảm tính minh bạch, chính xác và nhất quán lịch sử",
+    "content": "\n      <div style=\"overflow-x: auto; margin-top: 10px;\">\n        <table style=\"width: 100%; border-collapse: collapse; font-size: 13.5px; text-align: left;\">\n          <thead>\n            <tr style=\"background: var(--burgundy); color: #fff;\">\n              <th style=\"padding: 10px 12px; border: 1px solid #ddd;\">Hạng Mục</th>\n              <th style=\"padding: 10px 12px; border: 1px solid #ddd;\">Dữ Liệu Thẩm Định</th>\n              <th style=\"padding: 10px 12px; border: 1px solid #ddd;\">Mốc Thời Gian</th>\n              <th style=\"padding: 10px 12px; border: 1px solid #ddd;\">Trạng Thái</th>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td style=\"padding: 9px 12px; border: 1px solid #ddd; font-weight: 600;\">Khởi Nguồn</td>\n              <td style=\"padding: 9px 12px; border: 1px solid #ddd;\">Trung tâm Đào tạo cán bộ Agribank</td>\n              <td style=\"padding: 9px 12px; border: 1px solid #ddd;\">Năm 1999</td>\n              <td style=\"padding: 9px 12px; border: 1px solid #ddd; color: #1E5C38; font-weight: 700;\">PASS (Đã Xác Nhận)</td>\n            </tr>\n            <tr style=\"background: #FAF6EE;\">\n              <td style=\"padding: 9px 12px; border: 1px solid #ddd; font-weight: 600;\">Mở Rộng</td>\n              <td style=\"padding: 9px 12px; border: 1px solid #ddd;\">Trường Đào tạo cán bộ Agribank</td>\n              <td style=\"padding: 9px 12px; border: 1px solid #ddd;\">Năm 2008</td>\n              <td style=\"padding: 9px 12px; border: 1px solid #ddd; color: #1E5C38; font-weight: 700;\">PASS (Đã Xác Nhận)</td>\n            </tr>\n            <tr>\n              <td style=\"padding: 9px 12px; border: 1px solid #ddd; font-weight: 600;\">Vinh Danh</td>\n              <td style=\"padding: 9px 12px; border: 1px solid #ddd;\">Giải thưởng SEI AWARD</td>\n              <td style=\"padding: 9px 12px; border: 1px solid #ddd;\">Năm 2019</td>\n              <td style=\"padding: 9px 12px; border: 1px solid #ddd; color: #1E5C38; font-weight: 700;\">PASS (Đã Xác Nhận)</td>\n            </tr>\n            <tr style=\"background: #FAF6EE;\">\n              <td style=\"padding: 9px 12px; border: 1px solid #ddd; font-weight: 600;\">Chuyển Đổi Lịch Sử</td>\n              <td style=\"padding: 9px 12px; border: 1px solid #ddd;\">Viện Nghiên cứu và Đào tạo Agribank</td>\n              <td style=\"padding: 9px 12px; border: 1px solid #ddd;\">Tháng 11/2026</td>\n              <td style=\"padding: 9px 12px; border: 1px solid #ddd; color: #1E5C38; font-weight: 700;\">PASS (Đã Xác Nhận)</td>\n            </tr>\n            <tr>\n              <td style=\"padding: 9px 12px; border: 1px solid #ddd; font-weight: 600;\">Thư Chúc Mừng HĐTV</td>\n              <td style=\"padding: 9px 12px; border: 1px solid #ddd;\">Văn bản chỉ đạo chính thức</td>\n              <td style=\"padding: 9px 12px; border: 1px solid #ddd;\">20/11/2026</td>\n              <td style=\"padding: 9px 12px; border: 1px solid #ddd; color: #C59B27; font-weight: 700;\">CHỜ_NỘI_DUNG_KÝ</td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    "
+  }
+};
 
     function openArticle(id) {
       const art = articles[id];
@@ -3318,6 +4448,14 @@
     });
 
     // ====================================================
+    
+    // Nhấp vào ảnh bìa Hero để bắt đầu cuộn vào kỷ yếu
+    document.getElementById('sec-hero')?.addEventListener('click', (e) => {
+      if (!e.target.closest('header') && !e.target.closest('nav')) {
+        document.querySelector('#sec-letters')?.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+
     // GSAP SCROLLTRIGGER CINEMATIC ANIMATIONS (RESILIENT & FALLBACK)
     // ====================================================
     document.addEventListener('DOMContentLoaded', () => {
@@ -3333,12 +4471,10 @@
         return;
       }
 
-      // 1. Hero Reveal
-      gsap.from('.hero-badge-gold', { opacity: 0, y: -20, duration: 0.8, delay: 0.2 });
-      gsap.from('.hero-title-box', { opacity: 0, scale: 0.9, duration: 1.1, delay: 0.4, ease: 'power2.out' });
-      gsap.from('.hero-subheading', { opacity: 0, y: 20, duration: 0.9, delay: 0.7 });
-      gsap.from('.hero-quote', { opacity: 0, y: 20, duration: 0.9, delay: 0.9 });
-      gsap.from('.hero-cta-group', { opacity: 0, y: 20, duration: 0.8, delay: 1.1 });
+      // 1. Hero Reveal: CSS animations handles entrance smoothly; GSAP confirms 100% opacity
+      document.querySelectorAll('.hero-badge-gold, .hero-title-box, .hero-subheading, .hero-quote, .hero-cta-group').forEach(el => {
+        el.style.opacity = '1';
+      });
 
       // 2. Timeline Nodes Reveal & Sticky Storytelling (Giai đoạn 5A & 5B)
       const eraSlides = document.querySelectorAll('.sticky-era-slide');
@@ -3536,7 +4672,7 @@
       },
       {
         src: 'backgrounds/04_future_aspiration.webp',
-        tag: 'Nghiên Cứu & Đổi Mới • 2024 – Nay',
+        tag: 'Nghiên Cứu & Đổi Mới • Tháng 11/2026',
         title: 'Hội Thảo Khoa Học & Khát Vọng Nghiên Cứu Chiến Lược',
         desc: 'Vừa là cái nôi đào tạo chuẩn mực, vừa là viện nghiên cứu tham mưu chiến lược then chốt, đồng hành cùng sự phát triển bền vững của Agribank.'
       },
@@ -3616,7 +4752,7 @@
     }
 
     // ====================================================
-    // GOLDEN AMBIENT PARTICLES (CANVAS 60FPS LIGHTWEIGHT)
+    // HIỆU ỨNG SAO BAY VÀNG ĐỒNG CINEMATIC (CANVAS 60FPS RESILIENT)
     // ====================================================
     (function initGoldenParticles() {
       const canvas = document.getElementById('heroParticles');
@@ -3624,98 +4760,162 @@
       const ctx = canvas.getContext('2d');
       if (!ctx) return;
 
-      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      let w = 0, h = 0;
+      function resizeCanvas() {
+        const parent = canvas.parentElement || document.getElementById('sec-hero');
+        w = canvas.width = parent ? parent.offsetWidth : window.innerWidth;
+        h = canvas.height = parent ? parent.offsetHeight : window.innerHeight;
+      }
+      resizeCanvas();
+      window.addEventListener('resize', resizeCanvas, { passive: true });
 
-      let w = canvas.width = canvas.parentElement.offsetWidth;
-      let h = canvas.height = canvas.parentElement.offsetHeight;
-      let isHeroVisible = true;
-      let animationFrameId = null;
+      const isMobile = window.innerWidth < 768;
+      const STAR_COUNT = isMobile ? 48 : 86;
+      const stars = [];
 
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          isHeroVisible = entry.isIntersecting;
-          if (isHeroVisible && !document.hidden && !animationFrameId) {
-            renderParticles();
-          }
+      // Bảng màu vàng hoàng gia, vàng kim sa và ánh bạc kim lấp lánh
+      const starColors = [
+        { r: 255, g: 255, b: 255 }, // Ánh kim cương trắng
+        { r: 255, g: 238, b: 160 }, // Vàng Champagne
+        { r: 255, g: 215, b: 64 },  // Vàng Hoàng Gia 24k
+        { r: 245, g: 184, b: 46 },  // Vàng Hổ Phách Amber
+        { r: 255, g: 248, b: 210 }  // Ánh sáng bạc kim cao cấp
+      ];
+
+      for (let i = 0; i < STAR_COUNT; i++) {
+        const rand = Math.random();
+        const type = rand < 0.45 ? 'star4' : (rand < 0.75 ? 'glowOrb' : 'sparkleDust');
+        const color = starColors[Math.floor(Math.random() * starColors.length)];
+        stars.push({
+          x: Math.random() * (w || window.innerWidth),
+          y: Math.random() * (h || window.innerHeight),
+          type: type,
+          size: type === 'star4' ? (3.8 + Math.random() * 6.0) : (type === 'glowOrb' ? 2.6 + Math.random() * 3.8 : 1.4 + Math.random() * 2.2),
+          speedY: 0.35 + Math.random() * 0.85, // Di chuyển bay hướng lên trên
+          speedX: (Math.random() - 0.5) * 0.45, // Lượn sóng ngang nhẹ nhàng
+          baseAlpha: 0.38 + Math.random() * 0.52,
+          twinkleSpeed: 0.025 + Math.random() * 0.04,
+          phase: Math.random() * Math.PI * 2,
+          rot: Math.random() * Math.PI,
+          rotSpeed: (Math.random() - 0.5) * 0.025,
+          color: color
         });
-      }, { threshold: 0.05 });
-      observer.observe(canvas.parentElement);
+      }
 
-      // Page Visibility API: Dừng animation khi tab không hoạt động (Giai đoạn 7)
-      document.addEventListener('visibilitychange', () => {
-        if (document.hidden) {
-          if (animationFrameId) {
-            cancelAnimationFrame(animationFrameId);
-            animationFrameId = null;
-          }
-        } else {
-          if (isHeroVisible && !animationFrameId) {
-            renderParticles();
-          }
+      // Vẽ ngôi sao 4 cánh lấp lánh (Cinematic 4-pointed sparkle star)
+      function draw4PointStar(cx, cy, outerR, innerR, alpha, rot, color) {
+        ctx.save();
+        ctx.translate(cx, cy);
+        ctx.rotate(rot);
+        ctx.beginPath();
+        for (let i = 0; i < 4; i++) {
+          const angle = (i * Math.PI) / 2;
+          ctx.lineTo(Math.cos(angle) * outerR, Math.sin(angle) * outerR);
+          const innerAngle = angle + Math.PI / 4;
+          ctx.lineTo(Math.cos(innerAngle) * innerR, Math.sin(innerAngle) * innerR);
         }
-      });
+        ctx.closePath();
+        ctx.fillStyle = 'rgba(' + color.r + ',' + color.g + ',' + color.b + ',' + alpha + ')';
+        ctx.shadowColor = 'rgba(255, 215, 64, 0.95)';
+        ctx.shadowBlur = outerR * 2.4;
+        ctx.fill();
 
-      window.addEventListener('resize', () => {
-        w = canvas.width = canvas.parentElement.offsetWidth;
-        h = canvas.height = canvas.parentElement.offsetHeight;
-      }, { passive: true });
+        // Điểm sáng chói ở lõi tâm ngôi sao
+        ctx.beginPath();
+        ctx.arc(0, 0, innerR * 0.75, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(255, 255, 255, ' + Math.min(1, alpha + 0.35) + ')';
+        ctx.fill();
+        ctx.restore();
+      }
 
-      const PARTICLE_COUNT = Math.min(48, Math.max(20, Math.floor(w / 25)));
-      const particles = [];
-      const colors = ['rgba(255, 213, 107, ', 'rgba(255, 168, 38, ', 'rgba(252, 227, 148, ', 'rgba(255, 255, 255, '];
-
-      for (let i = 0; i < PARTICLE_COUNT; i++) {
-        particles.push({
-          x: Math.random() * w,
-          y: Math.random() * h,
-          r: 1.2 + Math.random() * 2.4,
-          speedY: 0.25 + Math.random() * 0.45,
-          speedX: (Math.random() - 0.5) * 0.3,
-          baseAlpha: 0.25 + Math.random() * 0.55,
-          alpha: 0.4,
-          pulseSpeed: 0.015 + Math.random() * 0.02,
-          pulseOffset: Math.random() * Math.PI * 2,
-          colorBase: colors[Math.floor(Math.random() * colors.length)]
-        });
+      // Vẽ hạt bụi vàng phát quang (Glowing Orb / Bokeh)
+      function drawGlowOrb(cx, cy, r, alpha, color) {
+        ctx.save();
+        ctx.beginPath();
+        ctx.arc(cx, cy, r, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(' + color.r + ',' + color.g + ',' + color.b + ',' + alpha + ')';
+        ctx.shadowColor = 'rgba(255, 196, 70, 0.9)';
+        ctx.shadowBlur = r * 3.2;
+        ctx.fill();
+        ctx.restore();
       }
 
       let tick = 0;
-      function renderParticles() {
-        if (!isHeroVisible || document.hidden) {
-          animationFrameId = null;
-          return;
-        }
+      let animId = null;
+
+      function render() {
+        if (!w || !h) resizeCanvas();
         ctx.clearRect(0, 0, w, h);
         tick += 0.02;
 
-        for (let i = 0; i < particles.length; i++) {
-          const p = particles[i];
-          p.y -= p.speedY;
-          p.x += Math.sin(tick + p.pulseOffset) * 0.4 + p.speedX;
-          p.alpha = p.baseAlpha + Math.sin(tick * 2 + p.pulseOffset) * 0.2;
+        for (let i = 0; i < stars.length; i++) {
+          const s = stars[i];
+          s.y -= s.speedY; // Bay từ dưới lên trên
+          s.x += Math.sin(tick + s.phase) * 0.5 + s.speedX; // Lượn nhẹ tự nhiên
+          s.rot += s.rotSpeed;
 
-          if (p.y < -10) {
-            p.y = h + 10;
-            p.x = Math.random() * w;
+          // Hiệu ứng nhấp nháy lấp lánh (twinkle)
+          const alpha = Math.max(0.12, Math.min(0.98, s.baseAlpha + Math.sin(tick * 3 + s.phase) * 0.35));
+
+          // Vòng lặp khi sao bay hết màn hình
+          if (s.y < -25) {
+            s.y = h + 20;
+            s.x = Math.random() * w;
           }
-          if (p.x < -10) p.x = w + 10;
-          if (p.x > w + 10) p.x = -10;
+          if (s.x < -25) s.x = w + 20;
+          if (s.x > w + 25) s.x = -25;
 
-          ctx.save();
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-          ctx.fillStyle = p.colorBase + Math.max(0.1, Math.min(0.9, p.alpha)) + ')';
-          ctx.shadowColor = 'rgba(255, 213, 107, 0.8)';
-          ctx.shadowBlur = p.r * 3;
-          ctx.fill();
-          ctx.restore();
+          if (s.type === 'star4') {
+            draw4PointStar(s.x, s.y, s.size, s.size * 0.28, alpha, s.rot, s.color);
+          } else if (s.type === 'glowOrb') {
+            drawGlowOrb(s.x, s.y, s.size, alpha, s.color);
+          } else {
+            // Hạt bụi vàng li ti
+            ctx.fillStyle = 'rgba(' + s.color.r + ',' + s.color.g + ',' + s.color.b + ',' + (alpha * 0.85) + ')';
+            ctx.fillRect(s.x, s.y, s.size, s.size);
+          }
         }
 
-        animationFrameId = requestAnimationFrame(renderParticles);
+        animId = requestAnimationFrame(render);
       }
 
-      renderParticles();
+      // Khởi động render ngay lập tức không bị delay
+      render();
+
+      // Giữ cho animation luôn chạy ổn định khi chuyển tab hoặc đánh thức cửa sổ
+      document.addEventListener('visibilitychange', () => {
+        if (!document.hidden && !animId) {
+          render();
+        }
+      });
+      window.addEventListener('focus', () => {
+        if (!animId) render();
+      });
     })();
   </script>
+
+  <script>
+    function setHeroVariant(num, evt) {
+      if (evt) evt.stopPropagation();
+      document.querySelectorAll('.btn-var-pill').forEach((b, idx) => {
+        b.classList.toggle('active', idx === (num - 1));
+      });
+      const badge = document.getElementById('heroBadgePlaque');
+      const motto = document.getElementById('heroMottoText');
+      if (badge && motto) {
+        if (num === 1) {
+          badge.style.display = 'none';
+          motto.style.display = 'none';
+        } else if (num === 2) {
+          badge.style.display = 'none';
+          motto.style.display = 'block';
+        } else if (num === 3) {
+          badge.style.display = 'inline-flex';
+          motto.style.display = 'block';
+        }
+      }
+    }
+  </script>
+
 </body>
 </html>
